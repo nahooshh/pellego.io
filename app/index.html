@@ -8,36 +8,63 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootswatch-dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="frontendApp">
+  <body ng-app="frontendApp" ng-controller="SprCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
+		<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+    		<div class="navbar-header">
+      		<button ng-hide="tab" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#headNavbar">
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span> 
+      		</button>
+      		<a class="navbar-brand" href="#">PELLEGO</a>
+    		</div>
+    		<div class="collapse navbar-collapse" id="headNavbar">
+      		<ul ng-hide="tab" class="nav navbar-nav navbar-right">
+        		<!--li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li-->
+        		<li class="dropdown">
+          		<a class="dropdown-toggle" data-toggle="dropdown">Phone Search<span class="caret"></span></a>
+          		<ul class="dropdown-menu">
+            		<li><a ng-href="#/quicksearch">Quick Search</a></li>
+            		<li><a ng-href="#/specssearch">Specs Search</a></li>
+          		</ul>
+        		</li>
+        		<li><a ng-href="#/comparisongraph">Comparison Graph</a></li> 
+        		<li><a ng-href="#/specscomparison">Specs Comparison</a></li> 
+        		<li><a ng-href="#/userreviews">User Reviews</a></li> 
+      		</ul>
+    		</div>
+  		</div>
+		</nav>
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
+      <!--div class="header">
+        <ul class="nav navbar-nav pull-right"></ul>
         <h3 class="text-muted">frontend</h3>
-      </div>
-
+      </div-->
       <div ng-view=""></div>
 
       <div class="footer">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div>
-
+		<script>
+			function SprCtrl($rootScope, $scope) {
+				$rootScope.tab=true;
+			}
+		</script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -63,6 +90,8 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/bootswatch-dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
