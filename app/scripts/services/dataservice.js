@@ -23,10 +23,10 @@ angular.module('frontendApp')
 				this.selected.splice(index, 1);
 			}
 		}
-		this.add = function(d) {
+		this.add = function(label,d) {
 			if (this.all[d[0]]) {}
 			else {
-				this.all[d[0]]=d.slice(1,d.length);
+				this.all[d[0]]=[label].concat(d.slice(1,d.length));
 			}
 		}
 		//for qa
@@ -35,6 +35,15 @@ angular.module('frontendApp')
 		}
 		this.getall = function() {
 			return this.all;
+		}
+		this.getselected = function() {
+			var ret=[];
+			var i = 0;
+			for (i = 0; i < this.selected.length; i++) {
+				var id = this.selected[i];
+    		ret = ret.concat([this.all[id][0]]);
+			}
+			return ret;	
 		}
 
   });

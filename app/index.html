@@ -55,7 +55,16 @@
 				</button>
 			<div id="sidebar" class="col-xs-10 col-sm-8 col-md-6 col-lg-4" ng-hide="tab">
 				<div id="demo" class="collapse">
-  				Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+				
+					<div id="selected">
+						<h2>SELECTED</h2>
+						<p class="input-group" ng-repeat="elem in list">
+							<input type="text" ng-disabled="true" ng-model="elem" class="form-control">
+							<span class="input-group-btn">
+    						<button class="btn btn-danger" ng-click="remove($index)" aria-label="Remove">X</button>
+  						</span>
+						</p>
+					</div>
 				</div>
 			</div>
     <div class="container-fluid">
@@ -68,12 +77,17 @@
     </div>
 		<script>
 			function SprCtrl($rootScope, $scope, Dataservice) {
-				if ($rootScope.tab == false) {
-					$rootScope.selected=[];
-				}
 				$rootScope.tab=true;
-				$scope.list=Dataservice.getsel();
-				$scope.reload=function() {console.log($scope.list);}
+				$scope.list=Dataservice.getselected();
+				$scope.reload=function() {
+					$scope.list=Dataservice.getselected();
+					console.log($scope.list);
+				}
+				$scope.remove=function(index) {
+					$scope.list.splice(index, 1);
+					console.log(index);
+					Dataservice.rem_sel(4);
+				}
 			}
 		</script>
 

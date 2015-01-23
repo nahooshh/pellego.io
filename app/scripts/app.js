@@ -20,11 +20,11 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: '/views/main.html',
         controller: 'MainCtrl',
       })
       .when('/quicksearch', {
-        templateUrl: 'views/quicksearch.html',
+        templateUrl: '/views/quicksearch.html',
         controller: 'TmpCtrl'
       })
       .when('/specssearch', {

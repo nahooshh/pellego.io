@@ -9,14 +9,12 @@
  */
 angular.module('frontendApp')
   .controller('MainCtrl',['$rootScope','$scope','$http','localStorageService','Dataservice',function ($rootScope, $scope, $http, localStorageService,Dataservice) {
-		//localStorageService.clearAll();
 		$rootScope.tab=true;
-		//console.log($scope);
-		//console.log($rootScope);
 		$scope.disgoto = true;
 		$scope.list = Dataservice.getsel();
 
 		/*
+		//localStorageService.clearAll();
 		var selectedInStore = localStorageService.get('selected');
 		$scope.selected = selectedInStore || [];
 		$scope.$watch('selected', function () {
@@ -57,11 +55,10 @@ angular.module('frontendApp')
 			//console.log(qs);
 			$http.get(qs).success(function(response) {
 				Dataservice.add_sel(response[0]);
-				console.log($scope.list);
+				Dataservice.add(label, response);
+				//console.log($scope.list);
 				$scope.disgoto=false;
-				//$rootScope.selected.push(response[0]);
 			});
 		}
-		//console.log($rootScope.selected);
 
   }]);
