@@ -9,18 +9,22 @@
  */
 
 angular.module('frontendApp')
-  .controller('TmpCtrl',['$rootScope','$scope','localStorageService', function ($rootScope, $scope, localStorageService) {
-		//localStorageService.clearAll();
+  .controller('TmpCtrl',['$rootScope','$scope','localStorageService', 'Dataservice', function ($rootScope, $scope, localStorageService, Dataservice) {
 		$rootScope.tab=false;
-		$scope.enter=0;
-		console.log(2);
-		console.log($scope);
-		console.log($rootScope);
-		$scope.pgtp=2;
+		
+		$scope.list = Dataservice.getsel();
+		$scope.x = 1;
 
-		var nameInStore = localStorageService.get('name');
-		$scope.name = nameInStore || [];
-		$scope.$watch('name', function () {
-  		localStorageService.set('name', $scope.name);
+		$scope.testfunc = function () {
+			var x = document.getElementById("test");
+			Dataservice.add_sel($scope.x);
+			console.log($scope.list);
+		};
+		/*
+		var selectedInStore = localStorageService.get('selected');
+		$scope.selected = selectedInStore || [];
+		$scope.$watch('selected', function () {
+  		localStorageService.set('selected', $scope.selected);
 		}, true);
+		*/
   }]);

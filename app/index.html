@@ -10,7 +10,6 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/bootswatch-dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -50,11 +49,17 @@
     		</div>
   		</div>
 		</nav>
-    <div class="container">
-      <!--div class="header">
-        <ul class="nav navbar-nav pull-right"></ul>
-        <h3 class="text-muted">frontend</h3>
-      </div-->
+
+				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" ng-hide="tab"  ng-click="reload()">
+   				simple collapsible
+				</button>
+			<div id="sidebar" class="col-xs-10 col-sm-8 col-md-6 col-lg-4" ng-hide="tab">
+				<div id="demo" class="collapse">
+  				Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+				</div>
+			</div>
+    <div class="container-fluid">
+
       <div ng-view=""></div>
 
       <div class="footer">
@@ -62,8 +67,13 @@
       </div>
     </div>
 		<script>
-			function SprCtrl($rootScope, $scope) {
+			function SprCtrl($rootScope, $scope, Dataservice) {
+				if ($rootScope.tab == false) {
+					$rootScope.selected=[];
+				}
 				$rootScope.tab=true;
+				$scope.list=Dataservice.getsel();
+				$scope.reload=function() {console.log($scope.list);}
 			}
 		</script>
 
@@ -93,7 +103,6 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
-    <script src="bower_components/bootswatch-dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -101,6 +110,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/services/dataservice.js"></script>
         <!-- endbuild -->
 </body>
 </html>

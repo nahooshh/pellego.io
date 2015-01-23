@@ -8,25 +8,26 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('MainCtrl',['$rootScope','$scope','$http','localStorageService', function ($rootScope, $scope, $http, localStorageService) {
+  .controller('MainCtrl',['$rootScope','$scope','$http','localStorageService','Dataservice',function ($rootScope, $scope, $http, localStorageService,Dataservice) {
 		//localStorageService.clearAll();
 		$rootScope.tab=true;
-		console.log(1);
-		console.log($scope);
-		console.log($rootScope);
-		//$scope.todos = ['Item 1', 'Item 2', 'Item 3'];
-		$scope.firstName="John";
-    $scope.lastName="Doe";
-		$scope.pgtp=1;
+		//console.log($scope);
+		//console.log($rootScope);
+		$scope.disgoto = true;
+		$scope.list = Dataservice.getsel();
 
-		var nameInStore = localStorageService.get('name');
-		$scope.name = nameInStore || [];
-		$scope.$watch('name', function () {
-  		localStorageService.set('name', $scope.name);
+		/*
+		var selectedInStore = localStorageService.get('selected');
+		$scope.selected = selectedInStore || [];
+		$scope.$watch('selected', function () {
+  		localStorageService.set('selected', $scope.selected);
 		}, true);
+		*/
 
 		$( "#modelsearch" ).autocomplete({
 			source: "http://192.168.1.2/autocomplete.php",
+			delay: 500,
+			minLength: 2,
 			select: function( event, ui ) {
 				handle_select(ui.item.label);
 			}
@@ -53,8 +54,14 @@ angular.module('frontendApp')
 			else {
 				var qs="http://192.168.1.2/getdata.php".concat("?make=",make,"&model=",model,"&type=",type);
 			}
-			console.log(qs);
-			$http.get(qs).success(function(response) {console.log(response);});
+			//console.log(qs);
+			$http.get(qs).success(function(response) {
+				Dataservice.add_sel(response[0]);
+				console.log($scope.list);
+				$scope.disgoto=false;
+				//$rootScope.selected.push(response[0]);
+			});
 		}
+		//console.log($rootScope.selected);
 
   }]);

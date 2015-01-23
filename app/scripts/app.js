@@ -29,19 +29,19 @@ angular
       })
       .when('/specssearch', {
         templateUrl: 'views/specssearch.html',
-        controller: 'MainCtrl'
+        controller: 'TmpCtrl'
       })
       .when('/comparisongraph', {
-        templateUrl: 'views/comparisongraph.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/quicksearch.html',
+        controller: 'TmpCtrl'
       })
       .when('/specscomparison', {
         templateUrl: 'views/specscomparison.html',
-        controller: 'MainCtrl'
+        controller: 'TmpCtrl'
       })
       .when('/userreviews', {
         templateUrl: 'views/userreviews.html',
-        controller: 'MainCtrl'
+        controller: 'TmpCtrl'
       })
       .otherwise({
         redirectTo: '/'
