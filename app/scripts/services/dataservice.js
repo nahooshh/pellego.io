@@ -22,6 +22,8 @@ angular.module('frontendApp')
 			if (index != -1) {
 				this.selected.splice(index, 1);
 			}
+			console.log("removed");
+			console.log(index);
 		}
 		this.add = function(label,d) {
 			if (this.all[d[0]]) {}
@@ -41,7 +43,7 @@ angular.module('frontendApp')
 			var i = 0;
 			for (i = 0; i < this.selected.length; i++) {
 				var id = this.selected[i];
-    		ret = ret.concat([this.all[id][0]]);
+    		ret.push([id, this.all[id][0]]);
 			}
 			return ret;	
 		}

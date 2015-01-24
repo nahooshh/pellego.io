@@ -57,9 +57,9 @@
 				<div id="demo" class="collapse">
 				
 					<div id="selected">
-						<h2>SELECTED</h2>
+						<h4>Selected Phones</h4>
 						<p class="input-group" ng-repeat="elem in list">
-							<input type="text" ng-disabled="true" ng-model="elem" class="form-control">
+							<input type="text" ng-disabled="true" ng-model="elem[1]" class="form-control">
 							<span class="input-group-btn">
     						<button class="btn btn-danger" ng-click="remove($index)" aria-label="Remove">X</button>
   						</span>
@@ -84,9 +84,8 @@
 					console.log($scope.list);
 				}
 				$scope.remove=function(index) {
+					Dataservice.rem_sel($scope.list[index][0]);
 					$scope.list.splice(index, 1);
-					console.log(index);
-					Dataservice.rem_sel(4);
 				}
 			}
 		</script>
