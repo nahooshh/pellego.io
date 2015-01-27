@@ -55,6 +55,133 @@ body {
 .voffset8 { margin-top: 100px; }
 .voffset9 { margin-top: 150px; }
 
+.box{
+	padding:0;
+	margin:5px 5px 10px 5px;
+	height:50px;
+	border: 1px solid rgb(200,200,200);
+}
+.bigbox{
+	padding:0;
+	margin:5px 5px 5px 5px;
+	height:80px;
+	border: 1px solid rgb(200,200,200);
+}
+.hugebox{
+	padding:0;
+	margin:5px 5px 5px 5px;
+	height:200px;
+	border: 1px solid rgb(200,200,200);
+}
+.slider{
+	position:relative;
+	float:right;
+	right:5px;
+	top:15px;
+	width:75%;
+}
+.selectpicker {
+	position:relative;
+	float:right;
+	top:5px;
+	background-color:rgba(0,0,0,0);
+}
+.slider-value{
+	position:relative;
+	float:right;
+	right:5px;
+	width:75%;
+	top:17px;
+	height:20px;
+	//border:1px solid red;
+	font-size:14px;
+}
+.label{
+	font-size: 15px;
+	//font-weight:400;
+	color:#000;
+	position:relative;
+	float:left;
+	user-select:none:
+	overflow:hidden;
+	display:inline-block;
+	top:10px;
+	left:-5px;
+	text-transform:uppercase;
+}
+#sGeneral thead>tr>th,#sGeneral  tbody>tr>th,#sGeneral  tfoot>tr>th,
+#sGeneral thead>tr>td,#sGeneral   tbody>tr>td,#sGeneral  tfoot>tr>td {
+	padding: 0;
+}
+#sGeneral th {
+	text-align:center;
+}
+#sGeneral td {
+	text-align: center;
+	vertical-align: middle;
+	//margin:auto;
+}
+
+#sGeneral table {
+	position:absolute;
+	width:100%;
+	bottom:2px;
+}
+
+.btn-default {
+	color: black;
+}
+
+input[type="radio"], input[type="checkbox"] {
+	line-height: normal;
+	margin-top: 0;
+	background-color: rgba(0,0,0,0);
+}
+.noUi-background{
+	background-color: rgb(166,166,166);/*#b6c10b;*/
+}
+.noUi-target{
+	border:none;
+}
+.noUi-connect{
+	background:#276700;
+	
+}
+.noUi-handle{
+	background-color: rgba(0,0,0,.8);
+	position: relative;
+	border:none;
+	box-shadow:none;
+}
+.noUi-horizontal .noUi-handle {
+	width:3px;
+	height:15px;
+	left: -1px;
+	top: -10px;
+}
+.noUi-handle:after, .noUi-handle:before {
+display: none;
+}
+.noUi-horizontal {
+	height: 5px
+}
+.range{
+	position:relative;
+	//display: inline-block;
+	width:75%;
+	height:75%;
+	background-color: rgba(0,0,0,0);
+}
+.low-value{
+	float: left;
+}
+.high-value{
+	float: right;
+}
+input{
+	border:none;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {

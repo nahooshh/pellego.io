@@ -1,6 +1,251 @@
 <div class="container">
-  <h2>specssearch</h2>
-  <p class="form-group" ng-repeat="todo in todos">
-    <input type="text" ng-model="todo" class="form-control">
-  </p>
+	<div id="sHardware" class="panel panel-default">
+   	<div class="panel-heading">
+      <h3 class="panel-title">
+         Hardware
+      </h3>
+   	</div>
+   	<div class="panel-body">
+			<div class="row">
+				<div id="chipsetbox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">Chipset:</span>
+					<select name="sChipset" id="sChipset" class="selectpicker" multiple data-live-search="true" data-width="62%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+				<div id="cpufambox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">CPU Family:</span>
+					<select name="sCpuFam" id="sCpuFam" class="selectpicker" multiple data-live-search="true" data-width="52%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+				<div id="gpubox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">GPU:</span>
+					<select name="sGpu" id="sGpu" class="selectpicker" multiple data-live-search="true" data-width="75%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div id="cpufrebox" class="box col-sm-9 col-md-6 col-lg-4">
+					<span class="label">Freq:</span>
+					<div class="slider" id="cpufreqSlider"></div>
+					<div class="slider-value">
+						<span style="display:inline-block;float:left;width:40%"><input class="range" id="frelv"></span>
+						<span style="display:inline-block;float:right;width:40%"><input class="range" id="frehv"></span>
+					</div>
+				</div>
+				<div id="cpucorebox" class="box col-sm-9 col-md-6 col-lg-4">
+					<span class="label">Cores:</span>
+					<select name="sCpuCor" id="sCpuCor" class="selectpicker" multiple data-live-search="true" data-width="70%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div id="rambox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">Ram:</span>
+					<div class="slider" id="ramSlider"></div>
+					<div class="slider-value">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:50%" class="range"
+							id="ramlv">GB</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:50%" class="range"
+							id="ramhv">GB</span>
+					</div>
+				</div>
+				<div id="intrbox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">Intr:</span>
+					<div class="slider" id="intrSlider"></div>
+					<div class="slider-value">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:40%" class="range"
+							id="intrlv">GB</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:40%" class="range"
+							id="intrhv">GB</span>
+					</div>
+				</div>
+				<div id="cardbox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">CARD:</span>
+					<div class="slider" id="cardSlider" style="width:65%"></div>
+					<div class="slider-value" style="width:65%">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
+							id="cardlv">GB</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
+							id="cardhv">GB</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="sensorsbox" class="box col-sm-10 col-md-9 col-lg-8">
+					<span class="label">Sensors:</span>
+					<select name="sSensors" id="sSensors" class="selectpicker" multiple data-live-search="true" data-width="70%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div id="batterybox" class="box col-sm-10 col-md-9 col-lg-8">
+					<span class="label">BATTERY:</span>
+					<div class="slider" id="battSlider" style="width:65%"></div>
+					<div class="slider-value" style="width:65%">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
+							id="battlv">mAh</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
+							id="batthv">mAh</span>
+					</div>
+				</div>
+			</div>
+		</div><!--panel body-->
+	</div><!--panel Hardware-->
+	<div id="sDisplay" class="panel panel-default">
+   	<div class="panel-heading">
+      <h3 class="panel-title">
+         Display
+      </h3>
+   	</div>
+   	<div class="panel-body">
+			<div class="row">
+				<div id="dissizebox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Screen:</span>
+					<div class="slider" id="scrSlider" style="width:65%"></div>
+					<div class="slider-value" style="width:65%">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
+							id="scrlv">inch</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
+							id="scrhv">inch</span>
+					</div>
+				</div>
+				<div id="distechbox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Technology:</span>
+					<select name="sDisTech" id="sDisTech" class="selectpicker" multiple data-live-search="true" data-width="55%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div id="disresobox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Resolution:</span>
+					<select name="sDisReso" id="sDisReso" class="selectpicker" multiple data-live-search="true" data-width="55%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+				<div id="disdensitybox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Density:</span>
+					<div class="slider" id="disdenSlider" style="width:65%"></div>
+					<div class="slider-value" style="width:65%">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
+							id="disdenlv">ppi</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
+							id="disdenhv">ppi</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="disprotbox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Protection:</span>
+					<select name="sDisProt" id="sDisProt" class="selectpicker" multiple data-live-search="true" data-width="55%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+				<!--div id="distouchbox" class="box col-sm-6 col-md-5 col-lg-4"></div-->
+			</div>
+		</div><!--panel body-->
+	</div><!--panel Display-->
+	<div id="sCamera" class="panel panel-default">
+   	<div class="panel-heading">
+      <h3 class="panel-title">
+         Camera
+      </h3>
+   	</div>
+   	<div class="panel-body">
+			<div class="row">
+				<div id="campribox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Primary Cam:</span>
+					<div class="slider" id="pricamSlider" style="width:60%"></div>
+					<div class="slider-value" style="width:60%">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
+							id="pricamlv">MP</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
+							id="pricamhv">MP</span>
+					</div>
+				</div>
+				<div id="camprividbox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Pri. Video:</span>
+					<div class="slider" id="prividSlider" style="width:65%"></div>
+					<div class="slider-value" style="width:65%">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
+							id="prividlv">p</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
+							id="prividhv">p</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="camsecbox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Secondary:</span>
+					<div class="slider" id="seccamSlider" style="width:60%"></div>
+					<div class="slider-value" style="width:60%">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
+							id="seccamlv">MP</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
+							id="seccamhv">MP</span>
+					</div>
+				</div>
+				<div id="camsecvidbox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Sec. Video:</span>
+					<div class="slider" id="secvidSlider" style="width:65%"></div>
+					<div class="slider-value" style="width:65%">
+						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
+							id="secvidlv">p</span>
+						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
+							id="secvidhv">p</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="camflashbox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Flash:</span>
+					<select name="sFlash" id="sFlash" class="selectpicker" multiple data-live-search="true" data-width="55%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+				<div id="camfeaturesbox" class="box col-sm-6 col-md-5 col-lg-4">
+					<span class="label">Features:</span>
+					<select name="sCamFea" id="sCamFea" class="selectpicker" multiple data-live-search="true" data-width="55%">
+						<option value="1">test3</option>
+						<option value="2">test4</option>
+					</select>
+				</div>
+			</div>
+		</div><!--panel body-->
+	</div><!--panel Camera-->
+	<div id="sConnectivity" class="panel panel-default">
+   	<div class="panel-heading">
+      <h3 class="panel-title">
+         Connectivity
+      </h3>
+   	</div>
+   	<div class="panel-body">
+			<div class="row">
+				<div id="databox" class="box col-sm-6 col-md-5 col-lg-4"></div>
+				<div id="wifibox" class="box col-sm-6 col-md-5 col-lg-4"></div>
+			</div>
+			<div class="row">
+				<div id="btbox" class="box col-sm-6 col-md-5 col-lg-4"></div>
+				<div id="usbbox" class="box col-sm-6 col-md-5 col-lg-4"></div>
+			</div>
+			<div class="row">
+				<div id="nfcbox" class="box col-sm-6 col-md-5 col-lg-4"></div>
+				<div id="irbox" class="box col-sm-6 col-md-5 col-lg-4"></div>
+			</div>
+		</div><!--panel body-->
+	</div><!--panel Connectivity-->
 </div>

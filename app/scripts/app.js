@@ -25,11 +25,11 @@ angular
       })
       .when('/quicksearch', {
         templateUrl: '/views/quicksearch.html',
-        controller: 'TmpCtrl'
+        controller: 'SrchCtrl'
       })
       .when('/specssearch', {
         templateUrl: 'views/specssearch.html',
-        controller: 'TmpCtrl'
+        controller: 'SrchCtrl'
       })
       .when('/comparisongraph', {
         templateUrl: 'views/quicksearch.html',

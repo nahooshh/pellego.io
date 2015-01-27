@@ -1,8 +1,273 @@
 <div class="container">
-  <h2>quicksearch</h2>
-  <!--p class="form-group" ng-repeat="todo in todos">
-    <input type="text" ng-model="todo" class="form-control">
-  </p-->
-	<input id="test" type="text" ng-model="x" ng-change="testfunc()">
-</div>
+	<div id="sGeneral" class="panel panel-default">
+   	<div class="panel-heading">
+      <h3 class="panel-title">
+         General
+      </h3>
+   	</div>
+   	<div class="panel-body">
+			<div class="row">
+				<div id="pricebox" class="box col-sm-10 col-md-5 col-lg-5">
+					
+				<!--div id="pricebox" class="col-lg-6">
+					<div slider ng-model="single" start=1 end=10></div>
+					<div slider ng-from="from" ng-to="to" start=1000 end=100000 step=1000></div>
+					<form class="form-inline voffset2" role="form">
+						<div class="form-group">
+							<label for="pricefrm">Rs.</label>
+							<input type="text" class="form-control" id="pricefrm"	placeholder="From" ng-model="from">
+						</div>
+						<div class="form-group">
+							<label for="priceto">Rs.</label>
+							<input type="text" class="form-control" id="priceto"	placeholder="To" ng-model="to">
+						</div>
+					</form>
+					<p>
+						"From: "
+						<input type="number" ng-model="from">
+						"To: "
+						<input type="number" ng-model="to">
+					</p-->
 
+					<span class="label">Price:</span>
+					<div class="slider" id="priceSlider"></div>
+					<div class="slider-value">
+						<span style="display:inline-block;float:left;width:40%">Rs <input class="range" id="plv"></span>
+						<span style="display:inline-block;float:right;width:40%">Rs <input class="range" id="phv"></span>
+					</div>
+				</div>
+				<div id="brandbox" class="box col-sm-10 col-md-6 col-lg-5 col-lg-offset-2">
+					<!--p>Brand: <div ng-dropdown-multiselect="" options="example1data" selected-model="example1model"></div></p-->
+					<!--form role="form">
+					<div class="form-group">
+
+					<label for="name">Brand:</label-->
+					<!--select name="sBrand" id="sBrand" class="selectpicker" multiple data-live-search="true" data-width="75%"
+						title='Choose one of the following...'>
+					<select class="form-control">
+					<select id="sBrand" class="selectpicker" multiple data-live-search="true"-->
+					<span class="label">Brand:</span>
+					<select name="sBrand" id="sBrand" class="selectpicker" multiple data-live-search="true" data-width="70%" title='Choose one of the following...'>
+						<option value="Alcatel">Alcatel</option>
+						<option value="Apple">Apple</option>
+						<option value="Asus">Asus</option>
+						<option value="BlackBerry">BlackBerry</option>
+						<option value="Gionee">Gionee</option>
+						<option value="Google">Google</option>
+						<option value="HP">HP</option>
+						<option value="HTC">HTC</option>
+						<option value="Huawei">Huawei</option>
+						<option value="Lava">Lava</option>
+						<option value="Lenovo">Lenovo</option>
+						<option value="LG">LG</option>
+						<option value="Micromax">Micromax</option>
+						<option value="Moto">Moto</option>
+						<option value="Nokia">Nokia</option>
+						<option value="OPPO">OPPO</option>
+						<option value="Panasonic">Panasonic</option>
+						<option value="Samsung">Samsung</option>
+						<option value="Sony">Sony</option>
+						<option value="Spice">Spice</option>
+						<option value="XOLO">XOLO</option>
+						<option value="ZTE">ZTE</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div id="sizefacebox" class="bigbox col-sm-6 col-md-4 col-lg-3">
+					<span class="label">FaceSize:</span>
+					<table>
+						<thead>
+							<tr>
+							<th>small</th>
+							<th>average</th>
+							<th>big/phablet</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox" class="facesize" id="facesize0" value="1"/></td>
+								<td><input type="checkbox" class="facesize" id="facesize1" value="2"/></td>
+								<td><input type="checkbox" class="facesize" id="facesize2" value="3"/></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="sizethikbox" class="bigbox col-sm-6 col-md-4 col-lg-3">
+					<span class="label">Thickness:</span>
+					<table>
+						<thead>
+							<tr>
+							<th>thick</th>
+							<th>average</th>
+							<th>slim</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox" class="thickness" id="thickness0" value="1"/></td>
+								<td><input type="checkbox" class="thickness" id="thickness1" value="2"/></td>
+								<td><input type="checkbox" class="thickness" id="thickness2" value="3"/></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="sizewtbox" class="bigbox col-sm-6 col-md-4 col-lg-3">
+					<span class="label">Weight:</span>
+					<table>
+						<thead>
+							<tr>
+							<th>light</th>
+							<th>average</th>
+							<th>heavy</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox" class="weight" id="weight0" value="1"/></td>
+								<td><input type="checkbox" class="weight" id="weight1" value="2"/></td>
+								<td><input type="checkbox" class="weight" id="weight2" value="3"/></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div id="osbox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">OS:</span>
+					<select name="sOS" id="sOS" class="selectpicker" data-live-search="true" data-width="75%">
+						<option value="1">android</option>
+						<option value="2">windows</option>
+					</select>
+				</div>
+				<div id="oscurbox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">Version:</span>
+					<select name="scurOS" id="sCurOS" multiple class="selectpicker" title="Any"
+						data-live-search="true" data-width="50%">
+						<!--option></option-->
+					</select>
+				</div>
+				<div id="osmaxbox" class="box col-sm-6 col-md-4 col-lg-3">
+					<span class="label">Upgradable:</span>
+					<select name="sFutOS" id="sFutOS" class="selectpicker" title="Any"
+						data-live-search="true" data-width="50%">
+						<!--option></option-->
+					</select>
+				</div>
+			</div>
+		</div><!--panel body-->
+	</div><!--panel GENERAL-->
+	<div id="sQuality" class="panel panel-default">
+   	<div class="panel-heading">
+      <h3 class="panel-title">
+        	Quality
+      </h3>
+   	</div>
+   	<div class="panel-body">
+			<div class="row">
+				<div id="qualitybox" class="hugebox col-sm-12 col-md-10 col-lg-8">
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th>below average</th>
+									<th>average</th>
+									<th>above average</th>
+									<th>best in class</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Overall</td>
+									<td><input type="checkbox" id="overall0" value="1"/></td>
+									<td><input type="checkbox" id="overall1" value="2"/></td>
+									<td><input type="checkbox" id="overall2" value="3"/></td>
+									<td><input type="checkbox" id="overall3" value="4"/></td>
+								</tr>
+								<tr>
+									<td>Hardware</td>
+									<td><input type="checkbox" id="hardware0" value="1"/></td>
+									<td><input type="checkbox" id="hardware1" value="2"/></td>
+									<td><input type="checkbox" id="hardware2" value="3"/></td>
+									<td><input type="checkbox" id="hardware3" value="4"/></td>
+								</tr>
+								<tr>
+									<td>Display</td>
+									<td><input type="checkbox" id="display0" value="1"/></td>
+									<td><input type="checkbox" id="display1" value="2"/></td>
+									<td><input type="checkbox" id="display2" value="3"/></td>
+									<td><input type="checkbox" id="display3" value="4"/></td>
+								</tr>
+								<tr>
+									<td>Camera</td>
+									<td><input type="checkbox" id="camera0" value="1"/></td>
+									<td><input type="checkbox" id="camera1" value="2"/></td>
+									<td><input type="checkbox" id="camera2" value="3"/></td>
+									<td><input type="checkbox" id="camera3" value="4"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div><!--panel body-->
+	</div><!--panel Quality-->
+	<div id="sSimilar" class="panel panel-default">
+   	<div class="panel-heading">
+      <h3 class="panel-title">
+        	Similar To
+      </h3>
+   	</div>
+   	<div class="panel-body">
+			<div class="row">
+				<div id="likebox" class="hugebox col-sm-12 col-md-10 col-lg-8">
+					<div class="table-responsive">
+						<table class="table table-hover table-striped">
+							<thead>
+								<tr>
+									<th>similar to</th>
+									<th>overall</th>
+									<th>hardware</th>
+									<th>display</th>
+									<th>camera</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input class="ssimilar" id="similar0" type="text"></td>
+									<td><input type="checkbox" id="soverall0" value="1"/></td>
+									<td><input type="checkbox" id="shardware0" value="1"/></td>
+									<td><input type="checkbox" id="sdisplay0" value="1"/></td>
+									<td><input type="checkbox" id="scamera0" value="1"/></td>
+								</tr>
+								<tr>
+									<td><input class="ssimilar" id="similar1" type="text"></td>
+									<td><input type="checkbox" id="soverall1" value="2"/></td>
+									<td><input type="checkbox" id="shardware1" value="2"/></td>
+									<td><input type="checkbox" id="sdisplay1" value="2"/></td>
+									<td><input type="checkbox" id="scamera1" value="2"/></td>
+								</tr>
+								<tr>
+									<td><input class="ssimilar" id="similar2" type="text"></td>
+									<td><input type="checkbox" id="soverall2" value="3"/></td>
+									<td><input type="checkbox" id="shardware2" value="3"/></td>
+									<td><input type="checkbox" id="sdisplay2" value="3"/></td>
+									<td><input type="checkbox" id="scamera2" value="3"/></td>
+								</tr>
+								<tr>
+									<td><input class="ssimilar" id="similar3" type="text"></td>
+									<td><input type="checkbox" id="soverall3" value="4"/></td>
+									<td><input type="checkbox" id="shardware3" value="4"/></td>
+									<td><input type="checkbox" id="sdisplay3" value="4"/></td>
+									<td><input type="checkbox" id="scamera3" value="4"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div><!--panel body-->
+	</div><!--panel Similar To-->
+		
+</div>
