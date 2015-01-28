@@ -21,20 +21,12 @@ angular.module('frontendApp')
 			console.log($scope.list);
 		};
 
-		/*
-		var selectedInStore = localStorageService.get('selected');
-		$scope.selected = selectedInStore || [];
-		$scope.$watch('selected', function () {
-  		localStorageService.set('selected', $scope.selected);
-		}, true);
-		*/
 
-
-
+	$('.selectpicker').selectpicker();
 	$("#priceSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 1000,100000],
+		start: [Dataservice.price['lo'],Dataservice.price['hi']],
 		format: wNumb({
 			decimals: 0
 		}),
@@ -46,20 +38,77 @@ angular.module('frontendApp')
 			'max': [ 100000 ]
 		}
 	});
-	$("#priceSlider").on('slide', narrowbyprice);
+	$("#priceSlider").on('slide',  function() {
+		Dataservice.price['lo'] = $('#plv').val();
+		Dataservice.price['hi'] = $('#phv').val();
+	});
 	$("#priceSlider").Link('lower').to($('#plv'));
 	$("#priceSlider").Link('upper').to($('#phv'));
-	function narrowbyprice() {
-		/*
-		for (i = 0; i < price.length; i++) {
-			if ((price[i] >= $('#plv').val()) && (price[i] <= $('#phv').val())) {
-				sel[1][i]=1;
-			} else {
-				sel[1][i]=0;
-			}
-		}
-		*/
+
+	$('#sBrand').selectpicker('val', Dataservice.brand);
+	$("#sBrand").change(function(){
+		Dataservice.brand=$("#sBrand").val();
+	});
+
+	$('#facesize0').attr('checked', Dataservice.facesize[0]);
+	$('#facesize1').attr('checked', Dataservice.facesize[1]);
+	$('#facesize2').attr('checked', Dataservice.facesize[2]);
+	$('.facesize').change(function() {
+		Dataservice.facesize=[$('#facesize0').prop('checked'),$('#facesize1').prop('checked'),$('#facesize2').prop('checked')];
+	});
+
+	$('#thickness0').attr('checked', Dataservice.thickness[0]);
+	$('#thickness1').attr('checked', Dataservice.thickness[1]);
+	$('#thickness2').attr('checked', Dataservice.thickness[2]);
+	$('.thickness').change(function() {
+		Dataservice.thickness=[$('#thickness0').prop('checked'),$('#thickness1').prop('checked'),$('#thickness2').prop('checked')];
+	});
+
+	$('#weight').attr('checked', Dataservice.weight[0]);
+	$('#weight1').attr('checked', Dataservice.weight[1]);
+	$('#weight2').attr('checked', Dataservice.weight[2]);
+	$('.weight').change(function() {
+		Dataservice.weight=[$('#weight0').prop('checked'),$('#weight1').prop('checked'),$('#weight2').prop('checked')];
+	});
+	
+	if (Dataservice.os != 0) {
+		$('#sOS').selectpicker('val', Dataservice.os);
+		populate_os_details();
+		$('#sCurOS').selectpicker('val', Dataservice.os_curr);
+		$('#sFutOS').selectpicker('val', Dataservice.os_upgr);
 	}
+	$("#sOS").change(function(){
+		Dataservice.os=$("#sOS").val();
+		populate_os_details();
+		Dataservice.os_curr=[];
+		Dataservice.os_upgr=[];
+		$('#sCurOS').selectpicker('val', Dataservice.os_curr);
+		$('#sFutOS').selectpicker('val', Dataservice.os_upgr);
+	});
+	function populate_os_details() {
+		for (var i=1;i<6;i++) {
+			if (i==Dataservice.os) {continue;}
+			$("#sCurOS ."+i ).show();
+			$("#sCurOS ."+i).hide();
+			$("#sFutOS ."+i ).show();
+			$("#sFutOS ."+i).hide();
+		}
+		$("#sCurOS ."+Dataservice.os ).show();
+		$('#sCurOS').selectpicker('refresh');
+		$("#sFutOS ."+Dataservice.os ).show();
+		$('#sFutOS').selectpicker('refresh');
+	}
+	$("#sCurOS").change(function(){
+		Dataservice.os_curr=$("#sCurOS").val();
+	});
+	$("#sFutOS").change(function(){
+		Dataservice.os_upgr=$("#sFutOS").val();
+	});
+		
+	
+	
+	
+
 	$("#cpufreqSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
@@ -239,6 +288,5 @@ angular.module('frontendApp')
 	$("#secvidSlider").Link('lower').to($('#secvidlv'));
 	$("#secvidSlider").Link('upper').to($('#secvidhv'));
 
-	$('.selectpicker').selectpicker();
 
   }]);

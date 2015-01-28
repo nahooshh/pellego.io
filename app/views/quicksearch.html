@@ -8,27 +8,6 @@
    	<div class="panel-body">
 			<div class="row">
 				<div id="pricebox" class="box col-sm-10 col-md-5 col-lg-5">
-					
-				<!--div id="pricebox" class="col-lg-6">
-					<div slider ng-model="single" start=1 end=10></div>
-					<div slider ng-from="from" ng-to="to" start=1000 end=100000 step=1000></div>
-					<form class="form-inline voffset2" role="form">
-						<div class="form-group">
-							<label for="pricefrm">Rs.</label>
-							<input type="text" class="form-control" id="pricefrm"	placeholder="From" ng-model="from">
-						</div>
-						<div class="form-group">
-							<label for="priceto">Rs.</label>
-							<input type="text" class="form-control" id="priceto"	placeholder="To" ng-model="to">
-						</div>
-					</form>
-					<p>
-						"From: "
-						<input type="number" ng-model="from">
-						"To: "
-						<input type="number" ng-model="to">
-					</p-->
-
 					<span class="label">Price:</span>
 					<div class="slider" id="priceSlider"></div>
 					<div class="slider-value">
@@ -37,15 +16,6 @@
 					</div>
 				</div>
 				<div id="brandbox" class="box col-sm-10 col-md-6 col-lg-5 col-lg-offset-2">
-					<!--p>Brand: <div ng-dropdown-multiselect="" options="example1data" selected-model="example1model"></div></p-->
-					<!--form role="form">
-					<div class="form-group">
-
-					<label for="name">Brand:</label-->
-					<!--select name="sBrand" id="sBrand" class="selectpicker" multiple data-live-search="true" data-width="75%"
-						title='Choose one of the following...'>
-					<select class="form-control">
-					<select id="sBrand" class="selectpicker" multiple data-live-search="true"-->
 					<span class="label">Brand:</span>
 					<select name="sBrand" id="sBrand" class="selectpicker" multiple data-live-search="true" data-width="70%" title='Choose one of the following...'>
 						<option value="Alcatel">Alcatel</option>
@@ -137,21 +107,87 @@
 					<span class="label">OS:</span>
 					<select name="sOS" id="sOS" class="selectpicker" data-live-search="true" data-width="75%">
 						<option value="1">android</option>
-						<option value="2">windows</option>
+						<option value="2">blackberry os</option>
+						<option value="3">iOS</option>
+						<option value="4">windows phone</option>
+						<option value="5">nokia asha software platform</option>
 					</select>
 				</div>
 				<div id="oscurbox" class="box col-sm-6 col-md-4 col-lg-3">
 					<span class="label">Version:</span>
-					<select name="scurOS" id="sCurOS" multiple class="selectpicker" title="Any"
-						data-live-search="true" data-width="50%">
-						<!--option></option-->
+					<select name="sCurOS" id="sCurOS" multiple class="selectpicker" title="Any" data-live-search="true" data-width="50%">
+						<option class="1" value="v4.3 (jelly bean)">v4.3 (jelly bean)</option>
+						<option class="1" value="v2.3 (gingerbread)">v2.3 (gingerbread)</option>
+						<option class="1" value="v2.3.3 (gingerbread)">v2.3.3 (gingerbread)</option>
+						<option class="1" value="v2.3.4 (gingerbread)">v2.3.4 (gingerbread)</option>
+						<option class="1" value="v2.3.5 (gingerbread)">v2.3.5 (gingerbread)</option>
+						<option class="1" value="v2.3.6 (gingerbread)">v2.3.6 (gingerbread)</option>
+						<option class="1" value="v4.0 (icecream sandwitch)">v4.0 (icecream sandwitch)</option>
+						<option class="1" value="v4.0.3 (icecream sandwich)">v4.0.3 (icecream sandwich)</option>
+						<option class="1" value="v4.0.4 (icecream sandwich)">v4.0.4 (icecream sandwich)</option>
+						<option class="1" value="v4.1 (jelly bean)">v4.1 (jelly bean)</option>
+						<option class="1" value="v4.1.1 (jelly bean)">v4.1.1 (jelly bean)</option>
+						<option class="1" value="v4.1.2 (jelly bean)">v4.1.2 (jelly bean)</option>
+						<option class="1" value="v4.2 (jelly bean)">v4.2 (jelly bean)</option>
+						<option class="1" value="v4.2.1 (jelly bean)">v4.2.1 (jelly bean)</option>
+						<option class="1" value="v4.2.2 (jelly bean)">v4.2.2 (jelly bean)</option>
+						<option class="1" value="v4.3 (jelly bean)">v4.3 (jelly bean)</option>
+						<option class="1" value="v4.4(kitkat)">v4.4(kitkat)</option>
+						<option class="1" value="v4.4.2 (kitkat)">v4.4.2 (kitkat)</option>
+						<option class="2" value="blackberry 10 os">blackberry 10 os</option>
+						<option class="2" value="blackberry 10.2 os">blackberry 10.2 os</option>
+						<option class="2" value="blackberry 10.2.1 os">blackberry 10.2.1 os</option>
+						<option class="2" value="blackberry os 7.0">blackberry os 7.0</option>
+						<option class="2" value="blackberry os 7.1">blackberry os 7.1</option>
+						<option class="3" value="iOS 4">iOS 4</option>
+						<option class="3" value="iOS 5">iOS 5</option>
+						<option class="3" value="iOS 6">iOS 6</option>
+						<option class="3" value="iOS 7">iOS 7</option>
+						<option class="4" value="windows phone 7.5 mango">windows phone 7.5 mango</option>
+						<option class="4" value="windows phone 8">windows phone 8</option>
+						<option class="4" value="windows phone 8.1">windows phone 8.1</option>
+						<option class="5" value="nokia asha software platform 1.0">nokia asha software platform 1.0</option>
+						<option class="5" value="nokia asha software platform 1.1.1">nokia asha software platform 1.1.1</option>
+						<option class="5" value="nokia asha software platform 1.2">nokia asha software platform 1.2</option>
 					</select>
 				</div>
 				<div id="osmaxbox" class="box col-sm-6 col-md-4 col-lg-3">
 					<span class="label">Upgradable:</span>
 					<select name="sFutOS" id="sFutOS" class="selectpicker" title="Any"
 						data-live-search="true" data-width="50%">
-						<!--option></option-->
+						<option class="1" value="v4.3 (jelly bean)">v4.3 (jelly bean)</option>
+						<option class="1" value="v2.3 (gingerbread)">v2.3 (gingerbread)</option>
+						<option class="1" value="v2.3.3 (gingerbread)">v2.3.3 (gingerbread)</option>
+						<option class="1" value="v2.3.4 (gingerbread)">v2.3.4 (gingerbread)</option>
+						<option class="1" value="v2.3.5 (gingerbread)">v2.3.5 (gingerbread)</option>
+						<option class="1" value="v2.3.6 (gingerbread)">v2.3.6 (gingerbread)</option>
+						<option class="1" value="v4.0 (icecream sandwitch)">v4.0 (icecream sandwitch)</option>
+						<option class="1" value="v4.0.3 (icecream sandwich)">v4.0.3 (icecream sandwich)</option>
+						<option class="1" value="v4.0.4 (icecream sandwich)">v4.0.4 (icecream sandwich)</option>
+						<option class="1" value="v4.1 (jelly bean)">v4.1 (jelly bean)</option>
+						<option class="1" value="v4.1.1 (jelly bean)">v4.1.1 (jelly bean)</option>
+						<option class="1" value="v4.1.2 (jelly bean)">v4.1.2 (jelly bean)</option>
+						<option class="1" value="v4.2 (jelly bean)">v4.2 (jelly bean)</option>
+						<option class="1" value="v4.2.1 (jelly bean)">v4.2.1 (jelly bean)</option>
+						<option class="1" value="v4.2.2 (jelly bean)">v4.2.2 (jelly bean)</option>
+						<option class="1" value="v4.3 (jelly bean)">v4.3 (jelly bean)</option>
+						<option class="1" value="v4.4(kitkat)">v4.4(kitkat)</option>
+						<option class="1" value="v4.4.2 (kitkat)">v4.4.2 (kitkat)</option>
+						<option class="2" value="blackberry 10 os">blackberry 10 os</option>
+						<option class="2" value="blackberry 10.2 os">blackberry 10.2 os</option>
+						<option class="2" value="blackberry 10.2.1 os">blackberry 10.2.1 os</option>
+						<option class="2" value="blackberry os 7.0">blackberry os 7.0</option>
+						<option class="2" value="blackberry os 7.1">blackberry os 7.1</option>
+						<option class="3" value="iOS 4">iOS 4</option>
+						<option class="3" value="iOS 5">iOS 5</option>
+						<option class="3" value="iOS 6">iOS 6</option>
+						<option class="3" value="iOS 7">iOS 7</option>
+						<option class="4" value="windows phone 7.5 mango">windows phone 7.5 mango</option>
+						<option class="4" value="windows phone 8">windows phone 8</option>
+						<option class="4" value="windows phone 8.1">windows phone 8.1</option>
+						<option class="5" value="nokia asha software platform 1.0">nokia asha software platform 1.0</option>
+						<option class="5" value="nokia asha software platform 1.1.1">nokia asha software platform 1.1.1</option>
+						<option class="5" value="nokia asha software platform 1.2">nokia asha software platform 1.2</option>
 					</select>
 				</div>
 			</div>

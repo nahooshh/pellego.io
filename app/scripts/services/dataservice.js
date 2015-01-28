@@ -48,4 +48,13 @@ angular.module('frontendApp')
 			return ret;	
 		}
 
+		this.price={'min':1000,'max':100000,'lo':1000,'hi':100000};
+		this.brand=[];
+		this.facesize=[false,false,false];
+		this.thickness=[false,false,false];
+		this.weight=[false,false,false];
+		this.os=1;
+		this.os_curr=[];
+		this.os_upgr=[];
+
   });
