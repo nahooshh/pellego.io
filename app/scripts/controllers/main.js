@@ -55,9 +55,10 @@ angular.module('frontendApp')
 			//console.log(qs);
 			$http.get(qs).success(function(response) {
 				Dataservice.add_sel(response[0]);
-				Dataservice.add(label, response);
+				Dataservice.add_label(label, response);
 				//console.log($scope.list);
 				$scope.disgoto=false;
+				console.log(Dataservice.all);
 			});
 		}
 

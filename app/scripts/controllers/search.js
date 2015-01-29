@@ -9,7 +9,7 @@
  */
 
 angular.module('frontendApp')
-  .controller('SrchCtrl',['$rootScope','$scope','localStorageService', 'Dataservice', function ($rootScope, $scope, localStorageService, Dataservice) {
+  .controller('SrchCtrl',['$rootScope','$scope','$http','localStorageService', 'Dataservice', function ($rootScope, $scope, $http, localStorageService, Dataservice) {
 		$rootScope.tab=false;
 		
 		$scope.list = Dataservice.getsel();
@@ -41,6 +41,7 @@ angular.module('frontendApp')
 	$("#priceSlider").on('slide',  function() {
 		Dataservice.price['lo'] = $('#plv').val();
 		Dataservice.price['hi'] = $('#phv').val();
+		data_request();
 	});
 	$("#priceSlider").Link('lower').to($('#plv'));
 	$("#priceSlider").Link('upper').to($('#phv'));
@@ -105,9 +106,176 @@ angular.module('frontendApp')
 		Dataservice.os_upgr=$("#sFutOS").val();
 	});
 		
+	$('#overall0').attr('checked', Dataservice.overall[0]);
+	$('#overall1').attr('checked', Dataservice.overall[1]);
+	$('#overall2').attr('checked', Dataservice.overall[2]);
+	$('#overall3').attr('checked', Dataservice.overall[3]);
+	$('.overall').change(function() {
+		Dataservice.overall=[$('#overall0').prop('checked'),$('#overall1').prop('checked'),$('#overall2').prop('checked'),$('#overall3').prop('checked')];
+	});
 	
+	$('#hardware0').attr('checked', Dataservice.hardware[0]);
+	$('#hardware1').attr('checked', Dataservice.hardware[1]);
+	$('#hardware2').attr('checked', Dataservice.hardware[2]);
+	$('#hardware3').attr('checked', Dataservice.hardware[3]);
+	$('.hardware').change(function() {
+		Dataservice.hardware=[$('#hardware0').prop('checked'),$('#hardware1').prop('checked'),$('#hardware2').prop('checked'),$('#hardware3').prop('checked')];
+	});
 	
-	
+	$('#display0').attr('checked', Dataservice.display[0]);
+	$('#display1').attr('checked', Dataservice.display[1]);
+	$('#display2').attr('checked', Dataservice.display[2]);
+	$('#display3').attr('checked', Dataservice.display[3]);
+	$('.display').change(function() {
+		Dataservice.display=[$('#display0').prop('checked'),$('#display1').prop('checked'),$('#display2').prop('checked'),$('#display3').prop('checked')];
+	});
+
+	$('#camera0').attr('checked', Dataservice.camera[0]);
+	$('#camera1').attr('checked', Dataservice.camera[1]);
+	$('#camera2').attr('checked', Dataservice.camera[2]);
+	$('#camera3').attr('checked', Dataservice.camera[3]);
+	$('.camera').change(function() {
+		Dataservice.camera=[$('#camera0').prop('checked'),$('#camera1').prop('checked'),$('#camera2').prop('checked'),$('#camera3').prop('checked')];
+	});
+
+		
+	$('#similar0').attr('value',Dataservice.similar0[0][0]);
+	$('#soverall0').attr('checked', Dataservice.similar0[1][0]);
+	$('#shardware0').attr('checked', Dataservice.similar0[1][1]);
+	$('#sdisplay0').attr('checked', Dataservice.similar0[1][2]);
+	$('#scamera0').attr('checked', Dataservice.similar0[1][3]);
+	$( "#similar0" ).autocomplete({
+		source: "http://192.168.1.2/autocomplete.php",
+		delay: 500,
+		minLength: 2,
+		select: function( event, ui ) {
+			Dataservice.similar0=[[ui.item.label,0,0,0],[false,false,false,false]];
+			$('#soverall0').attr('checked', Dataservice.similar0[1][0]);
+			$('#shardware0').attr('checked', Dataservice.similar0[1][1]);
+			$('#sdisplay0').attr('checked', Dataservice.similar0[1][2]);
+			$('#scamera0').attr('checked', Dataservice.similar0[1][3]);
+			handle_select(ui.item.label,0);
+		}
+	});
+	$('#soverall0, #shardware0, #sdisplay0, #scamera0, #similar0').change(function() {
+		Dataservice.similar0=[Dataservice.similar0[0], [$('#soverall0').prop('checked'),$('#shardware0').prop('checked'),$('#sdisplay0').prop('checked'),$('#scamera0').prop('checked')]];
+	});
+
+	$('#similar1').attr('value',Dataservice.similar1[0][0]);
+	$('#soverall1').attr('checked', Dataservice.similar1[1][0]);
+	$('#shardware1').attr('checked', Dataservice.similar1[1][1]);
+	$('#sdisplay1').attr('checked', Dataservice.similar1[1][2]);
+	$('#scamera1').attr('checked', Dataservice.similar1[1][3]);
+	$( "#similar1" ).autocomplete({
+		source: "http://192.168.1.2/autocomplete.php",
+		delay: 500,
+		minLength: 2,
+		select: function( event, ui ) {
+			Dataservice.similar1=[[ui.item.label,0,0,0],[false,false,false,false]];
+			$('#soverall1').attr('checked', Dataservice.similar1[1][0]);
+			$('#shardware1').attr('checked', Dataservice.similar1[1][1]);
+			$('#sdisplay1').attr('checked', Dataservice.similar1[1][2]);
+			$('#scamera1').attr('checked', Dataservice.similar1[1][3]);
+			handle_select(ui.item.label,1);
+		}
+	});
+	$('#soverall1, #shardware1, #sdisplay1, #scamera1, #similar1').change(function() {
+		Dataservice.similar1=[Dataservice.similar1[0], [$('#soverall1').prop('checked'),$('#shardware1').prop('checked'),$('#sdisplay1').prop('checked'),$('#scamera1').prop('checked')]];
+	});
+
+
+	$('#similar2').attr('value',Dataservice.similar2[0][0]);
+	$('#soverall2').attr('checked', Dataservice.similar2[1][0]);
+	$('#shardware2').attr('checked', Dataservice.similar2[1][1]);
+	$('#sdisplay2').attr('checked', Dataservice.similar2[1][2]);
+	$('#scamera2').attr('checked', Dataservice.similar2[1][3]);
+	$( "#similar2" ).autocomplete({
+		source: "http://192.168.1.2/autocomplete.php",
+		delay: 500,
+		minLength: 2,
+		select: function( event, ui ) {
+			Dataservice.similar2=[[ui.item.label,0,0,0],[false,false,false,false]];
+			$('#soverall2').attr('checked', Dataservice.similar2[1][0]);
+			$('#shardware2').attr('checked', Dataservice.similar2[1][1]);
+			$('#sdisplay2').attr('checked', Dataservice.similar2[1][2]);
+			$('#scamera2').attr('checked', Dataservice.similar2[1][3]);
+			handle_select(ui.item.label,2);
+		}
+	});
+	$('#soverall2, #shardware2, #sdisplay2, #scamera2, #similar2').change(function() {
+		Dataservice.similar2=[Dataservice.similar2[0], [$('#soverall2').prop('checked'),$('#shardware2').prop('checked'),$('#sdisplay2').prop('checked'),$('#scamera2').prop('checked')]];
+	});
+
+
+	$('#similar3').attr('value',Dataservice.similar3[0][0]);
+	$('#soverall3').attr('checked', Dataservice.similar3[1][0]);
+	$('#shardware3').attr('checked', Dataservice.similar3[1][1]);
+	$('#sdisplay3').attr('checked', Dataservice.similar3[1][2]);
+	$('#scamera3').attr('checked', Dataservice.similar3[1][3]);
+	$( "#similar3" ).autocomplete({
+		source: "http://192.168.1.2/autocomplete.php",
+		delay: 500,
+		minLength: 2,
+		select: function( event, ui ) {
+			Dataservice.similar3=[[ui.item.label,0,0,0],[false,false,false,false]];
+			$('#soverall3').attr('checked', Dataservice.similar3[1][0]);
+			$('#shardware3').attr('checked', Dataservice.similar3[1][1]);
+			$('#sdisplay3').attr('checked', Dataservice.similar3[1][2]);
+			$('#scamera3').attr('checked', Dataservice.similar3[1][3]);
+			handle_select(ui.item.label,3);
+		}
+	});
+	$('#soverall3, #shardware3, #sdisplay3, #scamera3, #similar3').change(function() {
+		Dataservice.similar3=[Dataservice.similar3[0], [$('#soverall3').prop('checked'),$('#shardware3').prop('checked'),$('#sdisplay3').prop('checked'),$('#scamera3').prop('checked')]];
+	});
+
+
+	function handle_select(label,id) {
+		var i = label.indexOf(" ");
+		var j = label.indexOf("(");
+		var l = label.length;
+
+		var make = label.substring(0,i);
+		var model = '';
+		var type = '';
+		if (j == -1) {
+			model = label.substring(i+1,l);
+		} else {
+			model = label.substring(i+1,j-1);
+			type = label.substring(j,l);
+		}
+		
+		if (type=='') {
+			var qs="http://192.168.1.2/getdata.php".concat("?make=",make,"&model=",model);
+		}
+		else {
+			var qs="http://192.168.1.2/getdata.php".concat("?make=",make,"&model=",model,"&type=",type);
+		}
+		$http.get(qs).success(function(response) {
+			if (id == 0) {get_points0(response);}
+			else if (id == 1) {get_points1(response);}
+			else if (id == 2) {get_points2(response);}
+			else if (id == 3) {get_points3(response);}
+		});
+	}
+	function get_points0(response) {
+		Dataservice.similar0[0]=[Dataservice.similar0[0][0]].concat(response.slice(2,response.length));
+	}
+	function get_points1(response) {
+		Dataservice.similar1[0]=[Dataservice.similar1[0][0]].concat(response.slice(2,response.length));
+	}
+	function get_points2(response) {
+		Dataservice.similar2[0]=[Dataservice.similar2[0][0]].concat(response.slice(2,response.length));
+	}
+	function get_points3(response) {
+		Dataservice.similar3[0]=[Dataservice.similar3[0][0]].concat(response.slice(2,response.length));
+	}
+
+
+
+
+
+
 
 	$("#cpufreqSlider").noUiSlider({
 		connect: true,
@@ -288,5 +456,16 @@ angular.module('frontendApp')
 	$("#secvidSlider").Link('lower').to($('#secvidlv'));
 	$("#secvidSlider").Link('upper').to($('#secvidhv'));
 
+	function data_request() {
+		var qs="http://192.168.1.2/getdata2.php".concat("?pricelo=",Dataservice.price['lo'],"&pricehi=",Dataservice.price['hi']);
+		console.log(qs);
+		$http.get(qs).success(function(response) {
+			for (var i=1;i<response.length;i++) {
+				Dataservice.add(response[i]);
+				Dataservice.add_sel(response[i][0]);
+			}
+			console.log(Dataservice.all);
+		});
+	}
 
   }]);

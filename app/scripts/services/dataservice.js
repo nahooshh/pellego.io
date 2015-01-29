@@ -25,10 +25,16 @@ angular.module('frontendApp')
 			console.log("removed");
 			console.log(index);
 		}
-		this.add = function(label,d) {
+		this.add_label = function(label,d) {
 			if (this.all[d[0]]) {}
 			else {
 				this.all[d[0]]=[label].concat(d.slice(1,d.length));
+			}
+		}
+		this.add = function(d) {
+			if (this.all[d[0]]) {}
+			else {
+				this.all[d[0]]=d.slice(1,d.length);
 			}
 		}
 		//for qa
@@ -56,5 +62,13 @@ angular.module('frontendApp')
 		this.os=1;
 		this.os_curr=[];
 		this.os_upgr=[];
+		this.overall=[false,false,false,false]
+		this.hardware=[false,false,false,false]
+		this.display=[false,false,false,false]
+		this.camera=[false,false,false,false]
+		this.similar0=[['',0,0,0,0],[false.false,false,false]]
+		this.similar1=[['',0,0,0,0],[false.false,false,false]]
+		this.similar2=[['',0,0,0,0],[false.false,false,false]]
+		this.similar3=[['',0,0,0,0],[false.false,false,false]]
 
   });
