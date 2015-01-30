@@ -32,8 +32,8 @@ angular
         controller: 'SrchCtrl'
       })
       .when('/comparisongraph', {
-        templateUrl: 'views/quicksearch.html',
-        controller: 'TmpCtrl'
+        templateUrl: 'views/graph.html',
+        controller: 'GrphCtrl'
       })
       .when('/specscomparison', {
         templateUrl: 'views/specscomparison.html',

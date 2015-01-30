@@ -16,6 +16,8 @@ angular.module('frontendApp')
 			if (this.selected.indexOf(i) == -1) {
 				this.selected.push(i);
 			}
+			console.log("added");
+			console.log(i);
 		}
 		this.rem_sel = function(i) {
 			var index=this.selected.indexOf(i);
@@ -23,7 +25,7 @@ angular.module('frontendApp')
 				this.selected.splice(index, 1);
 			}
 			console.log("removed");
-			console.log(index);
+			console.log(i);
 		}
 		this.add_label = function(label,d) {
 			if (this.all[d[0]]) {}
@@ -70,5 +72,9 @@ angular.module('frontendApp')
 		this.similar1=[['',0,0,0,0],[false.false,false,false]]
 		this.similar2=[['',0,0,0,0],[false.false,false,false]]
 		this.similar3=[['',0,0,0,0],[false.false,false,false]]
+
+		this.xmin=0;
+		this.xmax=0;
+		this.graph_sel='ov';
 
   });
