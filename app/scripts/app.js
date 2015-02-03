@@ -40,8 +40,32 @@ angular
         controller: 'TmpCtrl'
       })
       .when('/userreviews', {
-        templateUrl: 'views/userreviews.html',
-        controller: 'TmpCtrl'
+        templateUrl: 'views/reviews.html',
+        controller: 'RevCtrl'
+      })
+      .when('/revBattery', {
+        templateUrl: 'views/reviews.html',
+        controller: 'RevCtrl'
+      })
+      .when('/revBody', {
+        templateUrl: 'views/reviews.html',
+        controller: 'RevCtrl'
+      })
+      .when('/revCamera', {
+        templateUrl: 'views/reviews.html',
+        controller: 'RevCtrl'
+      })
+      .when('/revHardware', {
+        templateUrl: 'views/reviews.html',
+        controller: 'RevCtrl'
+      })
+      .when('/revPerformance', {
+        templateUrl: 'views/reviews.html',
+        controller: 'RevCtrl'
+      })
+      .when('/revOverall', {
+        templateUrl: 'views/reviews.html',
+        controller: 'RevCtrl'
       })
       .otherwise({
         redirectTo: '/'

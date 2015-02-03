@@ -12,6 +12,8 @@ angular.module('frontendApp')
   .controller('GrphCtrl',['$rootScope','$scope', 'Dataservice', function ($rootScope, $scope, Dataservice) {
 		$rootScope.tab=false;
 
+		$rootScope.$on('someEvent', function(event, args) { reload(); });
+
 		$("#A12sel" ).val(Dataservice.graph_sel);
 		
 		reload();
