@@ -5,7 +5,6 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="bower_components/jquery-ui/themes/black-tie/jquery-ui.css">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -79,22 +78,6 @@
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div>
-		<script>
-			function SprCtrl($rootScope, $scope, Dataservice) {
-				$rootScope.tab=true;
-				$scope.list=Dataservice.getselected();
-				$scope.reload=function() {
-					$scope.list=Dataservice.getselected();
-					console.log($scope.list);
-				}
-				$scope.remove=function(index) {
-					Dataservice.rem_sel($scope.list[index][0]);
-					$scope.list.splice(index, 1);
-					console.log('remove elem');
-					$rootScope.$emit('someEvent', [1,2,3]);
-				}
-			}
-		</script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -127,8 +110,6 @@
     <script src="bower_components/flot/jquery.flot.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    <script src="bower_components/flot/jquery.flot.navigate.js"></script>
-    <script src="bower_components/flot/jquery.flot.resize.js"></script>
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
@@ -138,6 +119,7 @@
         <script src="scripts/controllers/graph.js"></script>
         <script src="scripts/controllers/reviews.js"></script>
         <script src="scripts/services/dataservice.js"></script>
+        <script src="scripts/controllers/top.js"></script>
         <!-- endbuild -->
 </body>
 </html>

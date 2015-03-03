@@ -331,8 +331,17 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
-      }
+      },
+			tmp: {
+				files: [{
+						expand: true,
+						cwd: '.tmp/concat/scripts/',
+						src: '*.js',
+						dest: 'dist/scripts/'
+				}]
+			}
     },
+
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
@@ -361,7 +370,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build','connect:dist:keepalive']);
     }
 
     grunt.task.run([
@@ -379,6 +388,7 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
+/*
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
@@ -403,9 +413,34 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
+*/
+  grunt.registerTask('test', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer'
+  ]);
+
+
+  grunt.registerTask('build', [
+    'clean:dist',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+		'autoprefixer',
+		'concat',
+    'ngmin',
+    'copy:dist',
+		'cdnify',
+		'cssmin',
+		//'uglify',
+		'copy:tmp',//adhoc measure
+		'filerev',
+		'usemin'
+    //'htmlmin'
+  ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
+    //'newer:jshint',
     'test',
     'build'
   ]);
