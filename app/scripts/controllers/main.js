@@ -23,7 +23,7 @@ angular.module('frontendApp')
 		*/
 
 		$( "#modelsearch" ).autocomplete({
-			source: "http://192.168.1.2/autocomplete.php",
+			source: "http://mac/pellego/php/autocomplete.php",
 			delay: 500,
 			minLength: 2,
 			select: function( event, ui ) {
