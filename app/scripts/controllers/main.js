@@ -47,18 +47,22 @@ angular.module('frontendApp')
 			}
 			
 			if (type=='') {
-				var qs="http://192.168.1.2/getdata.php".concat("?make=",make,"&model=",model);
+				var qs="http://mac/pellego/php/getdata.php".concat("?make=",make,"&model=",model);
 			}
 			else {
-				var qs="http://192.168.1.2/getdata.php".concat("?make=",make,"&model=",model,"&type=",type);
+				var qs="http://mac/pellego/php/getdata.php".concat("?make=",make,"&model=",model,"&type=",type);
 			}
 			//console.log(qs);
 			$http.get(qs).success(function(response) {
-				Dataservice.add_sel(response[0]);
+				//console.log(response);
+				var elem=[response[0],label];
+				Dataservice.add_sel(elem);
 				Dataservice.add_label(label, response);
 				//console.log($scope.list);
 				$scope.disgoto=false;
-				console.log(Dataservice.all);
+				//console.log(Dataservice.all);
+				//console.log('sending event',elem);
+				//$rootScope.$emit('someEvent', elem);
 			});
 		}
 

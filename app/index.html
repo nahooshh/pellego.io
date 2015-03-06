@@ -54,7 +54,7 @@
   		</div>
 		</nav>
 
-				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" ng-hide="tab"  ng-click="reload()" style="margin-top: -25px;margin-bottom: 25px;">
+				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" ng-hide="tab" style="margin-top: -25px;margin-bottom: 25px;">
    				Shortlisted Phones
 				</button>
 			<div id="sidebar" class="col-xs-10 col-sm-8 col-md-4 col-lg-3" ng-hide="tab">
@@ -62,15 +62,46 @@
 				
 					<div id="selected">
 						<!--h4>Selected Phones</h4-->
-						<p class="input-group" ng-repeat="elem in list">
+						<!--p class="input-group" ng-repeat="elem in list">
 							<input type="text" ng-disabled="true" ng-model="elem[1]" class="form-control">
 							<span class="input-group-btn">
     						<button class="btn btn-danger" ng-click="remove($index)" aria-label="Remove">X</button>
   						</span>
-						</p>
+						</p-->
+						<!--div class="shortlist-elem">
+							<div class="shortlist-pics">
+								<div class="thumbnail">
+									<img id="pic_1_blue" class="short-thumb" src="http://192.168.1.2:9000/images/1/blue.jpeg" alt="Image">
+								</div>
+							</div>
+							<div class="shortlist-title">
+								<span class="shortlist-model">MOTOZGMOTOZ GMOTOZGMOTOZGMOTOZG AVABBA MOTO</span>
+							</div>
+							<div class="shortlist-btns">
+								<button class="btn btn-danger btn-xs" ng-click="remove($index)" aria-label="Remove" style="float:right">X</button>
+								<div class="btn-group" style="float:right;margin-top:20px;">
+									<button type="button" class="btn btn-info dropdown-toggle btn-xs" data-toggle="dropdown" aria-expanded="false">
+										Colors
+									</button>
+									<ul class="dropdown-menu" role="menu">
+										<li id="1_blue" val="http://192.168.1.2:9000/images/2/blue.jpeg" onclick="getcolorpic(this)">Black</li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+									</ul>
+								</div>
+							</div>
+						</div-->
+
 					</div>
 				</div>
 			</div>
+<script>
+	function getcolorpic(elem) {
+		var i="pic_".concat(elem.id.split("_")[0]);
+		document.getElementById(i).setAttribute("src",elem.getAttribute("val"));
+		console.log("updated pic with", elem.getAttribute("val"));
+	}
+</script>
     <div class="container-fluid">
 
       <div ng-view=""></div>
