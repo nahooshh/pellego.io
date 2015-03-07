@@ -67,7 +67,7 @@ angular.module('frontendApp')
 				$rootScope.sbar=false;
 				$rootScope.disgoto=false;
 				//console.log($scope.list);
-				//console.log(Dataservice.all);
+				console.log("selected", Dataservice.selected);
 				//console.log('sending event',elem);
 				//$rootScope.$emit('someEvent', elem);
 			});

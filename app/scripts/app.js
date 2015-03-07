@@ -37,7 +37,7 @@ angular
       })
       .when('/specscomparison', {
         templateUrl: 'views/specscomparison.html',
-        controller: 'TmpCtrl'
+        controller: 'SpcCtrl'
       })
       .when('/userreviews', {
         templateUrl: 'views/reviews.html',
