@@ -10,7 +10,13 @@
 angular.module('frontendApp')
   .controller('MainCtrl',['$rootScope','$scope','$http','localStorageService','Dataservice',function ($rootScope, $scope, $http, localStorageService,Dataservice) {
 		$rootScope.tab=true;
-		$scope.disgoto = true;
+		if (Dataservice.selected.length > 0) {
+			$rootScope.sbar=false;
+			$rootScope.disgoto = false;
+		} else {
+			$rootScope.sbar=true;
+			$rootScope.disgoto = true;
+		}
 		$scope.list = Dataservice.getsel();
 
 		/*
@@ -58,8 +64,9 @@ angular.module('frontendApp')
 				var elem=[response[0],label];
 				Dataservice.add_sel(elem);
 				Dataservice.add_label(label, response);
+				$rootScope.sbar=false;
+				$rootScope.disgoto=false;
 				//console.log($scope.list);
-				$scope.disgoto=false;
 				//console.log(Dataservice.all);
 				//console.log('sending event',elem);
 				//$rootScope.$emit('someEvent', elem);

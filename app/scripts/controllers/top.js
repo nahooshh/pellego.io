@@ -37,6 +37,13 @@ angular.module('frontendApp')
 		Dataservice.rem_sel(String(setid));
 		$("#sel".concat(setid)).remove();
 		console.log(Dataservice.selected);
+		if (Dataservice.selected.length > 0) {
+			$rootScope.sbar=false;
+			$rootScope.disgoto=false;
+		} else {
+			$rootScope.sbar=true;
+			$rootScope.disgoto=true;
+		}
 	}
 }
 ]);

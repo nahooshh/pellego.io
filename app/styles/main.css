@@ -33,7 +33,8 @@ body {
 }
 
 #sidebar {
-	position: absolute;
+	position: fixed;
+	top: 95px;
 	z-index: 1;
 	background-color: rgb(255,255,255);
 }
