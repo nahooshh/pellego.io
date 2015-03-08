@@ -89,6 +89,30 @@ body {
 {
     overflow-x: auto;
 }
+
+#banner {
+	background-color: grey;
+	height: 50px;
+	left:0;
+	width:100%;
+	bottom:0;
+	z-index:1;
+}
+
+#banner.fix {
+	position: fixed;
+}
+
+#banner.rel {
+	position: relative;
+}
+
+#submit_button
+{
+	float: right;
+}
+
+
 /*
 #start {
 	position: absolute;

@@ -11,6 +11,7 @@
 angular.module('frontendApp')
   .controller('SrchCtrl',['$rootScope','$scope','$http','localStorageService', 'Dataservice', function ($rootScope, $scope, $http, localStorageService, Dataservice) {
 		$rootScope.tab=false;
+		$rootScope.sbar=true;
 		
 		$scope.list = Dataservice.getsel();
 		$scope.x = 1;
@@ -469,3 +470,22 @@ angular.module('frontendApp')
 	}
 
   }]);
+
+
+
+
+var main = function(){
+	var banner = $('#banner')
+	
+	$(document).scroll(function(){
+		//console.log($(this).scrollTop() + $(window).height(), $('.footer').offset().top, $('#sConnectivity').offset().top, $(searchpage).height());
+		//if ( $(this).scrollTop() >= $(window).height() - banner.height() ){
+		if ( ($(this).scrollTop() + $(window).height()) >= $('.footer').offset().top ){
+			$('#banner').removeClass('fix').addClass('rel');
+			console.log("here");
+		} else {
+			$('#banner').removeClass('rel').addClass('fix');
+		}
+	})
+}
+$(document).ready(main);
