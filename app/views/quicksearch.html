@@ -11,8 +11,12 @@
 					<span class="label">Price:</span>
 					<div class="slider" id="priceSlider"></div>
 					<div class="slider-value">
-						<span style="display:inline-block;float:left;width:40%">Rs <input class="range" id="plv"></span>
-						<span style="display:inline-block;float:right;width:40%">Rs <input class="range" id="phv"></span>
+						<span style="display:inline-block;float:left;width:40%">Rs 
+							<input class="range" id="plv" ng-change="test();" ng-model="price['lo']">
+						</span>
+						<span style="display:inline-block;float:right;width:40%">Rs 
+							<input class="range" id="phv" ng-change="test();" ng-model="price['hi']">
+						</span>
 					</div>
 				</div>
 				<div id="brandbox" class="box col-sm-10 col-md-6 col-lg-5 col-lg-offset-2">
@@ -807,7 +811,7 @@
 	</div><!--panel Connectivity-->
 
 	<div id="banner" class="fix">
-		<button id="submit_button" type="submit" class="btn btn-default btn-lg">Submit</button>
+		<button id="submit_button" class="btn btn-default btn-lg" ng-click="query();">Submit</button>
 	</div>
 		
 </div>

@@ -22,7 +22,9 @@ angular.module('frontendApp')
 			console.log($scope.list);
 		};
 
+	var q = [];
 
+	$scope.price=Dataservice.price;
 	$('.selectpicker').selectpicker();
 	$("#priceSlider").noUiSlider({
 		connect: true,
@@ -39,10 +41,13 @@ angular.module('frontendApp')
 			'max': [ 100000 ]
 		}
 	});
-	$("#priceSlider").on('slide',  function() {
-		Dataservice.price['lo'] = $('#plv').val();
-		Dataservice.price['hi'] = $('#phv').val();
-		data_request();
+	$("#priceSlider").on('slide',  function() { //Dataservice.price = $scope.price;
+		$scope.price['lo']=$('#plv').val();
+		$scope.price['hi']=$('#phv').val();
+		Dataservice.price['lo'] = $scope.price['lo'];
+		Dataservice.price['hi'] = $scope.price['hi'];
+		$scope.test();
+		//data_request();
 	});
 	$("#priceSlider").Link('lower').to($('#plv'));
 	$("#priceSlider").Link('upper').to($('#phv'));
@@ -50,6 +55,7 @@ angular.module('frontendApp')
 	$('#sBrand').selectpicker('val', Dataservice.brand);
 	$("#sBrand").change(function(){
 		Dataservice.brand=$("#sBrand").val();
+		$scope.test();
 	});
 
 	$('#facesize0').attr('checked', Dataservice.facesize[0]);
@@ -57,6 +63,7 @@ angular.module('frontendApp')
 	$('#facesize2').attr('checked', Dataservice.facesize[2]);
 	$('.facesize').change(function() {
 		Dataservice.facesize=[$('#facesize0').prop('checked'),$('#facesize1').prop('checked'),$('#facesize2').prop('checked')];
+		$scope.test();
 	});
 
 	$('#thickness0').attr('checked', Dataservice.thickness[0]);
@@ -64,6 +71,7 @@ angular.module('frontendApp')
 	$('#thickness2').attr('checked', Dataservice.thickness[2]);
 	$('.thickness').change(function() {
 		Dataservice.thickness=[$('#thickness0').prop('checked'),$('#thickness1').prop('checked'),$('#thickness2').prop('checked')];
+		$scope.test();
 	});
 
 	$('#weight').attr('checked', Dataservice.weight[0]);
@@ -71,6 +79,7 @@ angular.module('frontendApp')
 	$('#weight2').attr('checked', Dataservice.weight[2]);
 	$('.weight').change(function() {
 		Dataservice.weight=[$('#weight0').prop('checked'),$('#weight1').prop('checked'),$('#weight2').prop('checked')];
+		$scope.test();
 	});
 	
 	if (Dataservice.os != 0) {
@@ -102,9 +111,11 @@ angular.module('frontendApp')
 	}
 	$("#sCurOS").change(function(){
 		Dataservice.os_curr=$("#sCurOS").val();
+		$scope.test();
 	});
 	$("#sFutOS").change(function(){
 		Dataservice.os_upgr=$("#sFutOS").val();
+		$scope.test();
 	});
 		
 	$('#overall0').attr('checked', Dataservice.overall[0]);
@@ -469,6 +480,23 @@ angular.module('frontendApp')
 		});
 	}
 
+	$scope.query = function () {
+		console.log('querying');
+		var query=Dataservice.form_query();
+		if (query) {
+			console.log(query);
+		}
+	}
+
+	$scope.test = function () {
+		q.push(1);
+	}
+
+	setInterval(function() {
+		if (q.length) {$scope.query()}
+		q=[];
+	}, 5000);
+	
   }]);
 
 
