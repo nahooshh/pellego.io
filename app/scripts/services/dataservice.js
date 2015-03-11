@@ -76,6 +76,43 @@ angular.module('frontendApp')
 		this.similar2=[['',0,0,0,0],[false.false,false,false]]
 		this.similar3=[['',0,0,0,0],[false.false,false,false]]
 
+
+		this.chipset=[];
+		this.cpufam=[];
+		this.gpu=[];
+		this.cpufre={'min':.5,'max':4,'lo':.5,'hi':4};
+		this.cpucor=[];
+		this.ram={'min':.128,'max':4,'lo':.128,'hi':4};
+		this.intr={'min':1,'max':64,'lo':1,'hi':64};
+		this.card={'min':1,'max':64,'lo':1,'hi':64};
+		this.batt={'min':100,'max':5000,'lo':100,'hi':5000};
+		this.snsr=[];
+		this.loc=[];
+
+	
+		this.scr={'min':2,'max':7,'lo':2,'hi':7};
+		this.distech=[];
+		this.disreso=[];
+		this.disden={'min':50,'max':500,'lo':50,'hi':500};
+		this.disprot=[];
+		
+		
+		this.pricam={'min':1,'max':50,'lo':1,'hi':50};
+		this.privid={'min':.1,'max':20,'lo':.1,'hi':20};
+		this.seccam={'min':.1,'max':20,'lo':.1,'hi':20};
+		this.secvid={'min':.1,'max':20,'lo':.1,'hi':20};
+		this.flash=[];
+		this.camfea=[];
+
+		this.data=[];
+		this.wifi=[];
+		this.bt=[];
+		this.usb=[];
+		this.nfc=false;
+		this.ir=false;
+		this.fm=false;
+
+
 		this.xmin=0;
 		this.xmax=0;
 		this.graph_sel='ov';

@@ -478,8 +478,12 @@
 					<span class="label">Freq:</span>
 					<div class="slider" id="cpufreqSlider"></div>
 					<div class="slider-value">
-						<span style="display:inline-block;float:left;width:40%"><input class="range" id="frelv"></span>
-						<span style="display:inline-block;float:right;width:40%"><input class="range" id="frehv"></span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input class="range" id="frelv" ng-change="test();" ng-model="cpufre['lo']">
+						</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input class="range" id="frehv" ng-change="test();" ng-model="cpufre['hi']">
+						</span>
 					</div>
 				</div>
 				<div id="cpucorebox" class="box col-sm-9 col-md-6 col-lg-4">
@@ -495,30 +499,30 @@
 					<span class="label">Ram:</span>
 					<div class="slider" id="ramSlider"></div>
 					<div class="slider-value">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:50%" class="range"
-							id="ramlv">GB</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:50%" class="range"
-							id="ramhv">GB</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:50%" class="range" ng-change="test();" ng-model="ram['lo']" id="ramlv">GB</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:50%" class="range" ng-change="test();" ng-model="ram['hi']" id="ramhv">GB</span>
 					</div>
 				</div>
 				<div id="intrbox" class="box col-sm-6 col-md-4 col-lg-3">
 					<span class="label">Intr:</span>
 					<div class="slider" id="intrSlider"></div>
 					<div class="slider-value">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:40%" class="range"
-							id="intrlv">GB</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:40%" class="range"
-							id="intrhv">GB</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:40%" class="range" ng-change="test();" ng-model="intr['lo']" id="intrlv">GB</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:40%" class="range" ng-change="test();" ng-model="intr['hi']" id="intrhv">GB</span>
 					</div>
 				</div>
 				<div id="cardbox" class="box col-sm-6 col-md-4 col-lg-3">
 					<span class="label">CARD:</span>
 					<div class="slider" id="cardSlider" style="width:65%"></div>
 					<div class="slider-value" style="width:65%">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
-							id="cardlv">GB</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
-							id="cardhv">GB</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="card['lo']" id="cardlv">GB</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="card['hi']" id="cardhv">GB</span>
 					</div>
 				</div>
 			</div>
@@ -527,10 +531,10 @@
 					<span class="label">BATTERY:</span>
 					<div class="slider" id="battSlider" style="width:65%"></div>
 					<div class="slider-value" style="width:65%">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
-							id="battlv">mAh</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
-							id="batthv">mAh</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="batt['lo']" id="battlv">mAh</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="batt['hi']" id="batthv">mAh</span>
 					</div>
 				</div>
 			</div>
@@ -574,10 +578,10 @@
 					<span class="label">Screen:</span>
 					<div class="slider" id="scrSlider" style="width:65%"></div>
 					<div class="slider-value" style="width:65%">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
-							id="scrlv">inch</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
-							id="scrhv">inch</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="scr['lo']" id="scrlv">inch</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="scr['hi']" id="scrhv">inch</span>
 					</div>
 				</div>
 				<div id="distechbox" class="box col-sm-6 col-md-5 col-lg-4">
@@ -639,10 +643,10 @@
 					<span class="label">Density:</span>
 					<div class="slider" id="disdenSlider" style="width:65%"></div>
 					<div class="slider-value" style="width:65%">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
-							id="disdenlv">ppi</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
-							id="disdenhv">ppi</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="disden['lo']" id="disdenlv">ppi</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="disden['hi']" id="disdenhv">ppi</span>
 					</div>
 				</div>
 			</div>
@@ -677,20 +681,20 @@
 					<span class="label">Primary Cam:</span>
 					<div class="slider" id="pricamSlider" style="width:60%"></div>
 					<div class="slider-value" style="width:60%">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
-							id="pricamlv">MP</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
-							id="pricamhv">MP</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="pricam['lo']" id="pricamlv">MP</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="pricam['hi']" id="pricamhv">MP</span>
 					</div>
 				</div>
 				<div id="camprividbox" class="box col-sm-6 col-md-5 col-lg-4">
 					<span class="label">Pri. Video:</span>
 					<div class="slider" id="prividSlider" style="width:65%"></div>
 					<div class="slider-value" style="width:65%">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
-							id="prividlv">p</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
-							id="prividhv">p</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="privid['lo']" id="prividlv">p</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="privid['hi']" id="prividhv">p</span>
 					</div>
 				</div>
 			</div>
@@ -699,20 +703,20 @@
 					<span class="label">Secondary:</span>
 					<div class="slider" id="seccamSlider" style="width:60%"></div>
 					<div class="slider-value" style="width:60%">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
-							id="seccamlv">MP</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
-							id="seccamhv">MP</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="seccam['lo']" id="seccamlv">MP</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="seccam['hi']" id="seccamhv">MP</span>
 					</div>
 				</div>
 				<div id="camsecvidbox" class="box col-sm-6 col-md-5 col-lg-4">
 					<span class="label">Sec. Video:</span>
 					<div class="slider" id="secvidSlider" style="width:65%"></div>
 					<div class="slider-value" style="width:65%">
-						<span style="display:inline-block;float:left;width:40%"><input style="width:30%" class="range"
-							id="secvidlv">p</span>
-						<span style="display:inline-block;float:right;width:40%"><input style="width:30%" class="range"
-							id="secvidhv">p</span>
+						<span style="display:inline-block;float:left;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="secvid['lo']" id="secvidlv">p</span>
+						<span style="display:inline-block;float:right;width:40%">
+							<input style="width:30%" class="range" ng-change="test();" ng-model="secvid['hi']" id="secvidhv">p</span>
 					</div>
 				</div>
 			</div>
@@ -791,19 +795,19 @@
 				<div id="nfcbox" class="box col-sm-6 col-md-4 col-lg-3">
 					<span class="label">NFC:</span>
 					<div class="checkbox pull-right">
-   					<label><input type="checkbox" value="NFC"></label>
+   					<label><input type="checkbox" value="NFC" id="sNFC"></label>
 					</div>
 				</div>
 				<div id="irbox" class="box col-sm-6 col-md-4 col-lg-3">
 					<span class="label">IR PORT:</span>
 					<div class="checkbox pull-right">
-   					<label><input type="checkbox" value="IRPORT"></label>
+   					<label><input type="checkbox" value="IRPORT" id="sIR"></label>
 					</div>
 				</div>
 				<div id="fmbox" class="box col-sm-6 col-md-4 col-lg-3">
 					<span class="label">FM RADIO:</span>
 					<div class="checkbox pull-right">
-   					<label><input type="checkbox" value="RADIO"></label>
+   					<label><input type="checkbox" value="RADIO" id="sFM"></label>
 					</div>
 				</div>
 			</div>

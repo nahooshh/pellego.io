@@ -24,8 +24,9 @@ angular.module('frontendApp')
 
 	var q = [];
 
-	$scope.price=Dataservice.price;
 	$('.selectpicker').selectpicker();
+
+	$scope.price=Dataservice.price;
 	$("#priceSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
@@ -287,28 +288,58 @@ angular.module('frontendApp')
 
 
 
+	$('#sChipset').selectpicker('val', Dataservice.chipset);
+	$('#sChipset').change(function(){
+		Dataservice.chipset=$('#sChipset').val();
+		$scope.test();
+	});
+	
+	$('#sCpuFam').selectpicker('val', Dataservice.cpufam);
+	$('#sCpuFam').change(function(){
+		Dataservice.cpufam=$('#sCpuFam').val();
+		$scope.test();
+	});
 
+	$('#sGpu').selectpicker('val', Dataservice.gpu);
+	$('#sGpu').change(function(){
+		Dataservice.gpu=$('#sGpu').val();
+		$scope.test();
+	});
 
+	$scope.cpufre=Dataservice.cpufre;
 	$("#cpufreqSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ .5,4],
+		start: [ Dataservice.cpufre['lo'],Dataservice.cpufre['hi']],
 		format: wNumb({
-			decimals: 0
+			decimals: 1
 		}),
 		range: {
-			 'min': [ .5, .2 ],
+			 'min': [ .5, .1 ],
 			'max': [ 4 ]
 		} 
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#cpufreqSlider").on('slide', function() {
+		$scope.cpufre['lo']=$('#frelv').val();
+		$scope.cpufre['hi']=$('#frehv').val();
+		Dataservice.cpufre['lo']=$scope.cpufre['lo'];
+		Dataservice.cpufre['hi']=$scope.cpufre['hi'];
+		$scope.test();
+	});
 	$("#cpufreqSlider").Link('lower').to($('#frelv'));
 	$("#cpufreqSlider").Link('upper').to($('#frehv'));
 
+	$('#sCpuCor').selectpicker('val', Dataservice.cpucor);
+	$('#sCpuCor').change(function(){
+		Dataservice.cpucor=$('#sCpuCor').val();
+		$scope.test();
+	});
+
+	$scope.ram=Dataservice.ram;
 	$("#ramSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ .512,1],
+		start: [Dataservice.ram['lo'],Dataservice.ram['hi']],
 		format: wNumb({
 			decimals: 3
 		}),
@@ -317,14 +348,21 @@ angular.module('frontendApp')
 			'max': [ 4 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#ramSlider").on('slide', function() {
+		$scope.ram['lo']=$('#ramlv').val();
+		$scope.ram['hi']=$('#ramhv').val();
+		Dataservice.ram['lo']=$scope.ram['lo'];
+		Dataservice.ram['hi']=$scope.ram['hi'];
+		$scope.test();
+	});
 	$("#ramSlider").Link('lower').to($('#ramlv'));
 	$("#ramSlider").Link('upper').to($('#ramhv'));
 
+	$scope.intr=Dataservice.intr;
 	$("#intrSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 2,8],
+		start: [ Dataservice.intr['lo'],Dataservice.intr['hi']],
 		format: wNumb({
 			decimals: 1
 		}),
@@ -333,15 +371,21 @@ angular.module('frontendApp')
 			'max': [ 64 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#intrSlider").on('slide', function() {
+		$scope.intr['lo']=$('#intrlv').val();
+		$scope.intr['hi']=$('#intrhv').val();
+		Dataservice.intr['lo']=$scope.intr['lo'];
+		Dataservice.intr['hi']=$scope.intr['hi'];
+		$scope.test();
+	});
 	$("#intrSlider").Link('lower').to($('#intrlv'));
 	$("#intrSlider").Link('upper').to($('#intrhv'));
 
-
+	$scope.card=Dataservice.card;
 	$("#cardSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 0,0],
+		start: [ Dataservice.card['lo'],Dataservice.card['hi']],
 		format: wNumb({
 			decimals: 0
 		}),
@@ -350,15 +394,21 @@ angular.module('frontendApp')
 			'max': [ 64 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#cardSlider").on('slide', function() {
+		$scope.card['lo']=$('#cardlv').val();
+		$scope.card['hi']=$('#cardhv').val();
+		Dataservice.card['lo']=$scope.card['lo'];
+		Dataservice.card['hi']=$scope.card['hi'];
+		$scope.test();
+	});
 	$("#cardSlider").Link('lower').to($('#cardlv'));
 	$("#cardSlider").Link('upper').to($('#cardhv'));
 
-
+	$scope.batt=Dataservice.batt;
 	$("#battSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 1000,1200],
+		start: [ Dataservice.batt['lo'],Dataservice.batt['hi']],
 		format: wNumb({
 			decimals: 0
 		}),
@@ -367,14 +417,35 @@ angular.module('frontendApp')
 			'max': [ 5000 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#battSlider").on('slide', function() {
+		$scope.batt['lo']=$('#battlv').val();
+		$scope.batt['hi']=$('#batthv').val();
+		Dataservice.batt['lo']=$scope.batt['lo'];
+		Dataservice.batt['hi']=$scope.batt['hi'];
+		$scope.test();
+	});
 	$("#battSlider").Link('lower').to($('#battlv'));
 	$("#battSlider").Link('upper').to($('#batthv'));
 
+	$('#sSensors').selectpicker('val', Dataservice.snsr);
+	$('#sSensors').change(function(){
+		Dataservice.snsr=$('#sSensors').val();
+		$scope.test();
+	});
+
+	$('#sLocation').selectpicker('val', Dataservice.loc);
+	$('#sLocation').change(function(){
+		Dataservice.loc=$('#sLocation').val();
+		$scope.test();
+	});
+	
+
+
+	$scope.scr=Dataservice.scr;
 	$("#scrSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 3.5,4.5],
+		start: [ Dataservice.scr['lo'],Dataservice.scr['hi']],
 		format: wNumb({
 			decimals: 1
 		}),
@@ -383,14 +454,35 @@ angular.module('frontendApp')
 			'max': [ 7 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#scrSlider").on('slide', function() {
+		$scope.scr['lo']=$('#scrlv').val();
+		$scope.scr['hi']=$('#scrhv').val();
+		Dataservice.scr['lo'] = $scope.scr['lo'];
+		Dataservice.scr['hi'] = $scope.scr['hi'];
+		$scope.test();
+	});
 	$("#scrSlider").Link('lower').to($('#scrlv'));
 	$("#scrSlider").Link('upper').to($('#scrhv'));
 
+
+	$('#sDisTech').selectpicker('val', Dataservice.distech);
+	$("#sDisTech").change(function(){
+		Dataservice.distech=$("#sDisTech").val();
+		$scope.test();
+	});
+
+	$('#sDisReso').selectpicker('val', Dataservice.disreso);
+	$("#sDisReso").change(function(){
+		Dataservice.disreso=$("#sDisReso").val();
+		$scope.test();
+	});
+
+
+	$scope.disden=Dataservice.disden;
 	$("#disdenSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 50,500],
+		start: [ Dataservice.disden['lo'],Dataservice.disden['hi']],
 		format: wNumb({
 			decimals: 0
 		}),
@@ -399,74 +491,175 @@ angular.module('frontendApp')
 			'max': [ 500 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#disdenSlider").on('slide', function () {
+		$scope.disden['lo']=$('#disdenlv').val();
+		$scope.disden['hi']=$('#disdenhv').val();
+		Dataservice.disden['lo'] = $scope.disden['lo'];
+		Dataservice.disden['hi'] = $scope.disden['hi'];
+		$scope.test();
+	});
 	$("#disdenSlider").Link('lower').to($('#disdenlv'));
 	$("#disdenSlider").Link('upper').to($('#disdenhv'));
 
+	$('#sDisProt').selectpicker('val', Dataservice.disprot);
+	$("#sDisProt").change(function(){
+		Dataservice.disprot=$("#sDisProt").val();
+		$scope.test();
+	});
+
+
+	
+	$scope.pricam=Dataservice.pricam;
 	$("#pricamSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 50,500],
+		start: [ Dataservice.pricam['lo'],Dataservice.pricam['hi']],
 		format: wNumb({
 			decimals: 0
 		}),
 		range: {
-			'min': [ 50, 50 ],
-			'max': [ 500 ]
+			'min': [ 1, 1 ],
+			'max': [ 50 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#pricamSlider").on('slide', function () {
+		$scope.pricam['lo']=$('#pricamlv').val();
+		$scope.pricam['hi']=$('#pricamhv').val();
+		Dataservice.pricam['lo'] = $scope.pricam['lo'];
+		Dataservice.pricam['hi'] = $scope.pricam['hi'];
+		$scope.test();
+	});
 	$("#pricamSlider").Link('lower').to($('#pricamlv'));
 	$("#pricamSlider").Link('upper').to($('#pricamhv'));
 
+	$scope.privid=Dataservice.privid;
 	$("#prividSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 50,500],
+		start: [Dataservice.privid['lo'],Dataservice.privid['hi']],
 		format: wNumb({
 			decimals: 0
 		}),
 		range: {
-			'min': [ 50, 50 ],
-			'max': [ 500 ]
+			'min': [ .1, .5 ],
+			'max': [ 20 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#prividSlider").on('slide', function() {
+		$scope.privid['lo']=$('#prividlv').val();
+		$scope.privid['hi']=$('#prividhv').val();
+		Dataservice.privid['lo'] = $scope.privid['lo'];
+		Dataservice.privid['hi'] = $scope.privid['hi'];
+		$scope.test();
+	});
 	$("#prividSlider").Link('lower').to($('#prividlv'));
 	$("#prividSlider").Link('upper').to($('#prividhv'));
 
 
+	$scope.seccam=Dataservice.seccam;
 	$("#seccamSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 50,500],
+		start: [ Dataservice.seccam['lo'],Dataservice.seccam['hi']],
 		format: wNumb({
 			decimals: 0
 		}),
 		range: {
-			'min': [ 50, 50 ],
-			'max': [ 500 ]
+			'min': [ .1, .5 ],
+			'max': [ 20 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#seccamSlider").on('slide', function() {
+		$scope.seccam['lo']=$('#seccamlv').val();
+		$scope.seccam['hi']=$('#seccamhv').val();
+		Dataservice.seccam['lo'] = $scope.seccam['lo'];
+		Dataservice.seccam['hi'] = $scope.seccam['hi'];
+		$scope.test();
+	});
 	$("#seccamSlider").Link('lower').to($('#seccamlv'));
 	$("#seccamSlider").Link('upper').to($('#seccamhv'));
 
+	$scope.secvid=Dataservice.secvid;
 	$("#secvidSlider").noUiSlider({
 		connect: true,
 		behaviour: 'tap-drag',
-		start: [ 50,500],
+		start: [ Dataservice.secvid['lo'],Dataservice.secvid['hi']],
 		format: wNumb({
 			decimals: 0
 		}),
 		range: {
-			'min': [ 50, 50 ],
-			'max': [ 500 ]
+			'min': [ .1, .5],
+			'max': [ 20 ]
 		}
 	});
-	//$("#cpufreqSlider").on('slide', dummy);
+	$("#secvidSlider").on('slide', function() {
+		$scope.secvid['lo']=$('#secvidlv').val();
+		$scope.secvid['hi']=$('#secvidhv').val();
+		Dataservice.secvid['lo'] = $scope.secvid['lo'];
+		Dataservice.secvid['hi'] = $scope.secvid['hi'];
+		$scope.test();
+	});
 	$("#secvidSlider").Link('lower').to($('#secvidlv'));
 	$("#secvidSlider").Link('upper').to($('#secvidhv'));
+
+	$('#sFlash').selectpicker('val', Dataservice.flash);
+	$("#sFlash").change(function(){
+		Dataservice.flash=$("#sFlash").val();
+		$scope.test();
+	});
+
+	$('#sCamFea').selectpicker('val', Dataservice.camfea);
+	$("#sCamFea").change(function(){
+		Dataservice.camfea=$("#sCamFea").val();
+		$scope.test();
+	});
+
+
+
+	$('#sData').selectpicker('val', Dataservice.data);
+	$("#sData").change(function(){
+		Dataservice.data=$("#sData").val();
+		$scope.test();
+	});
+
+	$('#sWifi').selectpicker('val', Dataservice.wifi);
+	$("#sWifi").change(function(){
+		Dataservice.wifi=$("#sWifi").val();
+		$scope.test();
+	});
+
+	$('#sBT').selectpicker('val', Dataservice.bt);
+	$("#sBT").change(function(){
+		Dataservice.bt=$("#sBT").val();
+		$scope.test();
+	});
+
+	$('#sUSB').selectpicker('val', Dataservice.usb);
+	$("#sUSB").change(function(){
+		Dataservice.usb=$("#sUSB").val();
+		$scope.test();
+	});
+
+	$('#sNFC').attr('checked', Dataservice.nfc);
+	$('#sIR').attr('checked', Dataservice.ir);
+	$('#sFM').attr('checked', Dataservice.fm);
+	$('#sNFC').change(function() {
+		Dataservice.nfc=$('#sNFC').prop('checked');
+		$scope.test();
+	});
+	$('#sIR').change(function() {
+		Dataservice.ir=$('#sIR').prop('checked');
+		$scope.test();
+	});
+	$('#sFM').change(function() {
+		Dataservice.fm=$('#sFM').prop('checked');
+		$scope.test();
+	});
+
+	
+
+
+
 
 	function data_request() {
 		var qs="http://192.168.1.2/getdata2.php".concat("?pricelo=",Dataservice.price['lo'],"&pricehi=",Dataservice.price['hi']);
@@ -489,6 +682,7 @@ angular.module('frontendApp')
 	}
 
 	$scope.test = function () {
+		console.log('test');
 		q.push(1);
 	}
 
