@@ -242,6 +242,18 @@ angular.module('frontendApp')
 		Dataservice.similar3=[Dataservice.similar3[0], [$('#soverall3').prop('checked'),$('#shardware3').prop('checked'),$('#sdisplay3').prop('checked'),$('#scamera3').prop('checked')]];
 	});
 
+	$('#sSimsize').selectpicker('val', Dataservice.simsize);
+	$("#sSimsize").change(function(){
+		Dataservice.simsize=$("#sSimsize").val();
+		$scope.test();
+	});
+
+	$('#sSimno').selectpicker('val', Dataservice.simno);
+	$("#sSimno").change(function(){
+		Dataservice.simno=$("#sSimno").val();
+		$scope.test();
+	});
+
 
 	function handle_select(label,id) {
 		var i = label.indexOf(" ");

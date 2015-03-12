@@ -67,6 +67,9 @@ angular.module('frontendApp')
 		this.os=1;
 		this.os_curr=[];
 		this.os_upgr=[];
+		this.simsize=[];
+		this.simno=[];
+
 		this.overall=[false,false,false,false]
 		this.hardware=[false,false,false,false]
 		this.display=[false,false,false,false]
