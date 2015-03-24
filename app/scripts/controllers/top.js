@@ -9,18 +9,27 @@ angular.module('frontendApp')
 	function add(elem) {
 		//var index=$scope.list.length;
 		console.log('recvd event',elem[1]);
-		var qs="http://mac/pellego/php/getcolors.php".concat("?setid=",elem[0]);
+		var qs="http://192.168.1.2/pellego/php/getcolors.php".concat("?specid=",elem[0]);
 		$http.get(qs).success(function(response) {
+
 			console.log("response",response);
-			var listopt=""
+			var colors=[];
+			var links=[];
+			var listopt="";
+
 			for (var i = 0; i < response.length; i++) {
-				listopt=listopt.concat("<li id=\"",elem[0],"_",response[i][0],"\" val=\"images/", elem[0], "/", response[i][1], "\" ");
-				listopt=listopt.concat("onclick=\"getcolorpic(this)\" style=\"cursor:pointer;\">",response[i][0],"</li>");
+				var color=response[i][0].replace("_", " ");
+				var link="".concat("images/phonepics2/",elem[0],"/",elem[0],"_",response[i][0],"-small_pellego.jpeg");
+				colors.push(color);
+				links.push(link);
+				
+				listopt=listopt.concat("<li id=\"", elem[0], "_", response[i][0], "\" val=\"", link, "\" ");
+				listopt=listopt.concat("onclick=\"getcolorpic(this)\" style=\"cursor:pointer;\">",color,"</li>");
 			}
 			//console.log(listopt);
 
 			var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel", elem[0], "\"><div class=\"shortlist-pics\">", "<div class=\"thumbnail\">", 
-		"<img id=\"pic_", elem[0], "\" src=\"images/", elem[0], "/", response[0][1],"\" alt=\"Image\"></div></div>",
+		"<img id=\"pic_", elem[0], "\" src=\"",links[0],"\" alt=\"Image\"></div></div>",
 		"<div class=\"shortlist-title\">", "<span class=\"shortlist-model\">", elem[1], "</span></div>",
 		"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",elem[0],")\" style=\"float:right\">X</button>",
 		"<div class=\"btn-group\" style=\"float:right;margin-top:20px;\">",

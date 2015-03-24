@@ -29,7 +29,7 @@ angular.module('frontendApp')
 		*/
 
 		$( "#modelsearch" ).autocomplete({
-			source: "http://mac/pellego/php/autocomplete.php",
+			source: "http://192.168.1.2/pellego/php/autocomplete.php",
 			delay: 500,
 			minLength: 2,
 			select: function( event, ui ) {
@@ -53,14 +53,14 @@ angular.module('frontendApp')
 			}
 			
 			if (type=='') {
-				var qs="http://mac/pellego/php/getdata.php".concat("?make=",make,"&model=",model);
+				var qs="http://192.168.1.2/pellego/php/getdata.php".concat("?make=",make,"&model=",model);
 			}
 			else {
-				var qs="http://mac/pellego/php/getdata.php".concat("?make=",make,"&model=",model,"&type=",type);
+				var qs="http://192.168.1.2/pellego/php/getdata.php".concat("?make=",make,"&model=",model,"&type=",type);
 			}
 			//console.log(qs);
 			$http.get(qs).success(function(response) {
-				//console.log(response);
+				console.log('response:',response);
 				var elem=[response[0],label];
 				Dataservice.add_sel(elem);
 				Dataservice.add_label(label, response);

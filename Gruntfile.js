@@ -110,6 +110,55 @@ module.exports = function (grunt) {
       }
     },
 
+		responsive_images: {
+			myTask: {
+				options: {
+					engine: 'im',
+					sizes: [{
+						name: 'small',
+						//width: 50,
+						height: 77,
+						suffix: "_pellego",
+					},{
+						name: 'medium',
+						width: 130,
+						height: 200,
+						suffix: "_pellego",
+					}]
+				},
+				files: [{
+					expand: true,
+          cwd: '<%= yeoman.app %>/images/phonepics',
+          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          dest: '<%= yeoman.app %>/images/phonepics2'
+					//src: ['assets/**.{jpg,gif,png}'],
+					//cwd: 'test/',
+					//dest: 'tmp/'
+				}]
+			}
+		},
+
+
+		image_resize: {
+			no_overwrite: {
+				options: {
+					width: 200,
+					overwrite: false
+				},
+
+				//files: {
+          //cwd: '<%= yeoman.app %>/images',
+					//'app/images/test/yeoman.png': 'app/images/yeoman.png'
+				//}
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/images',
+          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          dest: '<%= yeoman.app %>/images/test'
+        }]
+			}
+		},
+
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
@@ -379,6 +428,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
+			'responsive_images',			
       'watch'
     ]);
   });
@@ -435,7 +485,8 @@ module.exports = function (grunt) {
 		//'uglify',
 		'copy:tmp',//adhoc measure
 		'filerev',
-		'usemin'
+		'usemin',
+		'responsive_images'
     //'htmlmin'
   ]);
 
@@ -444,4 +495,9 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('image', 'image resize task', function (target) {
+    grunt.task.run(['responsive_images']);
+  });
+
 };
