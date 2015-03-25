@@ -65,14 +65,14 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
     		<div class="collapse navbar-collapse" id="headNavbar">
       		<ul ng-hide="tab" class="nav navbar-nav navbar-right">
         		<!--li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li-->
-        		<li class="dropdown">
+        		<!--li class="dropdown">
           		<a class="dropdown-toggle" data-toggle="dropdown">Phone Search<span class="caret"></span></a>
           		<ul class="dropdown-menu">
             		<li><a ng-href="#/quicksearch">Quick Search</a></li>
             		<li><a ng-href="#/specssearch">Specs Search</a></li>
           		</ul>
-        		</li>
-        		<!--li><a ng-href="#/search">Phone Search</a></li--> 
+        		</li-->
+        		<li><a ng-href="#/search">Phone Search</a></li> 
         		<li><a ng-href="#/comparisongraph">Comparison Graph</a></li> 
         		<li><a ng-href="#/specscomparison">Specs Comparison</a></li> 
         		<li><a ng-href="#/userreviews">User Reviews</a></li> 
@@ -82,11 +82,10 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
 		</nav>
 
 				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" ng-hide="sbar" 
-					style="top:52px; position:fixed;">
+					style="top:52px; position:absolute;">
    				Shortlisted Phones
 				</button>
-			<!--div id="sidebar" class="col-xs-10 col-sm-8 col-md-4 col-lg-3" ng-hide="sbar"-->
-			<div id="sidebar"  ng-hide="sbar" style="width:300px">
+			<div id="sidebar"  ng-hide="sbar">
 				<div id="demo" class="collapse">
 					<input type="search" class="form-control modelsearch">
 					
@@ -134,7 +133,7 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
 </script>
     <div class="container-fluid">
 
-      <div ng-view=""></div>
+      <div ng-view="" id="mainbody"></div>
 
       <div class="footer">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>

@@ -690,6 +690,15 @@ angular.module('frontendApp')
 		var query=Dataservice.form_query();
 		if (query) {
 			console.log(query);
+			$http.get(query).success(function(response) {
+				console.log(response);
+				for (var i = 0; i < response.length; i++) {
+					var specid=response[i][0][0];
+					var label=response[i][0][1];
+					var d=[ [specid].concat(response[i][0].slice(2,response[i][0].length)),response[i][1]];
+					Dataservice.add_label(label, d);
+				}
+			});
 		}
 	}
 

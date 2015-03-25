@@ -6,7 +6,6 @@ angular.module('frontendApp')
 
 	$rootScope.tab=true;
 
-
 	$( ".modelsearch" ).autocomplete({
 		source: "http://192.168.1.2/pellego/php/autocomplete.php",
 		delay: 500,

@@ -23,12 +23,8 @@ angular
         templateUrl: '/views/main.html',
         controller: 'MainCtrl',
       })
-      .when('/quicksearch', {
-        templateUrl: '/views/quicksearch.html',
-        controller: 'SrchCtrl'
-      })
-      .when('/specssearch', {
-        templateUrl: 'views/specssearch.html',
+      .when('/search', {
+        templateUrl: '/views/search.html',
         controller: 'SrchCtrl'
       })
       .when('/comparisongraph', {

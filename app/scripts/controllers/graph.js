@@ -9,8 +9,42 @@
  */
 
 angular.module('frontendApp')
-  .controller('GrphCtrl',['$rootScope','$scope', 'Dataservice', function ($rootScope, $scope, Dataservice) {
+  .controller('GrphCtrl',['$rootScope','$scope', 'Dataservice','$compile', function ($rootScope, $scope, Dataservice, $compile) {
 		$rootScope.tab=false;
+
+		var all=Dataservice.all;
+		for (var specid in all) {
+			var label=Dataservice.get_label(specid);
+			var response=Dataservice.get_colors(specid);
+			console.log("response",response);
+			var colors=[];
+			var links=[];
+			var listopt="";
+
+			for (var i = 0; i < response.length; i++) {
+				var color=response[i].replace("_", " ");
+				var link="".concat("images/phonepics2/",specid,"/",specid,"_",response[i],"-small_pellego.jpeg");
+				colors.push(color);
+				links.push(link);
+				
+				listopt=listopt.concat("<li id=\"", specid, "_", response[i], "\" val=\"", link, "\" ");
+				listopt=listopt.concat("onclick=\"getcolorpic(this)\" style=\"cursor:pointer;\">",color,"</li>");
+			}
+			//console.log(listopt);
+
+			var entry="<div class=\"shortlist-elem\" ".concat("id=\"res", specid, "\"><div class=\"shortlist-pics\">", "<div class=\"thumbnail\">", 
+		"<img id=\"pic_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div></div>",
+		"<div class=\"shortlist-title\">", "<span class=\"shortlist-model\">", label, "</span></div>",
+		"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" style=\"float:right\">X</button>",
+		"<div class=\"btn-group\" style=\"float:right;margin-top:20px;\">",
+		"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
+		"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div></div>");
+
+			//console.log(entry);
+			$("#SearchResults").append($compile(entry)($scope));
+		}
+
+
 
 		$rootScope.$on('someEvent', function(event, args) { reload(); });
 
@@ -59,11 +93,11 @@ angular.module('frontendApp')
 			for (var key in Dataservice.all) {
   			if (Dataservice.all.hasOwnProperty(key)) {
     			//console.log(key + " -> " + Dataservice.all[key]);
-					var pr=Dataservice.all[key][1];
-					var ov=Dataservice.all[key][id];
+					var pr=Dataservice.all[key][0][1];
+					var ov=Dataservice.all[key][0][id];
 					plotdata.push([pr,ov]);
 					price.push(pr);
-					nam.push(Dataservice.all[key][0]);
+					nam.push(Dataservice.all[key][0][0]);
 					sid.push(key);
   			}
 			}

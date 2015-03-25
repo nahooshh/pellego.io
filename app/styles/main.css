@@ -3,6 +3,11 @@
 body {
   /*padding-top: 20px;*/
   padding-bottom: 20px;
+	/*background-color: yellow;*/
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -33,7 +38,10 @@ body {
 }
 
 #sidebar {
-	position: fixed;
+	width:300px;
+	max-height: 75vh;
+	overflow-y: auto;
+	position: absolute;
 	top: 95px;
 	z-index: 1;
 	background-color: rgb(255,255,255);
@@ -41,6 +49,7 @@ body {
 
 #selected {
 	border-top: 1px dashed #d5d5d5;
+	height:100%;
 }
 
 .shortlist-elem {
@@ -257,7 +266,11 @@ display: none;
 input{
 	border:none;
 }
-
+#SearchResults{
+	height: 100vh;
+	background-color: rgb(255,255,255);
+	overflow-y:auto;
+}
 
 #A12{
 	height: 100vh; 
