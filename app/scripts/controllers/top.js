@@ -5,6 +5,55 @@ angular.module('frontendApp')
   .controller('SprCtrl',['$rootScope','$scope','Dataservice','$compile','$http', function ($rootScope, $scope, Dataservice, $compile, $http) {
 
 	$rootScope.tab=true;
+
+
+	$( ".modelsearch" ).autocomplete({
+		source: "http://192.168.1.2/pellego/php/autocomplete.php",
+		delay: 500,
+		minLength: 2,
+		select: function( event, ui ) {
+			handle_select(ui.item.label);
+		}
+	});
+
+	function handle_select(label) {
+		var i = label.indexOf(" ");
+		var j = label.indexOf("(");
+		var l = label.length;
+
+		var make = label.substring(0,i);
+		var model = '';
+		var type = '';
+		if (j == -1) {
+			model = label.substring(i+1,l);
+		} else {
+			model = label.substring(i+1,j-1);
+			type = label.substring(j,l);
+		}
+		
+		if (type=='') {
+			var qs="http://192.168.1.2/pellego/php/getdata.php".concat("?make=",make,"&model=",model);
+		}
+		else {
+			var qs="http://192.168.1.2/pellego/php/getdata.php".concat("?make=",make,"&model=",model,"&type=",type);
+		}
+		//console.log(qs);
+		$http.get(qs).success(function(response) {
+			console.log('response:',response);
+			var elem=[response[0],label];
+			Dataservice.add_sel(elem);
+			Dataservice.add_label(label, response);
+			$rootScope.sbar=false;
+			$rootScope.disgoto=false;
+			//console.log($scope.list);
+			console.log("selected", Dataservice.selected);
+			//console.log('sending event',elem);
+			//$rootScope.$emit('someEvent', elem);
+		});
+	}
+
+
+
 	$rootScope.$on('someEvent', function(event, args) { add(args); });
 	function add(elem) {
 		//var index=$scope.list.length;

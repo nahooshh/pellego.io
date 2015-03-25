@@ -28,7 +28,7 @@ angular.module('frontendApp')
 		}, true);
 		*/
 
-		$( "#modelsearch" ).autocomplete({
+		$( ".modelsearch" ).autocomplete({
 			source: "http://192.168.1.2/pellego/php/autocomplete.php",
 			delay: 500,
 			minLength: 2,
