@@ -61,15 +61,14 @@ angular.module('frontendApp')
 			//console.log(qs);
 			$http.get(qs).success(function(response) {
 				console.log('response:',response);
-				var elem=[response[0],label];
-				Dataservice.add_sel(elem);
 				Dataservice.add_label(label, response);
+				//var elem=[response[0][0],label];
+				var specid=response[0][0];
+				Dataservice.add_sel(specid);
 				$rootScope.sbar=false;
 				$rootScope.disgoto=false;
 				//console.log($scope.list);
 				console.log("selected", Dataservice.selected);
-				//console.log('sending event',elem);
-				//$rootScope.$emit('someEvent', elem);
 			});
 		}
 

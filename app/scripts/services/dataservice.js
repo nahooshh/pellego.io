@@ -12,30 +12,36 @@ angular.module('frontendApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.selected = [];
 		this.all={};
-		this.add_sel = function(elem) {
-			var i = elem[0];
-			if (this.selected.indexOf(i) == -1) {
-				this.selected.push(i);
-				console.log('sending event',elem);
-				$rootScope.$emit('someEvent', elem);
+		this.add_sel = function(specid) {
+			if (this.selected.indexOf(specid) == -1) {
+				this.selected.push(specid);
+				console.log('sending event',specid);
+				$rootScope.$emit('addEvent', specid);
 			}
-			console.log("added",i,"to selected");
+			console.log("added",specid,"to selected");
 			//console.log(i);
 		}
-		this.rem_sel = function(i) {
-			var index=this.selected.indexOf(i);
+		this.rem_sel = function(specid) {
+			var index=this.selected.indexOf(specid);
 			if (index != -1) {
 				this.selected.splice(index, 1);
-				console.log("removed",i);
+				console.log("removed",specid);
 			}
 		}
 		this.add_label = function(label,d) {
-			if (this.all[d[0]]) {}
+			if (this.all[d[0][0]]) {}
 			else {
-				this.all[d[0]]=[label].concat(d.slice(1,d.length));
+				this.all[d[0][0]]=[[label].concat(d[0].slice(1,d[0].length)),d[1]];
 			}
 			console.log("all:",this.all);
 		}
+		this.get_label = function (specid) {
+			return this.all[specid][0][0];
+		}
+		this.get_colors = function (specid) {
+			return this.all[specid][1];
+		}
+
 		this.add = function(d) {
 			if (this.all[d[0]]) {}
 			else {
