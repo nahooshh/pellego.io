@@ -39,7 +39,7 @@ body {
 
 #sidebar {
 	width:300px;
-	max-height: 75vh;
+	max-height: 80vh;
 	overflow-y: auto;
 	position: absolute;
 	top: 95px;
@@ -266,14 +266,27 @@ display: none;
 input{
 	border:none;
 }
+
+#SearchResultsPanel{
+	height: 85vh;
+	background-color: rgb(255,255,255);
+}
+#SearchResultsBar{
+	height: 50px;
+	width:100%;
+	position:absolute;
+	border: 1px solid black;
+	/*background-color: blue;*/
+}
 #SearchResults{
-	height: 100vh;
+	margin-top: 60px;
+	height: 75vh;
 	background-color: rgb(255,255,255);
 	overflow-y:auto;
 }
 
 #A12{
-	height: 100vh; 
+	height: 85vh; 
 	//position:absolute;
 	//width:100%;
 	//height:100%;

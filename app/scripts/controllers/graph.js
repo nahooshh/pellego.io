@@ -12,6 +12,8 @@ angular.module('frontendApp')
   .controller('GrphCtrl',['$rootScope','$scope', 'Dataservice','$compile', function ($rootScope, $scope, Dataservice, $compile) {
 		$rootScope.tab=false;
 
+		$('.selectpicker').selectpicker();
+
 		var all=Dataservice.all;
 		for (var specid in all) {
 			var label=Dataservice.get_label(specid);
