@@ -269,13 +269,14 @@ input{
 
 #SearchResultsPanel{
 	height: 85vh;
+	min-width:250px;
 	background-color: rgb(255,255,255);
 }
 #SearchResultsBar{
 	height: 50px;
 	width:100%;
 	position:absolute;
-	border: 1px solid black;
+	border: 1px dashed black;
 	/*background-color: blue;*/
 }
 #SearchResults{

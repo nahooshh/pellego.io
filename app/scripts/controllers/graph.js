@@ -11,8 +11,10 @@
 angular.module('frontendApp')
   .controller('GrphCtrl',['$rootScope','$scope', 'Dataservice','$compile', function ($rootScope, $scope, Dataservice, $compile) {
 		$rootScope.tab=false;
+		$rootScope.sbar=false;
 
 		$('.selectpicker').selectpicker();
+		/*if (screen.width < 1366) {$("#viewport").attr("content", "width=1366");}*/
 
 		var all=Dataservice.all;
 		for (var specid in all) {
