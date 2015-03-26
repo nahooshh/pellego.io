@@ -41,6 +41,15 @@ angular.module('frontendApp')
 		this.get_colors = function (specid) {
 			return this.all[specid][1];
 		}
+		this.all_data = function () {
+			var ret=[];
+			for (var specid in this.all) {
+				var obj=this.all[specid];
+				ret.push([specid].concat(obj[0]));
+			}
+			return ret;
+		}
+	
 
 		this.add = function(d) {
 			if (this.all[d[0]]) {}

@@ -13,40 +13,77 @@ angular.module('frontendApp')
 		$rootScope.tab=false;
 		$rootScope.sbar=false;
 
+
+		
 		$('.selectpicker').selectpicker();
-		/*if (screen.width < 1366) {$("#viewport").attr("content", "width=1366");}*/
+		var data=Dataservice.all_data();
+		$('#SortBy').change(function () {
+			display_result();
+		});
+		display_result();
+		
+		function display_result() {
 
-		var all=Dataservice.all;
-		for (var specid in all) {
-			var label=Dataservice.get_label(specid);
-			var response=Dataservice.get_colors(specid);
-			console.log("response",response);
-			var colors=[];
-			var links=[];
-			var listopt="";
-
-			for (var i = 0; i < response.length; i++) {
-				var color=response[i].replace("_", " ");
-				var link="".concat("images/phonepics2/",specid,"/",specid,"_",response[i],"-small_pellego.jpeg");
-				colors.push(color);
-				links.push(link);
-				
-				listopt=listopt.concat("<li id=\"", specid, "_", response[i], "\" val=\"", link, "\" ");
-				listopt=listopt.concat("onclick=\"getcolorpic(this)\" style=\"cursor:pointer;\">",color,"</li>");
+			$("#SearchResults").empty();		
+			var sortby=$('#SortBy').val();
+			
+			switch (sortby) {
+				case "1":
+					data.sort(function(a,b) {	return a[1].localeCompare(b[1]) } );
+					break;
+				case "2":
+					data.sort(function(a,b) {	return parseFloat(b[2]) - parseFloat(a[2]) } );
+					break;
+				case "3":
+					data.sort(function(a,b) {	return parseFloat(b[3]) - parseFloat(a[3]) } );
+					break;
+				case "4":
+					data.sort(function(a,b) {	return parseFloat(b[4]) - parseFloat(a[4]) } );
+					break;
+				case "5":
+					data.sort(function(a,b) {	return parseFloat(b[5]) - parseFloat(a[5]) } );
+					break;
+				case "6":
+					data.sort(function(a,b) {	return parseFloat(b[6]) - parseFloat(a[6]) } );
+					break;
+				default:
+						console.log("here");
+						break;
 			}
-			//console.log(listopt);
+			
+			for (var j = 0; j < data.length; j++) {
+				var specid=data[j][0];
+				var label=Dataservice.get_label(specid);
+				var response=Dataservice.get_colors(specid);
+				//console.log("response",response);
+				var colors=[];
+				var links=[];
+				var listopt="";
 
-			var entry="<div class=\"shortlist-elem\" ".concat("id=\"res", specid, "\"><div class=\"shortlist-pics\">", "<div class=\"thumbnail\">", 
-		"<img id=\"pic_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div></div>",
-		"<div class=\"shortlist-title\">", "<span class=\"shortlist-model\">", label, "</span></div>",
-		"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" style=\"float:right\">X</button>",
-		"<div class=\"btn-group\" style=\"float:right;margin-top:20px;\">",
-		"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
-		"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div></div>");
+				for (var i = 0; i < response.length; i++) {
+					var color=response[i].replace("_", " ");
+					var link="".concat("images/phonepics2/",specid,"/",specid,"_",response[i],"-small_pellego.jpeg");
+					colors.push(color);
+					links.push(link);
+					
+					listopt=listopt.concat("<li id=\"", specid, "_", response[i], "\" val=\"", link, "\" ");
+					listopt=listopt.concat("onclick=\"getcolorpic(this)\" style=\"cursor:pointer;\">",color,"</li>");
+				}
+				//console.log(listopt);
 
-			//console.log(entry);
-			$("#SearchResults").append($compile(entry)($scope));
+				var entry="<div class=\"shortlist-elem\" ".concat("id=\"res", specid, "\"><div class=\"shortlist-pics\">", "<div class=\"thumbnail\">", 
+			"<img id=\"pic_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div></div>",
+			"<div class=\"shortlist-title\">", "<span class=\"shortlist-model\">", label, "</span></div>",
+			"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" style=\"float:right\">X</button>",
+			"<div class=\"btn-group\" style=\"float:right;margin-top:20px;\">",
+			"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
+			"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div></div>");
+
+				//console.log(entry);
+				$("#SearchResults").append($compile(entry)($scope));
+			}
 		}
+		//display_result();
 
 
 
