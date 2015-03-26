@@ -834,7 +834,9 @@
 	</div><!--panel Connectivity-->
 
 	<div id="banner" class="fix">
-		<button id="submit_button" class="btn btn-default btn-lg" ng-click="query();">Submit</button>
+		<button id="clear_button" class="btn btn-danger btn-lg" ng-click="clear();">Clear Search Parameters</button>
+		<!--button id="submit_button" class="btn btn-success btn-lg" ng-href="#/comparisongraph"></button-->
+		<a href="#/comparisongraph" class="btn btn-success btn-lg" role="button" id="submit_button" ng-disabled="disablesubmit"></a>
 	</div>
 		
 </div>

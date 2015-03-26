@@ -65,6 +65,7 @@ angular.module('frontendApp')
 			return ret;	
 		}
 
+		this.last_result=0;
 		this.price={'min':1000,'max':100000,'lo':1000,'hi':100000};
 		this.brand=[];
 		this.facesize=[false,false,false];

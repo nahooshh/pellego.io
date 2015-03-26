@@ -12,6 +12,10 @@ angular.module('frontendApp')
   .controller('SrchCtrl',['$rootScope','$scope','$http','localStorageService', 'Dataservice', function ($rootScope, $scope, $http, localStorageService, Dataservice) {
 		$rootScope.tab=false;
 		$rootScope.sbar=true;
+
+		if (Dataservice.last_result) {$scope.disablesubmit=false;}
+		else {$scope.disablesubmit=true;}
+		$("#submit_button").text(String (Dataservice.last_result).concat(" models in consideration"));
 		
 		$scope.list = Dataservice.getsel();
 		$scope.x = 1;
@@ -691,6 +695,10 @@ angular.module('frontendApp')
 		if (query) {
 			console.log(query);
 			$http.get(query).success(function(response) {
+				if (response.length) { $scope.disablesubmit=false; }
+				else {$scope.disablesubmit=true;}
+				$("#submit_button").text("Found ".concat(response.length, " models"));
+				Dataservice.last_result=response.length;
 				console.log(response);
 				for (var i = 0; i < response.length; i++) {
 					var specid=response[i][0][0];
@@ -699,7 +707,12 @@ angular.module('frontendApp')
 					Dataservice.add_label(label, d);
 				}
 			});
+			
 		}
+	}
+
+	$scope.clear =function () {
+		console.log('clear search');
 	}
 
 	$scope.test = function () {
