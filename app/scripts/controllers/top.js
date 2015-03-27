@@ -77,13 +77,22 @@ angular.module('frontendApp')
 			}
 			//console.log(listopt);
 
-			var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel", specid, "\"><div class=\"shortlist-pics\">", "<div class=\"thumbnail\">", 
+			/*var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel", specid, "\"><div class=\"shortlist-pics\">", "<div class=\"thumbnail\">", 
 		"<img id=\"pic_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div></div>",
 		"<div class=\"shortlist-title\">", "<span class=\"shortlist-model\">", label, "</span></div>",
 		"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" style=\"float:right\">X</button>",
 		"<div class=\"btn-group\" style=\"float:right;margin-top:20px;\">",
 		"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
-		"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div></div>");
+		"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div></div>");*/
+
+			var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel", specid, "\"><div class=\"thumbnail\">", 
+		"<img id=\"pic_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div>",
+		"<div class=\"shortlist-text\">", "<span class=\"shortlist-model\">", label, "</span>",
+		"<div class=\"btn-group\" style=\"position:absolute;bottom:5px;left:0px;\">",
+		"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
+		"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div>",
+		"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" >X</button>",
+		"</div></div>");
 
 			//console.log(entry);
 			$("#selected").append($compile(entry)($scope));

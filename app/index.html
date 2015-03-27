@@ -87,40 +87,10 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
 				</button>
 			<div id="sidebar"  ng-hide="sbar">
 				<div id="demo" class="collapse">
-					<input type="search" class="form-control modelsearch">
-					
-					<div id="selected">
-						<!--h4>Selected Phones</h4-->
-						<!--p class="input-group" ng-repeat="elem in list">
-							<input type="text" ng-disabled="true" ng-model="elem[1]" class="form-control">
-							<span class="input-group-btn">
-    						<button class="btn btn-danger" ng-click="remove($index)" aria-label="Remove">X</button>
-  						</span>
-						</p-->
-						<!--div class="shortlist-elem">
-							<div class="shortlist-pics">
-								<div class="thumbnail">
-									<img id="pic_1_blue" class="short-thumb" src="http://192.168.1.2:9000/images/1/blue.jpeg" alt="Image">
-								</div>
-							</div>
-							<div class="shortlist-title">
-								<span class="shortlist-model">MOTOZGMOTOZ GMOTOZGMOTOZGMOTOZG AVABBA MOTO</span>
-							</div>
-							<div class="shortlist-btns">
-								<button class="btn btn-danger btn-xs" ng-click="remove($index)" aria-label="Remove" style="float:right">X</button>
-								<div class="btn-group" style="float:right;margin-top:20px;">
-									<button type="button" class="btn btn-info dropdown-toggle btn-xs" data-toggle="dropdown" aria-expanded="false">
-										Colors
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<li id="1_blue" val="http://192.168.1.2:9000/images/2/blue.jpeg" onclick="getcolorpic(this)">Black</li>
-										<li><a href="#">Another action</a></li>
-										<li><a href="#">Something else here</a></li>
-									</ul>
-								</div>
-							</div>
-						</div-->
-
+					<input type="search" class="form-control modelsearch" style="position:absolute;border: 1px dashed black">
+					<div style="overflow-y: scroll;position:relative;top:40px;max-height:70vh;">
+					<div id="selected"></div>
+					<div style="height:80px;"></div>
 					</div>
 				</div>
 			</div>
