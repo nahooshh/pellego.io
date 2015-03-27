@@ -54,34 +54,49 @@ angular.module('frontendApp')
 			for (var j = 0; j < data.length; j++) {
 				var specid=data[j][0];
 				var label=Dataservice.get_label(specid);
-				var response=Dataservice.get_colors(specid);
-				//console.log("response",response);
-				var colors=[];
+				var points=Dataservice.get_points(specid);
+				//var response=Dataservice.get_colors(specid);
+				//var colors=[];
 				var links=[];
 				var listopt="";
-
+	
+				/*
 				for (var i = 0; i < response.length; i++) {
 					var color=response[i].replace("_", " ");
 					var link="".concat("images/phonepics2/",specid,"/",specid,"_",response[i],"-small_pellego.jpeg");
 					colors.push(color);
 					links.push(link);
 					
-					listopt=listopt.concat("<li id=\"", specid, "_", response[i], "\" val=\"", link, "\" ");
-					listopt=listopt.concat("onclick=\"getcolorpic(this)\" style=\"cursor:pointer;\">",color,"</li>");
-				}
-				//console.log(listopt);
+					listopt=listopt.concat("<li id=\"2_", specid, "_", response[i], "\" val=\"", link, "\" ");
+					listopt=listopt.concat("ng-click=\"getcolorpic(",specid,"\,\'",link,"\'",")\" style=\"cursor:pointer;\">",color,"</li>");
+				}*/
 
-				var entry="<div class=\"shortlist-elem\" ".concat("id=\"res", specid, "\"><div class=\"shortlist-pics\">", "<div class=\"thumbnail\">", 
-			"<img id=\"pic_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div></div>",
-			"<div class=\"shortlist-title\">", "<span class=\"shortlist-model\">", label, "</span></div>",
-			"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" style=\"float:right\">X</button>",
-			"<div class=\"btn-group\" style=\"float:right;margin-top:20px;\">",
-			"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
-			"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div></div>");
+				var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel2_", specid, "\"><div class=\"thumbnail\">", 
+			"<img id=\"pic2_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div>",
+			"<div class=\"shortlist-text\">", "<span class=\"shortlist-model\">", label, "</span>",
+			"<div class=\"points-details\">","<p>points:",points[0],"</p><p>display points:",points[1],"</p>",
+			"<p>camera points:",points[2],"</p><p>hardware points:",points[3],"</p>","</div>",
+		//"<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" style=\"position:absolute;bottom:27px;left:0px;\">Shortlist</button>",
+			//"<div class=\"btn-group\" style=\"position:absolute;bottom:5px;left:0px;\">",
+			//"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
+			"</div>",
+			//"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div>",
+			"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" >X</button>",
+			"<input type=\"checkbox\" class=\"checkbox\" style=\"margin-top:20px;\"/>",
+			"</div></div>");
 
 				//console.log(entry);
 				$("#SearchResults").append($compile(entry)($scope));
 			}
+		}
+		/*
+		$scope.getcolorpic=function(specid,val) {
+			var id="#pic2_".concat(specid);
+			$(id).attr('src',val);
+		}*/
+		$scope.remove=function(specid) {
+			Dataservice.rem_all(String(specid));
+			$("#sel2_".concat(specid)).remove();
 		}
 		//display_result();
 

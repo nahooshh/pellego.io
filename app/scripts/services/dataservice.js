@@ -35,11 +35,18 @@ angular.module('frontendApp')
 			}
 			console.log("all:",this.all);
 		}
+		this.rem_all = function(specid) {
+			delete this.all[specid];
+		}
+
 		this.get_label = function (specid) {
 			return this.all[specid][0][0];
 		}
 		this.get_colors = function (specid) {
 			return this.all[specid][1];
+		}
+		this.get_points = function (specid) {
+			return this.all[specid][0].slice(2,this.all[specid][0].length);
 		}
 		this.all_data = function () {
 			var ret=[];

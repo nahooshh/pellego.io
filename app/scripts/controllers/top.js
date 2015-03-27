@@ -73,7 +73,7 @@ angular.module('frontendApp')
 				links.push(link);
 				
 				listopt=listopt.concat("<li id=\"", specid, "_", response[i], "\" val=\"", link, "\" ");
-				listopt=listopt.concat("onclick=\"getcolorpic(this)\" style=\"cursor:pointer;\">",color,"</li>");
+				listopt=listopt.concat("ng-click=\"getcolorpic(",specid,"\,\'",link,"\'",")\" style=\"cursor:pointer;\">",color,"</li>");
 			}
 			//console.log(listopt);
 
@@ -85,7 +85,7 @@ angular.module('frontendApp')
 		"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
 		"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div></div>");*/
 
-			var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel", specid, "\"><div class=\"thumbnail\">", 
+			var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel_", specid, "\"><div class=\"thumbnail\">", 
 		"<img id=\"pic_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div>",
 		"<div class=\"shortlist-text\">", "<span class=\"shortlist-model\">", label, "</span>",
 		"<div class=\"btn-group\" style=\"position:absolute;bottom:5px;left:0px;\">",
@@ -99,11 +99,13 @@ angular.module('frontendApp')
 		//});
 		//$scope.$apply();
 	}
+	$scope.getcolorpic=function(specid,val) {
+		var id="#pic_".concat(specid);
+		$(id).attr('src',val);
+	}
 	$scope.remove=function(specid) {
-		console.log("remove",specid);
 		Dataservice.rem_sel(String(specid));
-		$("#sel".concat(specid)).remove();
-		console.log(Dataservice.selected);
+		$("#sel_".concat(specid)).remove();
 		if (Dataservice.selected.length > 0) {
 			$rootScope.sbar=false;
 			$rootScope.disgoto=false;

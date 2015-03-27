@@ -95,7 +95,7 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
 				</div>
 			</div>
 <script>
-	function getcolorpic(elem) {
+	function getcolorpic_dep(elem) {
 		var i="pic_".concat(elem.id.split("_")[0]);
 		document.getElementById(i).setAttribute("src",elem.getAttribute("val"));
 		console.log("updated pic with", elem.getAttribute("val"));

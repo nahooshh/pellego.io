@@ -65,10 +65,21 @@ body {
 	display: inline-block;
 	position: absolute;
 	font-size: 100%;
-	width: 60%;
 	right:20px;
 	left:70px;
 	height:100%;
+}
+
+.points-details p {
+	margin: 0 0 0px;
+}
+
+.points-details {
+	font-size: 70%;
+	position: absolute;
+	top:20px;
+	bottom: 0px;
+	width:100%;
 }
 /*.shortlist-model {
 	width: 60%;
