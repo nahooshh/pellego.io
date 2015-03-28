@@ -23,6 +23,8 @@ angular.module('frontendApp')
 		display_result();
 		
 		function display_result() {
+			console.log("indisplay result; all:",Dataservice.all);
+			data=Dataservice.all_data();
 
 			$("#SearchResults").empty();		
 			var sortby=$('#SortBy').val();
@@ -55,21 +57,21 @@ angular.module('frontendApp')
 				var specid=data[j][0];
 				var label=Dataservice.get_label(specid);
 				var points=Dataservice.get_points(specid);
-				//var response=Dataservice.get_colors(specid);
+				var response=Dataservice.get_colors(specid);
 				//var colors=[];
 				var links=[];
-				var listopt="";
+				//var listopt="";
 	
-				/*
+				
 				for (var i = 0; i < response.length; i++) {
-					var color=response[i].replace("_", " ");
+					//var color=response[i].replace("_", " ");
 					var link="".concat("images/phonepics2/",specid,"/",specid,"_",response[i],"-small_pellego.jpeg");
-					colors.push(color);
+					//colors.push(color);
 					links.push(link);
 					
-					listopt=listopt.concat("<li id=\"2_", specid, "_", response[i], "\" val=\"", link, "\" ");
-					listopt=listopt.concat("ng-click=\"getcolorpic(",specid,"\,\'",link,"\'",")\" style=\"cursor:pointer;\">",color,"</li>");
-				}*/
+					//listopt=listopt.concat("<li id=\"2_", specid, "_", response[i], "\" val=\"", link, "\" ");
+					//listopt=listopt.concat("ng-click=\"getcolorpic(",specid,"\,\'",link,"\'",")\" style=\"cursor:pointer;\">",color,"</li>");
+				}
 
 				var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel2_", specid, "\"><div class=\"thumbnail\">", 
 			"<img id=\"pic2_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div>",
@@ -82,11 +84,12 @@ angular.module('frontendApp')
 			"</div>",
 			//"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div>",
 			"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" >X</button>",
-			"<input type=\"checkbox\" class=\"checkbox\" style=\"margin-top:20px;\"/>",
+			"<input type=\"checkbox\" class=\"checkbox\" style=\"margin-top:20px;\" id=\"check_",specid,"\"/>",
 			"</div></div>");
 
 				//console.log(entry);
 				$("#SearchResults").append($compile(entry)($scope));
+				check(specid);
 			}
 		}
 		/*
@@ -95,12 +98,31 @@ angular.module('frontendApp')
 			$(id).attr('src',val);
 		}*/
 		$scope.remove=function(specid) {
-			Dataservice.rem_all(String(specid));
+			Dataservice.rem_label(String(specid));
 			$("#sel2_".concat(specid)).remove();
+			reload();
 		}
-		//display_result();
 
+		function check (specid) {
+			var id="#".concat("check_",specid);
+			if (Dataservice.selected.indexOf(specid) != -1) {
+				$(id).attr('checked', true);
+			} else {
+				$(id).attr('checked', false);
+			}
+		}
 
+		$rootScope.$on('ReloadGraphEvent', function(event, args) { 
+			console.log('received ReloadGraphEvent');
+			display_result();
+			reload();
+		});
+
+		$rootScope.$on('SLEvent', function(event, specid) {
+			console.log('received SLEvent');
+			check(specid);
+			highlight();
+		});
 
 		$rootScope.$on('someEvent', function(event, args) { reload(); });
 
@@ -112,9 +134,26 @@ angular.module('frontendApp')
 			reload();
 		});
 
-		var xmin=0;
-		var xmax=0;
 		
+		
+		var plotdata=[];
+		var price=[];
+		var nam=[];
+		var sid=[];
+		var plot;
+		var series;
+	
+		function highlight() {	
+			console.log('in highlight, sid:',sid,'selected',Dataservice.selected);
+			for (var j = 0; j < sid.length; j++) {
+				var index=Dataservice.selected.indexOf(sid[j]);
+				if (index != -1) {
+					plot.highlight(series[0],plotdata[j]);
+				} else {
+					plot.unhighlight(series[0],plotdata[j]);
+				}
+			}
+		}
 		function reload() {
 			var options = {points: {show: true},
 				grid: {hoverable: true,clickable: true},
@@ -125,10 +164,10 @@ angular.module('frontendApp')
 				pan: {interactive: true},
 			}
 
-			var plotdata=[];
-			var price=[];
-			var nam=[];
-			var sid=[];
+			plotdata=[];
+			price=[];
+			nam=[];
+			sid=[];
 			var id = 0;
 			var opt=Dataservice.graph_sel;
 			switch(opt) {
@@ -159,17 +198,19 @@ angular.module('frontendApp')
 			}
 			options.xaxis.panRange = [1000, Math.max.apply(Math, price)+5000];
 			options.xaxis.zoomRange = [5000, Math.max.apply(Math, price)+5000];
-			if ((Dataservice.xmin==0) && (Dataservice.xmax==0) && (plotdata.length > 0)) {
+			/*if ((Dataservice.xmin==0) && (Dataservice.xmax==0) && (plotdata.length > 0)) {
 				Dataservice.xmin = 1000;
 				Dataservice.xmax = Math.max.apply(Math, price)+5000;
 			}
 			options.xaxis.min = Dataservice.xmin;
-			options.xaxis.max = Dataservice.xmax;
-			var plot = $.plot("#A12plot", [{ data: plotdata}], options);
-			var series=plot.getData();
+			options.xaxis.max = Dataservice.xmax;*/
+			options.xaxis.min = Math.min.apply(Math, price)-1000;
+			options.xaxis.max = Math.max.apply(Math, price)+5000;
+			plot = $.plot("#A12plot", [{ data: plotdata}], options);
+			series=plot.getData();
 			highlight();
 	
-			function highlight() {	
+			/*function highlight() {	
 				for (var j = 0; j < sid.length; j++) {
 					var index=Dataservice.selected.indexOf(sid[j]);
 					if (index != -1) {
@@ -178,22 +219,24 @@ angular.module('frontendApp')
 						plot.unhighlight(series[0],plotdata[j]);
 					}
 				}
-			}
-
+			}*/
+			var nam2=nam;
 			$("#A12plot").bind("plothover", function (event, pos, item) {
 				if (item) {
 					var x = item.datapoint[0].toFixed(2),
 					y = item.datapoint[1].toFixed(2);
-					$("#A12tt").html(nam[item.dataIndex])
+					$("#A12tt").html(nam2[item.dataIndex])
 						.css({'top': item.pageY+5-$(window).scrollTop() +'px',
 						'left': item.pageX+5+'px'}).fadeIn(200);
 				} else {
 					$("#A12tt").hide();
 				} 
 			});
+			var sid2=sid;
 			$("#A12plot").bind("plotclick", function (event, pos, item) {
 				if (item) {
-					var setid=sid[item.dataIndex];
+					var setid=sid2[item.dataIndex];
+					console.log("setid",setid,"sid2",sid2);
 					var index=Dataservice.selected.indexOf(setid);
 					if (index != -1) {
 						Dataservice.rem_sel(setid)

@@ -700,6 +700,7 @@ angular.module('frontendApp')
 				$("#submit_button").text("Found ".concat(response.length, " models"));
 				Dataservice.last_result=response.length;
 				console.log(response);
+				Dataservice.prune_label();
 				for (var i = 0; i < response.length; i++) {
 					var specid=response[i][0][0];
 					var label=response[i][0][1];

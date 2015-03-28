@@ -15,11 +15,11 @@ angular.module('frontendApp')
 		this.add_sel = function(specid) {
 			if (this.selected.indexOf(specid) == -1) {
 				this.selected.push(specid);
-				console.log('sending event',specid);
-				$rootScope.$emit('addEvent', specid);
+				return true;
+				//$rootScope.$emit('addEvent', specid);
+			} else {
+				return false;
 			}
-			console.log("added",specid,"to selected");
-			//console.log(i);
 		}
 		this.rem_sel = function(specid) {
 			var index=this.selected.indexOf(specid);
@@ -29,14 +29,22 @@ angular.module('frontendApp')
 			}
 		}
 		this.add_label = function(label,d) {
-			if (this.all[d[0][0]]) {}
+			//if (this.all[d[0][0]]) {return false;}
+			if (this.all.hasOwnProperty(d[0][0])) {return false;}
 			else {
 				this.all[d[0][0]]=[[label].concat(d[0].slice(1,d[0].length)),d[1]];
+				return true;
 			}
-			console.log("all:",this.all);
 		}
-		this.rem_all = function(specid) {
+		this.rem_label = function(specid) {
 			delete this.all[specid];
+		}
+		this.prune_label = function() {
+			for (var key in this.all) {
+				if (this.selected.indexOf(key) == -1) {
+					delete this.all[key];
+				}
+			}
 		}
 
 		this.get_label = function (specid) {

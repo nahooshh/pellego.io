@@ -58,16 +58,13 @@ angular.module('frontendApp')
 			else {
 				var qs="http://192.168.1.2/pellego/php/getdata.php".concat("?make=",make,"&model=",model,"&type=",type);
 			}
-			//console.log(qs);
 			$http.get(qs).success(function(response) {
 				console.log('response:',response);
 				Dataservice.add_label(label, response);
-				//var elem=[response[0][0],label];
 				var specid=response[0][0];
 				Dataservice.add_sel(specid);
 				$rootScope.sbar=false;
 				$rootScope.disgoto=false;
-				//console.log($scope.list);
 				console.log("selected", Dataservice.selected);
 			});
 		}
