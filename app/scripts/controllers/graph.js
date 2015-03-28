@@ -92,12 +92,32 @@ angular.module('frontendApp')
 				check(specid);
 			}
 		}
+
+		$('.checkbox').change(function(event) {
+			console.log('#'.concat(event.target.id));
+			var add = $('#'.concat(event.target.id)).prop('checked');
+			console.log(add,event.target.id.split("check_")[1]);
+			var specid=event.target.id.split("check_")[1];
+			if (add) {
+				Dataservice.add_sel(specid);
+				$rootScope.$emit('SLAddEvent', specid);
+			} else {
+				Dataservice.rem_sel(specid);
+				$rootScope.$emit('SLRemEvent', specid);
+			}
+			highlight();
+		});
 		/*
 		$scope.getcolorpic=function(specid,val) {
 			var id="#pic2_".concat(specid);
 			$(id).attr('src',val);
 		}*/
 		$scope.remove=function(specid) {
+			if (Dataservice.selected.indexOf(specid) != -1) {
+				Dataservice.rem_sel(specid);
+				check(specid);
+				$rootScope.$emit('SLRemEvent', specid);			
+			}
 			Dataservice.rem_label(String(specid));
 			$("#sel2_".concat(specid)).remove();
 			reload();
@@ -136,21 +156,14 @@ angular.module('frontendApp')
 
 		
 		
-		var plotdata=[];
-		var price=[];
-		var nam=[];
-		var sid=[];
-		var plot;
-		var series;
-	
 		function highlight() {	
-			console.log('in highlight, sid:',sid,'selected',Dataservice.selected);
-			for (var j = 0; j < sid.length; j++) {
-				var index=Dataservice.selected.indexOf(sid[j]);
+			//console.log('in highlight, sid:',Dataservice.sid,'selected',Dataservice.selected);
+			for (var j = 0; j < Dataservice.sid.length; j++) {
+				var index=Dataservice.selected.indexOf(Dataservice.sid[j]);
 				if (index != -1) {
-					plot.highlight(series[0],plotdata[j]);
+					Dataservice.plot.highlight(Dataservice.series[0],Dataservice.plotdata[j]);
 				} else {
-					plot.unhighlight(series[0],plotdata[j]);
+					Dataservice.plot.unhighlight(Dataservice.series[0],Dataservice.plotdata[j]);
 				}
 			}
 		}
@@ -164,10 +177,11 @@ angular.module('frontendApp')
 				pan: {interactive: true},
 			}
 
-			plotdata=[];
-			price=[];
-			nam=[];
-			sid=[];
+			Dataservice.plotdata=[];
+			Dataservice.price1=[];
+			Dataservice.nam=[];
+			Dataservice.sid=[];
+
 			var id = 0;
 			var opt=Dataservice.graph_sel;
 			switch(opt) {
@@ -190,24 +204,24 @@ angular.module('frontendApp')
     			//console.log(key + " -> " + Dataservice.all[key]);
 					var pr=Dataservice.all[key][0][1];
 					var ov=Dataservice.all[key][0][id];
-					plotdata.push([pr,ov]);
-					price.push(pr);
-					nam.push(Dataservice.all[key][0][0]);
-					sid.push(key);
+					Dataservice.plotdata.push([pr,ov]);
+					Dataservice.price1.push(pr);
+					Dataservice.nam.push(Dataservice.all[key][0][0]);
+					Dataservice.sid.push(key);
   			}
 			}
-			options.xaxis.panRange = [1000, Math.max.apply(Math, price)+5000];
-			options.xaxis.zoomRange = [5000, Math.max.apply(Math, price)+5000];
+			options.xaxis.panRange = [1000, Math.max.apply(Math, Dataservice.price1)+5000];
+			options.xaxis.zoomRange = [5000, Math.max.apply(Math, Dataservice.price1)+5000];
 			/*if ((Dataservice.xmin==0) && (Dataservice.xmax==0) && (plotdata.length > 0)) {
 				Dataservice.xmin = 1000;
 				Dataservice.xmax = Math.max.apply(Math, price)+5000;
 			}
 			options.xaxis.min = Dataservice.xmin;
 			options.xaxis.max = Dataservice.xmax;*/
-			options.xaxis.min = Math.min.apply(Math, price)-1000;
-			options.xaxis.max = Math.max.apply(Math, price)+5000;
-			plot = $.plot("#A12plot", [{ data: plotdata}], options);
-			series=plot.getData();
+			options.xaxis.min = Math.min.apply(Math, Dataservice.price1)-1000;
+			options.xaxis.max = Math.max.apply(Math, Dataservice.price1)+5000;
+			Dataservice.plot = $.plot("#A12plot", [{ data: Dataservice.plotdata}], options);
+			Dataservice.series=Dataservice.plot.getData();
 			highlight();
 	
 			/*function highlight() {	
@@ -220,39 +234,41 @@ angular.module('frontendApp')
 					}
 				}
 			}*/
-			var nam2=nam;
 			$("#A12plot").bind("plothover", function (event, pos, item) {
 				if (item) {
 					var x = item.datapoint[0].toFixed(2),
 					y = item.datapoint[1].toFixed(2);
-					$("#A12tt").html(nam2[item.dataIndex])
+					$("#A12tt").html(Dataservice.nam[item.dataIndex])
 						.css({'top': item.pageY+5-$(window).scrollTop() +'px',
 						'left': item.pageX+5+'px'}).fadeIn(200);
 				} else {
 					$("#A12tt").hide();
 				} 
 			});
-			var sid2=sid;
 			$("#A12plot").bind("plotclick", function (event, pos, item) {
 				if (item) {
-					var setid=sid2[item.dataIndex];
-					console.log("setid",setid,"sid2",sid2);
-					var index=Dataservice.selected.indexOf(setid);
+					var specid=Dataservice.sid[item.dataIndex];
+					console.log("specid",specid);
+					var index=Dataservice.selected.indexOf(specid);
 					if (index != -1) {
-						Dataservice.rem_sel(setid)
+						Dataservice.rem_sel(specid);
+						check(specid);
+						$rootScope.$emit('SLRemEvent', specid);
 					} else {
-						Dataservice.add_sel(setid)
+						Dataservice.add_sel(specid);
+						check(specid);
+						$rootScope.$emit('SLAddEvent', specid);
 					}
 					highlight();
 				}
 			});
 			$("#A12plot").bind("plotzoom", function (event, plot) {
-				var axes = plot.getAxes();
+				var axes = Dataservice.plot.getAxes();
 				Dataservice.xmin = axes.xaxis.min.toFixed(2);
 				Dataservice.xmax = axes.xaxis.max.toFixed(2);
 			});
 			$("#A12plot").bind("plotpan", function (event, plot) {
-				var axes = plot.getAxes();
+				var axes = Dataservice.plot.getAxes();
 				Dataservice.xmin = axes.xaxis.min.toFixed(2);
 				Dataservice.xmax = axes.xaxis.max.toFixed(2);
 			});

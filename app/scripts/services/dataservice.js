@@ -150,6 +150,13 @@ angular.module('frontendApp')
 		this.xmin=0;
 		this.xmax=0;
 		this.graph_sel='ov';
+		this.plotdata=[];
+		this.price1=[];
+		this.nam=[];
+		this.sid=[];
+		this.plot;
+		this.series;
+
 
 		this.form_query = function () {
 			var q=[];

@@ -70,6 +70,13 @@ angular.module('frontendApp')
 		remove2(args); 
 	});
 	function add(specid) {
+		/*if (Dataservice.selected.length > 0) {
+			$rootScope.sbar=false;
+			$rootScope.disgoto=false;
+		} else {
+			$rootScope.sbar=true;
+			$rootScope.disgoto=true;
+		}*/
 		var label=Dataservice.get_label(specid);
 		var response=Dataservice.get_colors(specid);
 		var colors=[];
@@ -114,13 +121,13 @@ angular.module('frontendApp')
 		Dataservice.rem_sel(String(specid));
 		$("#sel_".concat(specid)).remove();
 		$rootScope.$emit('SLEvent', specid);
-		if (Dataservice.selected.length > 0) {
+		/*if (Dataservice.selected.length > 0) {
 			$rootScope.sbar=false;
 			$rootScope.disgoto=false;
 		} else {
 			$rootScope.sbar=true;
 			$rootScope.disgoto=true;
-		}
+		}*/
 	}
 	function remove2(specid) {
 		$("#sel_".concat(specid)).remove();
