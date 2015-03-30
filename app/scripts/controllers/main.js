@@ -9,7 +9,11 @@
  */
 angular.module('frontendApp')
   .controller('MainCtrl',['$rootScope','$scope','$http','localStorageService','Dataservice',function ($rootScope, $scope, $http, localStorageService,Dataservice) {
-		$rootScope.tab=true;
+		if (Dataservice.selected.length > 0) {$rootScope.nav=false;}
+    else {$rootScope.nav=true;}
+		$rootScope.navsearch=true;
+		$rootScope.navmodelsearch=true;
+
 		if (Dataservice.selected.length > 0) {
 			$rootScope.sbar=false;
 			$rootScope.disgoto = false;

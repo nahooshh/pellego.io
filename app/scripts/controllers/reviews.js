@@ -9,7 +9,9 @@
  */
 angular.module('frontendApp')
   .controller('RevCtrl',['$rootScope','$scope','$http','localStorageService','Dataservice',function ($rootScope, $scope, $http, localStorageService,Dataservice) {
-		$rootScope.tab=false;
+		$rootScope.nav=false;
+		$rootScope.navsearch=false;
+		$rootScope.navmodelsearch=false;
 	
 		var qs="http://192.168.1.2/rev.php"	
 		$http.get(qs).success(function(response) {

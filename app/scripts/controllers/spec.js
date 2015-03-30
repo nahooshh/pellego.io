@@ -10,7 +10,10 @@
 
 angular.module('frontendApp')
   .controller('SpcCtrl',['$rootScope','$scope','localStorageService', 'Dataservice', '$compile', function ($rootScope, $scope, localStorageService, Dataservice, $compile) {
-		$rootScope.tab=false;
+		$rootScope.nav=false;
+		$rootScope.navsearch=false;
+		$rootScope.navmodelsearch=false;
+
 		$rootScope.sbar=true;
 		$scope.shortlist = Dataservice.getselected();
 		var id=0;

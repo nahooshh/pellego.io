@@ -24,58 +24,24 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-		<!--test-->
-<!--script type="text/javascript">
-ord = window.ord || Math.floor(Math.random()*1E16);
-document.write('<script type="text/javascript" src="http://www.phonearena.com/embed/specs.js?phone=8944&view=one_column&ord=' + ord + '?"><\/script>');
-</script>            
-<noscript>This snippet requires Javascript</noscript>
-<div style="color:#999999; font-size: 12px; margin-top: 5px; position:absolute; float:left">    
-    These short specs are provided by <a target="_blank" style="color:#1D7FB4" href="http://www.phonearena.com">PhoneArena</a> - visit PhoneArena.com for full <a target="_blank" style="color:#1D7FB4" href="http://www.phonearena.com/phones/Samsung-Galaxy-A5_id8944">Samsung Galaxy A5 specifications</a>
-</div>
-<script type="text/javascript">
-ord = window.ord || Math.floor(Math.random()*1E16);
-document.write('<script type="text/javascript" src="http://www.phonearena.com/embed/specs.js?phone=7839&view=one_column&ord=' + ord + '?"><\/script>');
-</script>            
-<noscript>This snippet requires Javascript</noscript>
-<div style="color:#999999; font-size: 12px; margin-top: 5px; position:absolute; float:right">    
-    These short specs are provided by <a target="_blank" style="color:#1D7FB4" href="http://www.phonearena.com">PhoneArena</a> - visit PhoneArena.com for full <a target="_blank" style="color:#1D7FB4" href="http://www.phonearena.com/phones/Samsung-Galaxy-S4-Zoom_id7839">Samsung Galaxy S4 Zoom specifications</a>
-</div>
-<script type="text/javascript">
-ord = window.ord || Math.floor(Math.random()*1E16);
-document.write('<script type="text/javascript" src="http://www.phonearena.com/embed/specs.js?phone=8944&view=two_columns&ord=' + ord + '?"><\/script>');
-</script>            
-<noscript>This snippet requires Javascript</noscript>
-<div style="color:#999999; font-size: 12px; margin-top: 5px">    
-    These short specs are provided by <a target="_blank" style="color:#1D7FB4" href="http://www.phonearena.com">PhoneArena</a> - visit PhoneArena.com for full <a target="_blank" style="color:#1D7FB4" href="http://www.phonearena.com/phones/Samsung-Galaxy-A5_id8944">Samsung Galaxy A5 specifications</a>
-</div-->
-		<!--endtest-->
 
 
     <!-- Add your site or application content here -->
 		<nav class="navbar navbar-inverse">
   		<div class="container-fluid">
     		<div class="navbar-header">
-      		<button ng-hide="tab" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#headNavbar">
+      		<button ng-hide="nav" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#headNavbar">
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span> 
       		</button>
-      		<a class="navbar-brand" href="#">PELLEGO</a>
-					<input type="search" class="form-control modelsearch" style="width:200px;margin-top:8px;">
+      		<a class="navbar-brand" href="#">Pellego.io</a>
+					<input ng-hide="navmodelsearch" type="search" class="form-control modelsearch" style="width:200px;margin-top:8px;">
     		</div>
     		<div class="collapse navbar-collapse" id="headNavbar">
-      		<ul ng-hide="tab" class="nav navbar-nav navbar-right">
-						<!--li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown">Find<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-							<li><a ng-href="#/search">Phone Search</a></li>
-							<li><a ng-href="#/comparisongraph">Phone Graph</a></li>
-							</ul>
-						</li-->
-        		<!--li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li-->
-        		<li><a ng-href="#/search">Search</a></li> 
-        		<li><a ng-href="#/comparisongraph">Graph</a></li> 
+      		<ul ng-hide="nav" class="nav navbar-nav navbar-right">
+        		<li ng-hide="navsearch"><a ng-href="#/search">Search</a></li> 
+        		<li ng-hide="navsearch"><a ng-href="#/comparisongraph">Graph</a></li> 
         		<li><a ng-href="#/specscomparison">Specs</a></li> 
         		<li><a ng-href="#/userreviews">Reviews</a></li> 
         		<li><a ng-href="#/userreviews">Price</a></li> 

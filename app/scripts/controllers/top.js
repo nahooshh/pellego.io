@@ -8,9 +8,11 @@ angular.module('frontendApp')
 		$(".se-pre-con").fadeOut("slow");
 	});
 	$scope.$on('$routeChangeStart', function(next, current) { 
-		$(".se-pre-con").fadeIn("fast");
+		$(".se-pre-con").show();
  	});
-	$rootScope.tab=true;
+	$rootScope.nav=true;
+	$rootScope.navsearch=true;
+	$rootScope.navmodelsearch=true;
 
 	$( ".modelsearch" ).autocomplete({
 		source: "http://192.168.1.2/pellego/php/autocomplete.php",
@@ -111,7 +113,7 @@ angular.module('frontendApp')
 	"<img id=\"pic_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div>",
 	"<div class=\"shortlist-text\">", "<span class=\"shortlist-model\">", label, "</span>",
 	"<div class=\"btn-group\" style=\"position:absolute;bottom:5px;left:0px;\">",
-	"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
+	"<button type=\"button\" class=\"btn btn-success dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
 	"<ul class=\"dropdown-menu\" role=\"menu\">", listopt, "</ul></div></div>",
 	"<div class=\"shortlist-btns\">", "<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" >X</button>",
 	"</div></div>");

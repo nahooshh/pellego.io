@@ -10,7 +10,12 @@
 
 angular.module('frontendApp')
   .controller('GrphCtrl',['$rootScope','$scope', 'Dataservice','$compile', function ($rootScope, $scope, Dataservice, $compile) {
-		$rootScope.tab=false;
+
+		if (Dataservice.selected.length > 0) {$rootScope.nav=false;}
+		else {$rootScope.nav=true;}
+		$rootScope.navsearch=true;
+		$rootScope.navmodelsearch=false;
+
 		$rootScope.sbar=false;
 
 
