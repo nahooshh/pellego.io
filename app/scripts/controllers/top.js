@@ -4,6 +4,12 @@
 angular.module('frontendApp')
   .controller('SprCtrl',['$rootScope','$scope','Dataservice','$compile','$http', function ($rootScope, $scope, Dataservice, $compile, $http) {
 
+	$scope.$on('$viewContentLoaded', function(){
+		$(".se-pre-con").fadeOut("slow");
+	});
+	$scope.$on('$routeChangeStart', function(next, current) { 
+		$(".se-pre-con").fadeIn("fast");
+ 	});
 	$rootScope.tab=true;
 
 	$( ".modelsearch" ).autocomplete({

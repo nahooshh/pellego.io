@@ -10,6 +10,8 @@
 
 angular.module('frontendApp')
   .controller('SrchCtrl',['$rootScope','$scope','$http','localStorageService', 'Dataservice', function ($rootScope, $scope, $http, localStorageService, Dataservice) {
+	
+
 		$rootScope.tab=false;
 		$rootScope.sbar=true;
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta id="myViewport" name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -20,6 +20,7 @@
     <!-- endbuild -->
   </head>
   <body ng-app="frontendApp" ng-controller="SprCtrl">
+		<div class="se-pre-con"></div>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -65,11 +66,19 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
     		</div>
     		<div class="collapse navbar-collapse" id="headNavbar">
       		<ul ng-hide="tab" class="nav navbar-nav navbar-right">
+						<!--li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown">Find<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							<li><a ng-href="#/search">Phone Search</a></li>
+							<li><a ng-href="#/comparisongraph">Phone Graph</a></li>
+							</ul>
+						</li-->
         		<!--li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li-->
-        		<li><a ng-href="#/search">Phone Search</a></li> 
-        		<li><a ng-href="#/comparisongraph">Comparison Graph</a></li> 
-        		<li><a ng-href="#/specscomparison">Specs Comparison</a></li> 
-        		<li><a ng-href="#/userreviews">User Reviews</a></li> 
+        		<li><a ng-href="#/search">Search</a></li> 
+        		<li><a ng-href="#/comparisongraph">Graph</a></li> 
+        		<li><a ng-href="#/specscomparison">Specs</a></li> 
+        		<li><a ng-href="#/userreviews">Reviews</a></li> 
+        		<li><a ng-href="#/userreviews">Price</a></li> 
       		</ul>
     		</div>
   		</div>
@@ -85,13 +94,26 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
 					<!--/div-->
 				</div>
 			</div>
-<script>
+<!--script>
 	function getcolorpic_dep(elem) {
 		var i="pic_".concat(elem.id.split("_")[0]);
 		document.getElementById(i).setAttribute("src",elem.getAttribute("val"));
 		console.log("updated pic with", elem.getAttribute("val"));
 	}
+</script-->
+<script>
+window.onload = function () {
+		if (window.innerWidth < 450) { 
+			var mvp = document.getElementById('myViewport');
+			mvp.setAttribute('content','width=450');
+		}
+}
+window.onpagehide = function () {
+		console.log("unloaded");
+}
+
 </script>
+
     <div class="container-fluid">
 
       <div ng-view="" id="mainbody"></div>
