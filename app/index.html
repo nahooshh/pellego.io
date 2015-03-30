@@ -61,17 +61,11 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
         		<span class="icon-bar"></span> 
       		</button>
       		<a class="navbar-brand" href="#">PELLEGO</a>
+					<input type="search" class="form-control modelsearch" style="width:200px;margin-top:8px;">
     		</div>
     		<div class="collapse navbar-collapse" id="headNavbar">
       		<ul ng-hide="tab" class="nav navbar-nav navbar-right">
         		<!--li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li-->
-        		<!--li class="dropdown">
-          		<a class="dropdown-toggle" data-toggle="dropdown">Phone Search<span class="caret"></span></a>
-          		<ul class="dropdown-menu">
-            		<li><a ng-href="#/quicksearch">Quick Search</a></li>
-            		<li><a ng-href="#/specssearch">Specs Search</a></li>
-          		</ul>
-        		</li-->
         		<li><a ng-href="#/search">Phone Search</a></li> 
         		<li><a ng-href="#/comparisongraph">Comparison Graph</a></li> 
         		<li><a ng-href="#/specscomparison">Specs Comparison</a></li> 
@@ -81,13 +75,10 @@ document.write('<script type="text/javascript" src="http://www.phonearena.com/em
   		</div>
 		</nav>
 
-				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" ng-hide="sbar" 
-					style="top:52px; position:absolute;">
-   				Shortlisted Phones
-				</button>
+		<button type="button" class="btn sl-strip" data-toggle="collapse" data-target="#demo" ng-hide="sbar" style="top:52px; position:absolute;">
+		SHORTLIST</button>
 			<div id="sidebar"  ng-hide="sbar">
 				<div id="demo" class="collapse">
-					<input type="search" class="form-control modelsearch" style="position:absolute;border: 1px dashed black">
 					<div style="overflow-y: scroll;position:relative;top:40px;max-height:70vh;">
 					<div id="selected"></div>
 					<div style="height:80px;"></div>

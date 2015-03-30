@@ -38,12 +38,20 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
+.sl-strip {
+	width:100px;
+	height: 25px;	
+	font-size: 70%;
+	text-align:center;
+	background-color: lightblue;
+}
+
 #sidebar {
 	width:300px;
 	max-height: 80vh;
 	position: absolute;
 	top: 95px;
-	z-index: 1;
+	z-index: 1000;
 	background-color: rgb(255,255,255);
 }
 
