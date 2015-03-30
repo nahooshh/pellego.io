@@ -60,12 +60,21 @@ angular.module('frontendApp')
 			}
 			$http.get(qs).success(function(response) {
 				console.log('response:',response);
-				Dataservice.add_label(label, response);
-				var specid=response[0][0];
-				Dataservice.add_sel(specid);
-				$rootScope.sbar=false;
-				$rootScope.disgoto=false;
-				console.log("selected", Dataservice.selected);
+				var newset = Dataservice.add_label(label, response);
+				console.log("newset:",newset);
+				if (newset) {
+					$rootScope.$emit('ReloadGraphEvent',"");
+					console.log('sending ReloadGraphEvent from top.js');
+				}
+				var specid = response[0][0];
+				var selset = Dataservice.add_sel(specid);
+				if (selset) {
+					$rootScope.$emit('SLAddEvent', specid);
+					$rootScope.$emit('SLEvent', specid);
+					$rootScope.sbar=false;
+					$rootScope.disgoto=false;
+				}
+				//console.log("selected", Dataservice.selected);
 			});
 		}
 
