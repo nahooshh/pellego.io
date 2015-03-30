@@ -35,6 +35,10 @@ body {
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
+.ui-widget-content {
+	max-height: 50vh;
+	overflow-y: scroll;
+}
 
 #sl-strip {
 	width:100px;
