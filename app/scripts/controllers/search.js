@@ -87,7 +87,7 @@ angular.module('frontendApp')
 		$scope.test();
 	});
 	
-	if (Dataservice.os != 0) {
+	if (Dataservice.os != -1) {
 		$('#sOS').selectpicker('val', Dataservice.os);
 		populate_os_details();
 		$('#sCurOS').selectpicker('val', Dataservice.os_curr);
@@ -100,6 +100,7 @@ angular.module('frontendApp')
 		Dataservice.os_upgr=[];
 		$('#sCurOS').selectpicker('val', Dataservice.os_curr);
 		$('#sFutOS').selectpicker('val', Dataservice.os_upgr);
+		$scope.test();
 	});
 	function populate_os_details() {
 		for (var i=1;i<6;i++) {

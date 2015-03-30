@@ -95,7 +95,7 @@ angular.module('frontendApp')
 		this.facesize=[false,false,false];
 		this.thickness=[false,false,false];
 		this.weight=[false,false,false];
-		this.os=1;
+		this.os=0;
 		this.os_curr=[];
 		this.os_upgr=[];
 		this.simsize=[];
@@ -166,7 +166,7 @@ angular.module('frontendApp')
 			if (this.facesize.indexOf(true) != -1) {q.push(['fs',this.facesize]);}
 			if (this.thickness.indexOf(true) != -1) {q.push(['th',this.thickness]);}
 			if (this.weight.indexOf(true) != -1) {q.push(['wt',this.weight]);}
-			if ((this.os_curr.length > 0) || (this.os_upgr.length > 0)) {
+			if ((this.os > 0) || (this.os_curr.length > 0) || (this.os_upgr.length > 0)) {
 				q.push(['os',this.os]);
 				if (this.os_curr.length > 0) {q.push(['oscurr',this.os_curr]);}
 				if (this.os_upgr.length > 0) {q.push(['osupgr',this.os_upgr]);}
