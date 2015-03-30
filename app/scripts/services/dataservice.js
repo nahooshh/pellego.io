@@ -15,6 +15,8 @@ angular.module('frontendApp')
 		this.add_sel = function(specid) {
 			if (this.selected.indexOf(specid) == -1) {
 				this.selected.push(specid);
+				var sl=this.selected.length;
+				$("#sl-strip").text("SHORTLIST(".concat(sl,")"));
 				return true;
 				//$rootScope.$emit('addEvent', specid);
 			} else {
@@ -25,6 +27,8 @@ angular.module('frontendApp')
 			var index=this.selected.indexOf(specid);
 			if (index != -1) {
 				this.selected.splice(index, 1);
+				var sl=this.selected.length;
+				$("#sl-strip").text("SHORTLIST(".concat(sl,")"));
 				console.log("removed",specid);
 			}
 		}
