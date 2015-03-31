@@ -99,6 +99,7 @@ angular.module('frontendApp')
 		}
 
 		this.last_result=0;
+		this.query_alt=0;
 		this.price={'min':1000,'max':100000,'lo':1000,'hi':100000};
 		this.brand=[];
 		this.facesize=[false,false,false];
@@ -189,7 +190,7 @@ angular.module('frontendApp')
 					else {query=query.concat(elem[0]);}
 				}
 			} else {
-				query="";
+				query="http://192.168.1.2/pellego/php/results.php?all=1";
 			}
 			return query;
 		}

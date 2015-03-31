@@ -121,6 +121,7 @@ angular.module('frontendApp')
 				$rootScope.$emit('SLRemEvent', specid);			
 			}
 			Dataservice.rem_label(String(specid));
+			Dataservice.query_alt=1;
 			$("#sel2_".concat(specid)).remove();
 			reload();
 		}

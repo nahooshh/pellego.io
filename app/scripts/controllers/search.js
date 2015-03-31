@@ -694,17 +694,19 @@ angular.module('frontendApp')
 		});
 	}
 
-	$scope.query = function () {
-		console.log('querying');
+	$scope.query = function (redir) {
 		var query=Dataservice.form_query();
 		if (query) {
-			console.log(query);
+			console.log('querying',query);
+			//if (redir) {$(".se-pre-con").show();}
 			$http.get(query).success(function(response) {
+				//if (redir) {$(".se-pre-con").fadeOut("slow");}
 				if (response.length) { $scope.disablesubmit=false; }
 				else {$scope.disablesubmit=true;}
 				$("#submit_button").text("Found ".concat(response.length, " models"));
 				Dataservice.last_result=response.length;
-				console.log(response);
+				Dataservice.query_alt=0;
+				console.log("query response:",response);
 				Dataservice.prune_label();
 				for (var i = 0; i < response.length; i++) {
 					var specid=response[i][0][0];
@@ -712,6 +714,11 @@ angular.module('frontendApp')
 					var d=[ [specid].concat(response[i][0].slice(2,response[i][0].length)),response[i][1]];
 					Dataservice.add_label(label, d);
 				}
+				setTimeout(function(){
+					if (redir && Dataservice.last_result) {
+						$(location).attr('href',"#/comparisongraph");
+					}
+				}, 1000);
 			});
 			
 		}
@@ -726,8 +733,20 @@ angular.module('frontendApp')
 		q.push(1);
 	}
 
+	$scope.search_redirect = function () {
+		console.log('search_redirect');
+		if ((q.length == 0) && (Dataservice.query_alt==0)) {
+			if (Dataservice.last_result) {
+				$(location).attr('href',"#/comparisongraph");
+			}
+		} else {
+			q=[];
+			$scope.query(true);
+		}
+	}
+
 	setInterval(function() {
-		if (q.length) {$scope.query()}
+		if (q.length) {$scope.query(false);}
 		q=[];
 	}, 5000);
 	
