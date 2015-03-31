@@ -19,7 +19,6 @@ angular.module('frontendApp')
 				$("#sl-strip").text("SHORTLIST(".concat(sl,")"));
 				if (sl > 0) {$rootScope.nav=false; $(".nvbr").removeClass("ng-hide");$rootScope.sbar=false;$(".sl").removeClass("ng-hide");}
     		else {$rootScope.nav=true; $(".nvbr").addClass("ng-hide");$rootScope.sbar=true;$(".sl").addClass("ng-hide");}
-				console.log("$rootScope.nav",$rootScope.nav);
 				return true;
 				//$rootScope.$emit('addEvent', specid);
 			} else {
@@ -34,7 +33,6 @@ angular.module('frontendApp')
 				$("#sl-strip").text("SHORTLIST(".concat(sl,")"));
 				if (sl > 0) {$rootScope.nav=false; $(".nvbr").removeClass("ng-hide");$rootScope.sbar=false;$(".sl").removeClass("ng-hide");}
     		else {$rootScope.nav=true; $(".nvbr").addClass("ng-hide");$rootScope.sbar=true;$(".sl").addClass("ng-hide");}
-				console.log("$rootScope.nav",$rootScope.nav);
 			}
 		}
 		this.add_label = function(label,d) {

@@ -763,7 +763,7 @@ var main = function(){
 		//if ( $(this).scrollTop() >= $(window).height() - banner.height() ){
 		if ( ($(this).scrollTop() + $(window).height()) >= $('.footer').offset().top ){
 			$('#banner').removeClass('fix').addClass('rel');
-			console.log("here");
+			//console.log("here");
 		} else {
 			$('#banner').removeClass('rel').addClass('fix');
 		}

@@ -78,8 +78,8 @@ angular.module('frontendApp')
 				var entry="<div class=\"shortlist-elem\" ".concat("id=\"sel2_", specid, "\"><div class=\"thumbnail\">", 
 			"<img id=\"pic2_", specid, "\" src=\"",links[0],"\" alt=\"Image\"></div>",
 			"<div class=\"shortlist-text\">", "<span class=\"shortlist-model\">", label, "</span>",
-			"<div class=\"points-details\">","<p>points:",points[0],"</p><p>display points:",points[1],"</p>",
-			"<p>camera points:",points[2],"</p><p>hardware points:",points[3],"</p>","</div>",
+			"<div class=\"points-details\">","<p>points:",points[0],"</p><p>hardware points:",points[1],"</p>",
+			"<p>display points:",points[2],"</p><p>camera points:",points[3],"</p>","</div>",
 		//"<button class=\"btn btn-danger btn-xs\" ng-click=\"remove(",specid,")\" style=\"position:absolute;bottom:27px;left:0px;\">Shortlist</button>",
 			//"<div class=\"btn-group\" style=\"position:absolute;bottom:5px;left:0px;\">",
 			//"<button type=\"button\" class=\"btn btn-info dropdown-toggle btn-xs\" data-toggle=\"dropdown\" aria-expanded=\"false\">Colors</button>",
@@ -93,22 +93,23 @@ angular.module('frontendApp')
 				$("#SearchResults").append($compile(entry)($scope));
 				check(specid);
 			}
-		}
-
-		$('.checkbox').change(function(event) {
-			console.log('#'.concat(event.target.id));
-			var add = $('#'.concat(event.target.id)).prop('checked');
-			console.log(add,event.target.id.split("check_")[1]);
-			var specid=event.target.id.split("check_")[1];
-			if (add) {
-				Dataservice.add_sel(specid);
-				$rootScope.$emit('SLAddEvent', specid);
-			} else {
-				Dataservice.rem_sel(specid);
-				$rootScope.$emit('SLRemEvent', specid);
+			$('.checkbox').change(function(event) {
+				var add = $('#'.concat(event.target.id)).prop('checked');
+				var specid=event.target.id.split("check_")[1];
+				var id2="#".concat("sel2_",specid);
+				if (add) {
+					Dataservice.add_sel(specid);
+					$(id2).css("background-color", "rgb(245, 247, 222)");
+					$rootScope.$emit('SLAddEvent', specid);
+				} else {
+					Dataservice.rem_sel(specid);
+					$(id2).css("background-color", "white");
+					$rootScope.$emit('SLRemEvent', specid);
+				}
+				highlight();
+			});
 			}
-			highlight();
-		});
+
 		/*
 		$scope.getcolorpic=function(specid,val) {
 			var id="#pic2_".concat(specid);
@@ -128,9 +129,12 @@ angular.module('frontendApp')
 
 		function check (specid) {
 			var id="#".concat("check_",specid);
+			var id2="#".concat("sel2_",specid);
 			if (Dataservice.selected.indexOf(specid) != -1) {
+				$(id2).css("background-color", "rgb(245, 247, 222)");
 				$(id).attr('checked', true);
 			} else {
+				$(id2).css("background-color", "white");
 				$(id).attr('checked', false);
 			}
 		}
