@@ -11,12 +11,11 @@
 angular.module('frontendApp')
   .controller('SrchCtrl',['$rootScope','$scope','$http','localStorageService', 'Dataservice', function ($rootScope, $scope, $http, localStorageService, Dataservice) {
 	
-		if (Dataservice.selected.length > 0) {$rootScope.nav=false;}
-    else {$rootScope.nav=true;}
+		if (Dataservice.selected.length > 0) {$rootScope.nav=false; $rootScope.sbar=false;}
+    else {$rootScope.nav=true;$rootScope.sbar=true;}
 		$rootScope.navsearch=true;
 		$rootScope.navmodelsearch=false;
 
-		$rootScope.sbar=true;
 
 		if (Dataservice.last_result) {$scope.disablesubmit=false;}
 		else {$scope.disablesubmit=true;}

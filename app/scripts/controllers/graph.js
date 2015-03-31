@@ -11,13 +11,10 @@
 angular.module('frontendApp')
   .controller('GrphCtrl',['$rootScope','$scope', 'Dataservice','$compile', function ($rootScope, $scope, Dataservice, $compile) {
 
-		if (Dataservice.selected.length > 0) {$rootScope.nav=false;}
-		else {$rootScope.nav=true;}
+		if (Dataservice.selected.length > 0) {$rootScope.nav=false;$rootScope.sbar=false;}
+		else {$rootScope.nav=true;$rootScope.sbar=true;}
 		$rootScope.navsearch=true;
 		$rootScope.navmodelsearch=false;
-
-		$rootScope.sbar=false;
-
 
 		
 		$('.selectpicker').selectpicker();

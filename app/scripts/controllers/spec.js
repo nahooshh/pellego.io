@@ -13,8 +13,8 @@ angular.module('frontendApp')
 		$rootScope.nav=false;
 		$rootScope.navsearch=false;
 		$rootScope.navmodelsearch=false;
-
 		$rootScope.sbar=true;
+
 		$scope.shortlist = Dataservice.getselected();
 		var id=0;
 		$(".shortlist-elem").each(function(){

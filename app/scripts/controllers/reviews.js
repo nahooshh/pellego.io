@@ -12,6 +12,7 @@ angular.module('frontendApp')
 		$rootScope.nav=false;
 		$rootScope.navsearch=false;
 		$rootScope.navmodelsearch=false;
+		$rootScope.sbar=true;
 	
 		var qs="http://192.168.1.2/rev.php"	
 		$http.get(qs).success(function(response) {

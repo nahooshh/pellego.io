@@ -9,18 +9,11 @@
  */
 angular.module('frontendApp')
   .controller('MainCtrl',['$rootScope','$scope','$http','localStorageService','Dataservice',function ($rootScope, $scope, $http, localStorageService,Dataservice) {
-		if (Dataservice.selected.length > 0) {$rootScope.nav=false;}
-    else {$rootScope.nav=true;}
+		if (Dataservice.selected.length > 0) {$rootScope.nav=false;$rootScope.sbar=false;}
+    else {$rootScope.nav=true;$rootScope.sbar=true;}
 		$rootScope.navsearch=true;
 		$rootScope.navmodelsearch=true;
 
-		if (Dataservice.selected.length > 0) {
-			$rootScope.sbar=false;
-			$rootScope.disgoto = false;
-		} else {
-			$rootScope.sbar=true;
-			$rootScope.disgoto = true;
-		}
 		$scope.list = Dataservice.getsel();
 
 		/*
@@ -75,8 +68,6 @@ angular.module('frontendApp')
 				if (selset) {
 					$rootScope.$emit('SLAddEvent', specid);
 					$rootScope.$emit('SLEvent', specid);
-					$rootScope.sbar=false;
-					$rootScope.disgoto=false;
 				}
 				//console.log("selected", Dataservice.selected);
 			});

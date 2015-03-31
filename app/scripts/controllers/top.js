@@ -13,6 +13,7 @@ angular.module('frontendApp')
 	$rootScope.nav=true;
 	$rootScope.navsearch=true;
 	$rootScope.navmodelsearch=true;
+	$rootScope.sbar=true;
 
 	$( ".modelsearch" ).autocomplete({
 		source: "http://192.168.1.2/pellego/php/autocomplete.php",
@@ -59,8 +60,6 @@ angular.module('frontendApp')
 			if (selset) {
 				add(specid);
 				$rootScope.$emit('SLEvent', specid);
-				$rootScope.sbar=false;
-				$rootScope.disgoto=false;
 			}
 			//console.log("selected", Dataservice.selected);
 		});
@@ -139,13 +138,6 @@ angular.module('frontendApp')
 	}
 	function remove2(specid) {
 		$("#sel_".concat(specid)).remove();
-		if (Dataservice.selected.length > 0) {
-			$rootScope.sbar=false;
-			$rootScope.disgoto=false;
-		} else {
-			$rootScope.sbar=true;
-			$rootScope.disgoto=true;
-		}
 	}
 }
 ]);
