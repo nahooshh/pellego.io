@@ -17,8 +17,8 @@ angular.module('frontendApp')
 				this.selected.push(specid);
 				var sl=this.selected.length;
 				$("#sl-strip").text("SHORTLIST(".concat(sl,")"));
-				if (sl > 0) {$rootScope.nav=false;}
-    		else {$rootScope.nav=true;}
+				if (sl > 0) {$rootScope.nav=false; $(".nvbr").removeClass("ng-hide");}
+    		else {$rootScope.nav=true; $(".nvbr").addClass("ng-hide");}
 				console.log("$rootScope.nav",$rootScope.nav);
 				return true;
 				//$rootScope.$emit('addEvent', specid);
@@ -32,8 +32,8 @@ angular.module('frontendApp')
 				this.selected.splice(index, 1);
 				var sl=this.selected.length;
 				$("#sl-strip").text("SHORTLIST(".concat(sl,")"));
-				if (sl > 0) {$rootScope.nav=false;}
-    		else {$rootScope.nav=true;}
+				if (sl > 0) {$rootScope.nav=false; $(".nvbr").removeClass("ng-hide");}
+    		else {$rootScope.nav=true; $(".nvbr").addClass("ng-hide");}
 				console.log("$rootScope.nav",$rootScope.nav);
 			}
 		}
