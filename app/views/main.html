@@ -7,27 +7,31 @@
 	<br>
 	<input type="text" ng-model="name"><br>
 	<br-->
-	<div class="voffset7 input-group col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-4 ">
+	<div class="voffset9" style="height:25vh;width:300px;margin:0 auto;">
+	<div style="top:80%;" class="input-group">
 		<input type="search" class="form-control modelsearch">
 		<!--span class="input-group-btn dropdown"-->
 		<span class="input-group-btn">
-			<button class="btn btn-default" type="button" ng-disabled="nav" >
+			<a href="#/comparisongraph" class="btn btn-default btn-md" role="button" id="submit_button" ng-disabled="nav">
+			<span class="glyphicon glyphicon-arrow-right"></span></a>
+			<!--button class="btn btn-default" type="button" ng-disabled="nav" >
 			<a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-arrow-right"></span></a>
 			<ul class="dropdown-menu">
 				<li><a  ng-href="#/comparisongraph">Comparison Graph</a></li>
 				<li><a  ng-href="#/specscomparison">Specs Comparison</a></li>
 				<li><a  ng-href="#/userreviews">User Reviews</a></li>
 			</ul>
-			</button>
+			</button-->
 		</span>
+	</div>
 	</div>
 	
 	
 	<!--div id="start" class=" voffset9 input-group col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-4 "-->
-	<div id="start" class=" voffset9">
+	<div id="start" class="voffset9" style="height:50vh;margin:0 auto;width:200px;">
 		<!--div style="margin:0 auto;width:350px;font-size:200%;color:maroon;font-family:'Pacifico', Arial, serif;font-size: 300%;margin-bottom:50px"> Start Exploring!</div>
 		<a ng-href="#/search"><img src="/images/ic4.jpg" class="img-responsive img-rounded" style="margin:0 auto;margin-bottom:50px"></a-->
-		<div style="margin:0 auto;width:200px;margin-bottom:50px">
+		<div style="top:60%;position:absolute;">
 		<a href="#/search" class="btn btn-lg btn-success" role="button">Start Exploring</a>
 		</div>
 	</div>
