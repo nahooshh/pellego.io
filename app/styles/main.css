@@ -425,9 +425,16 @@ input{
 	weight: "bold";
 	//family: "sans-serif";
 	//variant: "small-caps";
-	color: rgb(218, 165, 32);
+	//color: rgb(218, 165, 32);
+	color: #383127;
 }
 
+.canvas{
+  margin:auto;
+  width: 75%;
+  height:100%;
+  border: 1px solid red;
+}
 
 
 /* Customize container */

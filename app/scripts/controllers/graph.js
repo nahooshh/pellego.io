@@ -176,12 +176,15 @@ angular.module('frontendApp')
 		}
 		function reload() {
 			var options = {points: {show: true},
-				grid: {hoverable: true,clickable: true},
+				highlightColor:"#FADA5E",
+				label: "label",
+				grid: {hoverable: true,clickable: true,backgroundColor: "#70AB8F"},
 				xaxis: {transform:  function(v) {return v < 0 ?  0: Math.sqrt(v);},
 					inverseTransform: function (v) {return Math.pow(v,2);}},
 				yaxis: {zoomRange: [100, 100], panRange: [0, 100], min:0,max:100},
 				zoom: {interactive: true},
 				pan: {interactive: true},
+				colors: ["#DC5B21"]
 			}
 
 			Dataservice.plotdata=[];
@@ -248,6 +251,13 @@ angular.module('frontendApp')
 					$("#A12tt").html(Dataservice.nam[item.dataIndex])
 						.css({'top': item.pageY+5-$(window).scrollTop() +'px',
 						'left': item.pageX+5+'px'}).fadeIn(200);
+					/*var specid=Dataservice.sid[item.dataIndex];
+					var id2="#".concat("sel2_",specid);
+					console.log(id2);
+    			$('#SearchResults').animate({
+        		scrollTop: $(id2).offset().top-200
+    			}, 500);*/
+
 				} else {
 					$("#A12tt").hide();
 				} 
