@@ -204,5 +204,6 @@ angular.module('frontendApp')
 		}
 
 		this.spec_col=[0,0,0,0];
+		this.specs={};
 
   });

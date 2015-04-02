@@ -428,6 +428,17 @@ input{
 	//color: rgb(218, 165, 32);
 	color: #383127;
 }
+
+.spec-elem {
+	background-color: #FFFFF0;
+	padding:2px;
+	min-width:200px;
+	height: 80px;
+	border-bottom: 1px dashed #d5d5d5;
+	border-left: 1px dashed #d5d5d5;
+	border-right: 1px dashed #d5d5d5;
+	position: relative;
+}
 /*
 .compare-table {
   width: 100%;
@@ -444,16 +455,18 @@ input{
   background: #deedfd;
   padding: 0 0 8px 0;
 }
+*/
 #comp-header-fixed {
-  //display: none;
+	display: none;
+	background-color:#E4DBBF;
   position: fixed;
-  width: 1220px;
+  width: 100%;
   top: 0;
   z-index: 9000;
   -moz-box-shadow: 0 2px 3px -1px #444;
   -webkit-box-shadow: 0 2px 3px -1px #444;
   box-shadow: 0 2px 3px -1px #444;
-}*/
+}
 
 /* Customize container */
 @media (min-width: 768px) {

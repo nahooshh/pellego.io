@@ -23,6 +23,26 @@ angular.module('frontendApp')
 			reload();
 		});
 
+		function testScroll(ev){
+			if ( $(window).scrollTop() > 150 ) {
+				$('#comp-header-fixed').show();
+			} else {
+				$('#comp-header-fixed').hide();  
+			}
+		}
+      //$('#comp-header-fixed').fadeIn('slow');
+    	//$('#comp-header-fixed').fadeOut('slow');  
+			/*
+    	if(window.pageYOffset>200) {
+				$("#comp-header-fixed").css("display:block");
+				console.log('appear');
+			} else {
+				$("#comp-header-fixed").css("display:none");
+				console.log('hide');
+			}
+			*/
+		window.onscroll=testScroll
+
 		function reload() {
 			var d = Dataservice.selected_data();
 			//console.log(d);
@@ -58,7 +78,34 @@ angular.module('frontendApp')
 			$("#specmodel1").selectpicker('val', Dataservice.spec_col[1]);
 			$("#specmodel2").selectpicker('val', Dataservice.spec_col[2]);
 			$("#specmodel3").selectpicker('val', Dataservice.spec_col[3]);
-			
+
+			for (var i = 0; i < 4; i++) {
+				if (Dataservice.spec_col[i]) $("#spcscrollhdr".concat(i)).html(Dataservice.get_label(Dataservice.spec_col[i]));
+			}
+		
+
+			for (var j = 0; j < 4; j++) {	
+				$("#specov".concat(j)).empty();
+				var specid = Dataservice.spec_col[j];
+				if (specid == 0) {continue;}
+				var label=Dataservice.get_label(specid);
+				var points=Dataservice.get_points(specid);
+				var response=Dataservice.get_colors(specid);
+				var links=[];
+
+				for (var i = 0; i < response.length; i++) {
+					var link="".concat("images/phonepics2/",specid,"/",specid,"_",response[i],"-small_pellego.jpeg");
+					links.push(link);
+				}
+
+				var entry="<div class=\"spec-elem\" ".concat("id=\"sel3_", specid, "\"><div class=\"thumbnail\">", 
+				"<img id=\"pic3_", 2, "\" src=\"",links[0],"\" alt=\"Image\"></div>",
+				"<div class=\"shortlist-text\">", "<span class=\"shortlist-model\">", label, "</span>",
+				"<div class=\"points-details\">","<p>points:",points[0],"</p><p>hardware points:",points[1],"</p>",
+				"<p>display points:",points[2],"</p><p>camera points:",points[3],"</p>","</div>",
+				"</div></div>");
+				$("#specov".concat(j)).append(entry);
+			}
 
 			
 
