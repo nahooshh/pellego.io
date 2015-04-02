@@ -205,5 +205,9 @@ angular.module('frontendApp')
 
 		this.spec_col=[0,0,0,0];
 		this.specs={};
+		this.get_specs = function (specid) {
+			if (this.specs.hasOwnProperty(specid)) {return this.specs[specid];}
+			else {return false;}
+		}
 
   });

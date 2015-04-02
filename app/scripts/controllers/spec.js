@@ -9,7 +9,7 @@
  */
 
 angular.module('frontendApp')
-  .controller('SpcCtrl',['$rootScope','$scope','localStorageService', 'Dataservice', '$compile', function ($rootScope, $scope, localStorageService, Dataservice, $compile) {
+  .controller('SpcCtrl',['$rootScope','$scope','$http','localStorageService', 'Dataservice', '$compile', function ($rootScope, $scope, $http, localStorageService, Dataservice, $compile) {
 		$rootScope.nav=false;
 		$rootScope.navsearch=false;
 		$rootScope.navmodelsearch=false;
@@ -106,7 +106,24 @@ angular.module('frontendApp')
 				"</div></div>");
 				$("#specov".concat(j)).append(entry);
 			}
-
+		
+			
+			var specs=[];
+			var q=[];
+			for (var i = 0; i < 4; i++) {
+				if (Dataservice.spec_col[i] ==0) continue;
+				var specs=Dataservice.get_specs(Dataservice.spec_col[i]);
+				if (specs == false) { q.push(Dataservice.spec_col[i]); }
+				else {specs[i] = specs;}
+			}
+			if (q.length) {
+				var query="http://192.168.1.2/pellego/php/specs.php?specid=".concat(q.join());
+				console.log(query);
+				$http.get(query).success(function(response) {
+					console.log(response);
+				});
+			}
+		
 			
 
 			
