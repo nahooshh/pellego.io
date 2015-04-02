@@ -71,6 +71,16 @@ angular.module('frontendApp')
 			}
 			return ret;
 		}
+		this.selected_data = function () {
+			var ret=[];
+			for (var i = 0; i < this.selected.length; i++) {
+				var specid = this.selected[i];
+				var obj=this.all[specid];
+				ret.push([specid].concat(obj[0]));
+			}
+			ret.sort(function(a,b) { return a[1].localeCompare(b[1]) } );
+			return ret;
+		}
 	
 
 		this.add = function(d) {
@@ -192,5 +202,7 @@ angular.module('frontendApp')
 			}
 			return query;
 		}
+
+		this.spec_col=[0,0,0,0];
 
   });

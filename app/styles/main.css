@@ -428,14 +428,32 @@ input{
 	//color: rgb(218, 165, 32);
 	color: #383127;
 }
-
-.canvas{
-  margin:auto;
-  width: 75%;
-  height:100%;
-  border: 1px solid red;
+/*
+.compare-table {
+  width: 100%;
+  margin: 10px 0 8px 0;
+  font-size: 14px;
 }
-
+.compare-table th.side-td, .compare-table td.side-td {
+  border-right: #f5fcf6 3px solid;
+}
+.compare-table th.side-td {
+  background: #e2f5cc !important;
+}
+.compare-table th {
+  background: #deedfd;
+  padding: 0 0 8px 0;
+}
+#comp-header-fixed {
+  //display: none;
+  position: fixed;
+  width: 1220px;
+  top: 0;
+  z-index: 9000;
+  -moz-box-shadow: 0 2px 3px -1px #444;
+  -webkit-box-shadow: 0 2px 3px -1px #444;
+  box-shadow: 0 2px 3px -1px #444;
+}*/
 
 /* Customize container */
 @media (min-width: 768px) {

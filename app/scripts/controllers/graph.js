@@ -146,7 +146,7 @@ angular.module('frontendApp')
 		});
 
 		$rootScope.$on('SLEvent', function(event, specid) {
-			console.log('received SLEvent');
+			console.log('graph received SLEvent');
 			check(specid);
 			highlight();
 		});
