@@ -295,10 +295,387 @@ angular.module('frontendApp')
 			add_row('Extra',ex);
 					
 		
+			add_header('DISPLAY');
+			//DISSIZE
+			var sz=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s = specs[i]['DISSIZE'];
+					if (s != '') {s=s.concat(' \'\'');}
+					sz.push(s);
+				} else sz.push('');
+			}
+			add_row('Display Size',sz);
+		
+			//DISTYPE
+			var tp=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s = specs[i]['DISTYPE'];
+					tp.push(s);
+				} else tp.push('');
+			}
+			add_row('Technology',tp);
+
+			//DISRESO
+			var re=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s = specs[i]['DISRESO'];
+					re.push(s);
+				} else re.push('');
+			}
+			add_row('Resolution',re);
+			
+			//DISPPI
+			var pp=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s = specs[i]['DISPPI'];
+					if (s!='') {pp.push('~'.concat(s));}
+					else pp.push('');
+				} else pp.push('');
+			}
+			add_row('PPI',pp);
+
+			//DISPROT
+			var pr=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					pr.push(specs[i]['DISPROT']);
+				} else pr.push('');
+			}
+			add_row('Protection',pr);
+					
+
+			add_header('CAMERA');
+			//RESO
+			var cm=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					s=specs[i]['RESO'];
+					if (s!='0') {s=s.concat(' MP');}
+					else s='';
+					cm.push(s);
+				} else cm.push('');
+			}
+			add_row('Camera Resolution',cm);
+			//VIDRESFPS
+			var vd=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					s=specs[i]['VIDRESFPS'];
+					if (s!='0') {s=s.concat(' @30fps');}
+					else s='';
+					vd.push(s);
+				} else vd.push('');
+			}
+			add_row('Video',vd);
+			//Flash
+			var fl=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					fl.push(specs[i]['FLASH']);
+				} else fl.push('');
+			}
+			add_row('Flash',fl);
+			//SEC
+			var sc=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s='';
+					var r=specs[i]['SECRES'];
+					var v=specs[i]['SECVIDRESFPS'];
+					if (r=='0') s='No';
+					else {
+						s=s.concat(r,' MP');
+						if (v!='0') {s=s.concat(', ',v,' @30fps');}
+					}
+					sc.push(s);
+				} else sc.push('');
+			}
+			add_row('Secondary',sc);
+			//SENS,PIXL
+			var sp=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s='';
+					var p=specs[i]['PIXL'];
+					var r=specs[i]['SENS'];
+					if (r!='') {r = r.replace(/i/g, ""); s=s.concat(r.trim(),'\'\' Sensor Size. ');}
+					if (p!='0') {s=s.concat(p,'micrometre Pixel Size.');}
+					sp.push(s);
+				} else sp.push('');
+			}
+			add_row('Camera Specs',sp);
+			//CAMFEA
+			var fe=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s=[];
+					if (specs[i]['AUTOFO'] == '1') {s.push('Autofocus');}
+					if (specs[i]['TOUCHFO'] == '1') {s.push('Touchfocus');}
+					if (specs[i]['OPTSTAB'] == '1') {s.push('Optical Image Stabilization');}
+					if (specs[i]['GEOTAG'] == '1') {s.push('Geotagging');}
+					if (specs[i]['FACE'] == '1') {s.push('Face/Smile detection');}
+					if (specs[i]['PAN'] == '1') {s.push('Panorama');}
+					if (specs[i]['SIM_VID_IMG'] == '1') {s.push('Simultaneous Snapshot and Video');}
+					if (specs[i]['HDR'] == '1') {s.push('HD Recording');}
+					if (s.length) {fe.push(s.join(', '));}
+					else fe.push('');
+				} else fe.push('');
+			}
+			add_row('Features',fe);
+		
+			
+			add_header('HARDWARE');
+			//CHIP
+			var cp=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					cp.push(specs[i]['CHIP']);
+				} else cp.push('');
+			}
+			add_row('Chipset',cp);
+			//CPU
+			var cp=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var det=[];
+					var cr=specs[i]['CPUCOR'];
+					var fr=specs[i]['CPUFRE'];
+					var fm=specs[i]['CPUFAM'];
+					if (cr != '') det.push(cr);
+					if (fr != '') det.push(fr.concat('GHz'));
+					if (fm != '') det.push(fm);
+					if (det.length) cp.push(det.join(', '));
+					else cp.push('');
+				}else cp.push('');
+			}
+			add_row('CPU',cp);
+			//GPU
+			var gp=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					gp.push(specs[i]['GPU']);
+				} else gp.push('');
+			}
+			add_row('GPU',gp);
+			//RAM
+			var rm=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var r = specs[i]['RAM'];
+					if (r!='0') {rm.push(r.concat(' GB'));}
+					else rm.push('');
+				} else rm.push('');
+			}
+			add_row('RAM',rm);
+			//INTR
+			var ir=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var r = specs[i]['INTR'];
+					if (r!='0') {ir.push(r.concat(' GB'));}
+					else ir.push('');
+				} else ir.push('');
+			}
+			add_row('Internal Memory',ir);
+			//CARD
+			var cd=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var c=specs[i]['CARD'];
+					if (c!='0') {cd.push('Upto '.concat(c,' GB'));}
+					else {cd.push('No');}
+				} else cd.push('');
+			}
+			add_row('Card',cd);
+			//SENSORS
+			var sn=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s=[];
+					if (specs[i]['ACC'] == '1') {s.push('Accelerometer');}
+					if (specs[i]['GYR'] == '1') {s.push('Gyroscope');}
+					if (specs[i]['PROX'] == '1') {s.push('Proximity Sens');}
+					if (specs[i]['COMP'] == '1') {s.push('Compass');}
+					if (specs[i]['BARO'] == '1') {s.push('Barometer');}
+					if (specs[i]['TEMP'] == '1') {s.push('Temperature Sens');}
+					if (specs[i]['HUMI'] == '1') {s.push('Humidity Sens');}
+					if (specs[i]['GEST'] == '1') {s.push('Gesture Recg');}
+					if (specs[i]['HRT'] == '1') {s.push('HeartRate Monitor');}
+					if (specs[i]['FNGPR'] == '1') {s.push('Fingerprint Sens');}
+					if (specs[i]['SPO2'] == '1') {s.push('SpO2 (Blood Oxygen Sens)');}
+					if (specs[i]['UV'] == '1') {s.push('UV');}
+					if (s.length) sn.push(s.join(', '));
+					else sn.push('');
+				} else sn.push('');
+			}
+			add_row('Sensors',sn);
+			//LOCATION
+			var lc=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s=[];
+					if (specs[i]['GPS'] == '1') {s.push('GPS');}
+					if (specs[i]['AGPS'] == '1') {s.push('AGPS');}
+					if (specs[i]['GLON'] == '1') {s.push('GLONASS');}
+					if (specs[i]['BEIDOU'] == '1') {s.push('BEIDOU');}
+					if (s.length) lc.push(s.join(', '));
+					else lc.push('');
+				} else lc.push('');
+			}
+			add_row('Location',lc);
 
 
+			add_header('CONNECTIVITY');
+			//WLAN
+			var wl=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					wl.push(specs[i]['WLAN']);
+				} else wl.push('');
+			}
+			add_row('WLAN',wl);
+			//WLAN FEA
+			var wl=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s=[];
+					if (specs[i]['WLANDB'] == '1') {s.push('Dualband');}
+					if (specs[i]['WIFIDIR'] == '1') {s.push('Wifi Direct');}
+					if (specs[i]['WIFIHOT'] == '1') {s.push('Wifi Hotspot');}
+					if (specs[i]['DLNA'] == '1') {s.push('DLNA');}
+					if (s.length) wl.push(s.join(', '));
+					else wl.push('');
+				} else wl.push('');
+			}
+			add_row('WIFI FEATURES',wl);
+			//BT
+			var bt=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var b=specs[i]['BTVER'];
+					if (b != '0') bt.push('v'.concat(b));
+					else bt.push('');
+				} else bt.push('');
+			}
+			add_row('BLUETOOTH',bt);
+			//BT FEA
+			var bt=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s=[];
+					if (specs[i]['BTA2DP'] == '1') {s.push('A2DP');}
+					if (specs[i]['BTEDR'] == '1') {s.push('EDR');}
+					if (specs[i]['BTLE'] == '1') {s.push('LE');}
+					if (s.length) bt.push(s.join(', '));
+					else bt.push('');
+				} else bt.push('');
+			}
+			add_row('BLUETOOTH FEATURES',bt);
+			//USB
+			var us=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var u=specs[i]['USBVER'];
+					if (u != '0') us.push('v'.concat(u));
+					else us.push('');
+				} else us.push('');
+			}
+			add_row('USB',us);
+			//USB FEATURES
+			var us=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s=[];
+					if (specs[i]['USBMHL'] == '1') {s.push('MHL');}
+					if (specs[i]['USBOTG'] == '1') {s.push('OTG');}
+					if (specs[i]['USBHOST'] == '1') {s.push('USB Host');}
+					if (s.length) us.push(s.join(', '));
+					else us.push('');
+				} else us.push('');
+			}
+			add_row('USB FEATURES',us);
+			//NFC
+			var nf=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					if (specs[i]['NFC'] == '1') nf.push('Yes');
+					else nf.push('No');
+				} else nf.push('');
+			}
+			add_row('NFC',nf);
+			//IRPORT
+			var nf=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					if (specs[i]['IRPORT'] == '1') nf.push('Yes');
+					else nf.push('No');
+				} else nf.push('');
+			}
+			add_row('IR PORT',nf);
+			//NFC
+			var nf=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					if (specs[i]['RADIO'] == '1') nf.push('Yes');
+					else nf.push('No');
+				} else nf.push('');
+			}
+			add_row('RADIO',nf);
+	
 
-
+			add_header('SOUND');
+			//3.5MM
+			var nf=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					if (specs[i]['3_5MM'] == '1') nf.push('Yes');
+					else nf.push('');
+				} else nf.push('');
+			}
+			add_row('3.5mm Jack',nf);
+			var nf=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					if (specs[i]['LOUDSP'] == '1') nf.push('Yes');
+					else nf.push('');
+				} else nf.push('');
+			}
+			add_row('Loudspeaker',nf);
+	
+	
+			add_header('BATTERY');
+			//DETAILS
+			var bt=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					s="";
+					var nr=specs[i]['NONREM'];
+					var t=specs[i]['BATTYPE'];
+					var r=specs[i]['BATPOW'];
+					if (r!='0') {s=s.concat(r,' mAh');}
+					if (t!='') if (r!='0')	{s=s.concat(', ',t,' battery ');} else {s=s.concat(t,' battery ');}
+					if (nr=='1') {s=s.concat('(Non-Removable)');}
+					bt.push(s);			
+				} else bt.push('');
+			}
+			add_row('Battery',bt);
+			//TIME
+			var tm=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					s="";
+					var tt=specs[i]['BATTT'];
+					var sb=specs[i]['BATSB'];
+					if (tt!='0') {s=s.concat('~',tt,' Hrs talktime. ');}
+					if (sb!='0') {s=s.concat('~',sb,' Hrs standby.');}
+					tm.push(s);
+				} else tm.push('');
+			}
+			add_row('Endurance',tm);
 		}
 
 
@@ -320,4 +697,5 @@ angular.module('frontendApp')
 			console.log("removing",setid);
 		}
 		*/
+
   }]);
