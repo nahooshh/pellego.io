@@ -15,6 +15,9 @@ angular.module('frontendApp')
 		$rootScope.navmodelsearch=false;
 		$rootScope.sbar=true;
 
+		var month={'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'December'}
+
+
 		reload();
 		$('.selectpicker').selectpicker();
 
@@ -73,6 +76,7 @@ angular.module('frontendApp')
 		window.onscroll=testScroll
 
 		function reload() {
+			$(".specdata").remove();
 			var d = Dataservice.selected_data();
 			//console.log(d);
 			for (var i = 0; i < 4; i++) {
@@ -151,9 +155,9 @@ angular.module('frontendApp')
 				console.log(query);
 				$http.get(query).success(function(response) {
 					for (var specid in response) {
-						Dataservice.specs[specid]=response;
+						Dataservice.specs[specid]=response[specid];
 						var indx = Dataservice.spec_col.indexOf(specid);
-						specs[indx] = response;
+						specs[indx] = response[specid];
 					}
 					fillbody(specs);
 				});
@@ -162,9 +166,139 @@ angular.module('frontendApp')
 			}
 		}
 		
+		function add_header(hdr) {
+			var row="<tr class=\"specdata\"><td>".concat(hdr,"</td><td></td><td></td><td></td><td></td></tr>");
+			$("#spectable tbody").append(row);
+		}
+		function add_row(fea,r) {
+			var cont=false;
+			for (var i = 0; i < 4; i++) {
+					if (r[i] != '') {cont=true;break;}
+			}
+			if (cont == false) return;
+
+			var row="<tr class=\"specdata\"><td>".concat(fea,"</td>");
+			for (var i = 0; i < 4; i++) {
+				row=row.concat("<td>",r[i],"</td>");
+			}
+			row=row.concat("</tr>");
+			$("#spectable tbody").append(row);
+		}
 
 		function fillbody(specs) {
-			console.log('specs:',specs);
+			var l = Object.keys(specs).length;
+			console.log('specs:',specs,'l:',l);
+			if (l == 0)  return;
+
+
+			add_header('GENERAL');
+		
+			//RELEASED	
+			var released=[];
+			for (var i=0;i<4;i++){
+				if (specs[i] && (specs[i]['RELEASED'] != '')) {
+					var d=specs[i]['RELEASED'];
+					d=d.split('-');
+					var s=d[0].concat(', ',month[d[1]]);
+					released.push(s);
+				}
+				else released.push('');
+			}
+			add_row('Released',released);
+	
+			//SIM
+			var sim=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var sno = specs[i]['SIMNO'];
+					var smo = specs[i]['SIMMOD'];
+					if (smo) {sno=sno.concat(', ',smo);}
+					sim.push(sno);
+				} else sim.push('');
+			}
+			add_row('Sim',sim);
+
+			//SIMSIZE
+			var simsize=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					simsize.push(specs[i]['SIMSIZE']);
+				} else simsize.push('');
+			}
+			add_row('Sim Size',simsize);
+
+			//Network
+			var nwk=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var net=[];	
+					if (specs[i]['2G'] == '1') {net.push('2G');}
+					if (specs[i]['3G'] == '1') {net.push('3G');}
+					if (specs[i]['4G'] == '1') {net.push('4G');}
+					nwk.push(net.join(', '));
+				} else nwk.push('');
+			}
+			add_row('Network',nwk);
+
+			//OS
+			var os=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var s=specs[i]['OS'];
+					var s1=specs[i]['OS_VER'];
+					var s2=specs[i]['OS_UPG'];
+					if (s1 != '') {s=s.concat(', ', s1);}
+					if (s2 != '') {s=s.concat(', Upgradable to ', s2);}
+					os.push(s);
+				} else os.push('');
+			}
+			add_row('OS',os);
+	
+			add_header('BODY');
+			//DIEMNSIONS
+			var dm=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var l= specs[i]['LENGTH'];
+					var h= specs[i]['HEIGHT'];
+					var t= specs[i]['THICKNESS'];
+					s='';
+					if ((l != '') && (h != '') && (t != '')) {s=s.concat(l,'mm x ',h,'mm x',t,'mm');}
+					dm.push(s);
+				} else dm.push('');
+			}
+			add_row('Dimensions',dm);
+
+			//WEIGHT
+			var wt=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var w=specs[i]['WEIGHT'];
+					if (w != '') {w=w.concat('g');}
+					wt.push(w);
+				} else wt.push('');
+			}
+			add_row('Weight',wt);
+
+			//EXTRA
+			var ex=[];
+			for (var i=0;i<4;i++){
+				if (specs[i]) {
+					var k = specs[i]['KEYBOARD'];
+					var w = specs[i]['WTRDSTPRF'];
+					s='';
+					if (k!='') {s=s.concat(k,' ',' Keyboard.');}
+					if (w!=0) {s=s.concat(' Water and Dust Proof.');}
+					ex.push(s);
+				} else ex.push('');
+			}
+			add_row('Extra',ex);
+					
+		
+
+
+
+
 		}
 
 
