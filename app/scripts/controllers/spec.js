@@ -23,6 +23,35 @@ angular.module('frontendApp')
 			reload();
 		});
 
+		$("#specmodel0").change(function() {
+			var newval = $("#specmodel0").val();
+			var oldidx = Dataservice.spec_col.indexOf(newval);
+			if (oldidx != -1) {Dataservice.spec_col[oldidx]=0;}
+			Dataservice.spec_col[0]  = newval;
+			reload();
+		});
+		$("#specmodel1").change(function() {
+			var newval = $("#specmodel1").val();
+			var oldidx = Dataservice.spec_col.indexOf(newval);
+			if (oldidx != -1) {Dataservice.spec_col[oldidx]=0;}
+			Dataservice.spec_col[1]  = newval;
+			reload();
+		});
+		$("#specmodel2").change(function() {
+			var newval = $("#specmodel2").val();
+			var oldidx = Dataservice.spec_col.indexOf(newval);
+			if (oldidx != -1) {Dataservice.spec_col[oldidx]=0;}
+			Dataservice.spec_col[2]  = newval;
+			reload();
+		});
+		$("#specmodel3").change(function() {
+			var newval = $("#specmodel3").val();
+			var oldidx = Dataservice.spec_col.indexOf(newval);
+			if (oldidx != -1) {Dataservice.spec_col[oldidx]=0;}
+			Dataservice.spec_col[3]  = newval;
+			reload();
+		});
+
 		function testScroll(ev){
 			if ( $(window).scrollTop() > 150 ) {
 				$('#comp-header-fixed').show();
@@ -79,6 +108,7 @@ angular.module('frontendApp')
 			$("#specmodel2").selectpicker('val', Dataservice.spec_col[2]);
 			$("#specmodel3").selectpicker('val', Dataservice.spec_col[3]);
 
+
 			for (var i = 0; i < 4; i++) {
 				if (Dataservice.spec_col[i]) $("#spcscrollhdr".concat(i)).html(Dataservice.get_label(Dataservice.spec_col[i]));
 			}
@@ -112,21 +142,29 @@ angular.module('frontendApp')
 			var q=[];
 			for (var i = 0; i < 4; i++) {
 				if (Dataservice.spec_col[i] ==0) continue;
-				var specs=Dataservice.get_specs(Dataservice.spec_col[i]);
-				if (specs == false) { q.push(Dataservice.spec_col[i]); }
-				else {specs[i] = specs;}
+				var this_spec = Dataservice.get_specs(Dataservice.spec_col[i]);
+				if (this_spec == false) { q.push(Dataservice.spec_col[i]); }
+				else {specs[i] = this_spec;console.log("got specs for ",Dataservice.spec_col[i]);}
 			}
 			if (q.length) {
 				var query="http://192.168.1.2/pellego/php/specs.php?specid=".concat(q.join());
 				console.log(query);
 				$http.get(query).success(function(response) {
-					console.log(response);
+					for (var specid in response) {
+						Dataservice.specs[specid]=response;
+						var indx = Dataservice.spec_col.indexOf(specid);
+						specs[indx] = response;
+					}
+					fillbody(specs);
 				});
+			} else {
+					fillbody(specs);
 			}
+		}
 		
-			
 
-			
+		function fillbody(specs) {
+			console.log('specs:',specs);
 		}
 
 
