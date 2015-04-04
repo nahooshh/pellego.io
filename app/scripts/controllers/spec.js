@@ -134,7 +134,7 @@ angular.module('frontendApp')
 
 				var entry="<div class=\"spec-elem\" ".concat("id=\"sel3_", specid, "\"><div class=\"thumbnail\">", 
 				"<img id=\"pic3_", 2, "\" src=\"",links[0],"\" alt=\"Image\"></div>",
-				"<div class=\"shortlist-text\">", "<span class=\"shortlist-model\">", label, "</span>",
+				"<div class=\"shortlist-text\">", "<div class=\"shortlist-model\">", label, "</div>",
 				"<div class=\"points-details\">","<p>points:",points[0],"</p><p>hardware points:",points[1],"</p>",
 				"<p>display points:",points[2],"</p><p>camera points:",points[3],"</p>","</div>",
 				"</div></div>");
@@ -167,7 +167,20 @@ angular.module('frontendApp')
 		}
 		
 		function add_header(hdr) {
-			var row="<tr class=\"specdata\"><td>".concat(hdr,"</td><td></td><td></td><td></td><td></td></tr>");
+			//var row0="<tr class=\"specdata specheader\"><td class=\"colhdr\">".concat(hdr,"</td><td class=\"colodd\"></td><td class=\"coleven\"></td><td class=\"colodd\"></td><td class=\"coleven\"></td></tr>");
+			var row0="<tr class=\"specdata\" style=\"height:10px;\"><td></td><td></td><td></td><td></td></tr>"
+
+			var row="<tr class=\"specdata specheader\"><td class=\"colhdr\">".concat(hdr,"</td>");
+			for (var i = 0; i < 4; i++) {
+				if (Dataservice.spec_col[i] == 0) row=row.concat("<td></td>");
+				else {
+					if (i%2) row=row.concat("<td  class=\"coleven\"></td>");
+					else row=row.concat("<td  class=\"colodd\"></td>");
+				}
+			}
+			row=row.concat("</tr>");
+
+			$("#spectable tbody").append(row0);
 			$("#spectable tbody").append(row);
 		}
 		function add_row(fea,r) {
@@ -177,9 +190,13 @@ angular.module('frontendApp')
 			}
 			if (cont == false) return;
 
-			var row="<tr class=\"specdata\"><td>".concat(fea,"</td>");
+			var row="<tr class=\"specdata specrow\"><td class=\"colhdr\">".concat(fea,"</td>");
 			for (var i = 0; i < 4; i++) {
-				row=row.concat("<td>",r[i],"</td>");
+				if (Dataservice.spec_col[i] == 0) row=row.concat("<td></td>");
+				else {
+					if (i%2) row=row.concat("<td  class=\"coleven\">",r[i],"</td>");
+					else row=row.concat("<td  class=\"colodd\">",r[i],"</td>");
+				}
 			}
 			row=row.concat("</tr>");
 			$("#spectable tbody").append(row);
@@ -574,7 +591,7 @@ angular.module('frontendApp')
 					else bt.push('');
 				} else bt.push('');
 			}
-			add_row('BLUETOOTH FEATURES',bt);
+			add_row('BT FEATURES',bt);
 			//USB
 			var us=[];
 			for (var i=0;i<4;i++){

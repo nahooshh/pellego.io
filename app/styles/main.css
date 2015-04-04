@@ -147,6 +147,11 @@ body {
 	bottom: 0px;
 	width:100%;
 }
+div.shortlist-model {
+	height:20px;
+	width:100%;
+	overflow:hidden;
+}
 /*.shortlist-model {
 	width: 60%;
 	margin: 0 5px;
@@ -440,11 +445,6 @@ input{
 	position: relative;
 }
 /*
-.compare-table {
-  width: 100%;
-  margin: 10px 0 8px 0;
-  font-size: 14px;
-}
 .compare-table th.side-td, .compare-table td.side-td {
   border-right: #f5fcf6 3px solid;
 }
@@ -456,6 +456,45 @@ input{
   padding: 0 0 8px 0;
 }
 */
+.compare-table {
+  width: 100%;
+  margin: 10px 0 8px 0;
+  font-size: 14px;
+}
+.specheader {
+	padding-top: 20px;	
+	font-size:20px;
+	height:50px;
+	border-left: 2px solid #CDC5AB;
+	border-right: 2px solid #CDC5AB;
+}
+.specrow {
+	margin: 5px 5px 5px 5px;	
+	height-min:40px;
+	border-left: 2px solid #CDC5AB;
+	border-right: 2px solid #CDC5AB;
+}
+.specdata td{
+	padding-left: 5px;
+}
+.colhdr {
+	background-color: #E4DBBF;
+}
+.coleven {
+	background-color: #E4DBBF;
+}
+.colodd {
+	background-color: #CDC5AB;
+}
+/*
+//for dropdowns
+tbody tr:hover { 
+          background-color: none;
+}
+*/
+.compare-table tbody tr.specrow:hover td, .compare-table tbody tr.specrow:hover th {
+    background-color: whiteSmoke;
+}	
 #comp-header-fixed {
 	display: none;
 	background-color:#E4DBBF;
