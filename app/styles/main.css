@@ -493,7 +493,7 @@ tbody tr:hover {
 }
 */
 .compare-table tbody tr.specrow:hover td, .compare-table tbody tr.specrow:hover th {
-    background-color: whiteSmoke;
+    background-color: #FFFFF0;
 }	
 #comp-header-fixed {
 	display: none;
