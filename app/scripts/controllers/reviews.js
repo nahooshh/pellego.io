@@ -113,7 +113,7 @@ angular.module('frontendApp')
 				}
 
 
-				var revData={'batt':[[],[],0,0,0,'#revBattery'],'body':[[],[],0,0,0,'#revBody'],'cam':[[],[],0,0,0,'#revCamera'],'disp':[[],[],0,0,0,'#revDisplay'],'perf':[[],[],0,0,0,'#revPerformance'],'spec':[[],[],0,0,0,'#revSpecs'],'ovr':[[],[],0,0,0,'#revOverall']}
+				var revData={'batt':[[],[],0,0,0,'#revBattery','#batheading'],'body':[[],[],0,0,0,'#revBody','#bodheading'],'cam':[[],[],0,0,0,'#revCamera','#camheading'],'disp':[[],[],0,0,0,'#revDisplay','#disheading'],'perf':[[],[],0,0,0,'#revPerformance','#perheading'],'spec':[[],[],0,0,0,'#revSpecs','#spcheading'],'ovr':[[],[],0,0,0,'#revOverall','#ovrheading']}
 
 				for (var i=0; i<response.length;i++) {
 					var fea=response[i][0];
@@ -181,6 +181,15 @@ angular.module('frontendApp')
 		
 						var secData=revData[section];
 						//console.log(secData[2],secData[3],secData[4]);
+						var g=secData[2];
+						var m=secData[3];
+						var b=secData[4];
+						var t=g+m+b;
+						var g1=Math.round(g*100/t);
+						var m1=g1+Math.round(m*100/t);
+						var b1=100;
+						//$(secData[6]).css({"background-color": "yellow", "font-size": "200%"});
+						$(secData[6]).css({"background-image": "linear-gradient(90deg, #70AB8F ".concat(g1,"%, #383127 ",g1 ,"%, #383127 ",m1 ,"%, #DC5B21 ",m1 ,"%, #DC5B21 100%)" )});
 
 						var nums = secData[1];
 						nums.sort(function(a,b) {  return parseFloat(b) - parseFloat(a) } );
@@ -190,8 +199,9 @@ angular.module('frontendApp')
 						var rows = secData[0];
 						for (var i=0; i<rows.length;i++) {
 							var fea=rows[i][0];
+							//fea = fea.toUpperCase();
 							var elems=rows[i][1];
-							var line='<p>'.concat("<b>", fea.replace(/_/g," "), "</b>", ' : ');
+							var line='<p style=\"padding-top:10px;font-size:18px;\">'.concat("<b>", fea.replace(/_/g," "), "</b>", " : </p> <p style=\"margin-top:-10px;\">");
 							for (var j=0; j<elems.length;j++) {
 								var elem=elems[j];
 								var num=elem[0];
@@ -227,7 +237,7 @@ angular.module('frontendApp')
 			return round(sum % num.length);
 		}
 		
-		var fsizes=[12,14,16,18,20];
+		var fsizes=[13,16,18,20,22];
 
   }]);
 
