@@ -54,6 +54,8 @@ angular.module('frontendApp')
 			$("#revmodel").selectpicker('refresh');
 			$("#revmodel").selectpicker('val', Dataservice.rev_model);
 		//	$("#revcol").selectpicker('val', Dataservice.rev_col);
+
+			if (Dataservice.selected.indexOf(Dataservice.rev_model) == -1) {Dataservice.rev_model=0;}
 		
 			if (Dataservice.rev_model==0) {
 				fillbody2([false]);
