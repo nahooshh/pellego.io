@@ -210,4 +210,15 @@ angular.module('frontendApp')
 			else {return false;}
 		}
 
+		this.rev_model=0;
+		this.rev_col="rev";
+		this.revs={};
+		this.get_rev = function (specid,col) {
+			if (this.revs.hasOwnProperty(specid)) {
+				if (this.revs[specid].hasOwnProperty(col)) {return this.revs[specid][col];}
+				else return false;
+			}
+      else {return false;}
+		}
+
   });
