@@ -30,9 +30,12 @@ angular.module('frontendApp')
 			console.log($scope.list);
 		};
 
-	var q = [];
+	var q = [1];
 
 	$('.selectpicker').selectpicker();
+	//reload();
+
+	//function reload() {
 
 	$scope.price=Dataservice.price;
 	$("#priceSlider").noUiSlider({
@@ -64,6 +67,7 @@ angular.module('frontendApp')
 	$('#sBrand').selectpicker('val', Dataservice.brand);
 	$("#sBrand").change(function(){
 		Dataservice.brand=$("#sBrand").val();
+		if (Dataservice.brand == null) {Dataservice.brand=[];}
 		$scope.test();
 	});
 
@@ -107,24 +111,28 @@ angular.module('frontendApp')
 		$scope.test();
 	});
 	function populate_os_details() {
-		for (var i=1;i<6;i++) {
+		var oses={"android":"1","blackberry os":"2", "ios":"3", "windows phone":"4", "nokia asha":"5"};
+		for (var j in oses) {
+			var i = oses[j];
 			if (i==Dataservice.os) {continue;}
-			$("#sCurOS ."+i ).show();
-			$("#sCurOS ."+i).hide();
-			$("#sFutOS ."+i ).show();
-			$("#sFutOS ."+i).hide();
+			$("#sCurOS .".concat(i)).show();
+			$("#sCurOS .".concat(i)).hide();
+			$("#sFutOS .".concat(i)).show();
+			$("#sFutOS .".concat(i)).hide();
 		}
-		$("#sCurOS ."+Dataservice.os ).show();
+		$("#sCurOS .".concat(oses[Dataservice.os])).show();
 		$('#sCurOS').selectpicker('refresh');
-		$("#sFutOS ."+Dataservice.os ).show();
+		$("#sFutOS .".concat(oses[Dataservice.os])).show();
 		$('#sFutOS').selectpicker('refresh');
 	}
 	$("#sCurOS").change(function(){
 		Dataservice.os_curr=$("#sCurOS").val();
+		if (Dataservice.os_curr==null) {Dataservice.os_curr=[];}
 		$scope.test();
 	});
 	$("#sFutOS").change(function(){
 		Dataservice.os_upgr=$("#sFutOS").val();
+		if (Dataservice.os_upgr==null) {Dataservice.os_upgr=[];}
 		$scope.test();
 	});
 		
@@ -254,12 +262,14 @@ angular.module('frontendApp')
 	$('#sSimsize').selectpicker('val', Dataservice.simsize);
 	$("#sSimsize").change(function(){
 		Dataservice.simsize=$("#sSimsize").val();
+		if (Dataservice.simsize==null) {Dataservice.simsize=[];}
 		$scope.test();
 	});
 
 	$('#sSimno').selectpicker('val', Dataservice.simno);
 	$("#sSimno").change(function(){
 		Dataservice.simno=$("#sSimno").val();
+		if (Dataservice.simno==null) {Dataservice.simno=[];}
 		$scope.test();
 	});
 
@@ -676,6 +686,7 @@ angular.module('frontendApp')
 		Dataservice.fm=$('#sFM').prop('checked');
 		$scope.test();
 	});
+	//}
 
 	
 
@@ -706,7 +717,7 @@ angular.module('frontendApp')
 				$("#submit_button").text("Found ".concat(response.length, " models"));
 				Dataservice.last_result=response.length;
 				Dataservice.query_alt=0;
-				console.log("query response:",response);
+				//console.log("query response:",response);
 				Dataservice.prune_label();
 				for (var i = 0; i < response.length; i++) {
 					var specid=response[i][0][0];
@@ -726,6 +737,35 @@ angular.module('frontendApp')
 
 	$scope.clear =function () {
 		console.log('clear search');
+		Dataservice.price['lo'] = Dataservice.price['min'];
+		Dataservice.price['hi'] = Dataservice.price['max'];
+		$("#priceSlider").val([Dataservice.price['lo'], Dataservice.price['hi']]);
+		Dataservice.brand=[];
+		$('#sBrand').selectpicker('val', Dataservice.brand);
+		Dataservice.facesize=[false,false,false];
+		$('#facesize0').attr('checked', Dataservice.facesize[0]);
+		$('#facesize1').attr('checked', Dataservice.facesize[1]);
+		$('#facesize2').attr('checked', Dataservice.facesize[2]);
+		Dataservice.thickness=[false,false,false];
+		$('#thickness0').attr('checked', Dataservice.thickness[0]);
+		$('#thickness1').attr('checked', Dataservice.thickness[1]);
+		$('#thickness2').attr('checked', Dataservice.thickness[2]);
+		Dataservice.weight=[false,false,false];
+		$('#weight').attr('checked', Dataservice.weight[0]);
+		$('#weight1').attr('checked', Dataservice.weight[1]);
+		$('#weight2').attr('checked', Dataservice.weight[2]);
+		Dataservice.os=0;
+    Dataservice.os_curr=[];
+    Dataservice.os_upgr=[];
+		$('#sOS').selectpicker('val', Dataservice.os);
+		populate_os_details();
+		$('#sCurOS').selectpicker('val', Dataservice.os_curr);
+		$('#sFutOS').selectpicker('val', Dataservice.os_upgr);
+		Dataservice.simsize=[];
+		Dataservice.simno=[];
+		$('#sSimsize').selectpicker('val', Dataservice.simsize);
+		$('#sSimno').selectpicker('val', Dataservice.simno);
+		q.push(1);
 	}
 
 	$scope.test = function () {

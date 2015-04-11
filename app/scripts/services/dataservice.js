@@ -181,14 +181,21 @@ angular.module('frontendApp')
 			if (this.price.lo != this.price.min) {q.push(['pricelo',this.price.lo]);}
 			if (this.price.hi != this.price.max) {q.push(['pricehi',this.price.hi]);}
 			if (this.brand.length > 0) {q.push(['make',this.brand]);}
-			if (this.facesize.indexOf(true) != -1) {q.push(['fs',this.facesize]);}
-			if (this.thickness.indexOf(true) != -1) {q.push(['th',this.thickness]);}
-			if (this.weight.indexOf(true) != -1) {q.push(['wt',this.weight]);}
-			if ((this.os > 0) || (this.os_curr.length > 0) || (this.os_upgr.length > 0)) {
+			if ((this.facesize.indexOf(true) != -1) && (this.facesize.indexOf(false) != -1)) {q.push(['fs',this.facesize]);}
+			if ((this.thickness.indexOf(true) != -1) && (this.thickness.indexOf(false) != -1))  {q.push(['th',this.thickness]);}
+			if ((this.weight.indexOf(true) != -1) && (this.weight.indexOf(false) != -1)) {q.push(['wt',this.weight]);}
+			/*if ((this.os > 0) || (this.os_curr.length > 0) || (this.os_upgr.length > 0)) {
+				q.push(['os',this.os]);
+				if (this.os_curr.length > 0) {q.push(['oscurr',this.os_curr]);}
+				if (this.os_upgr.length > 0) {q.push(['osupgr',this.os_upgr]);}
+			}*/
+			if (this.os != "0") {
 				q.push(['os',this.os]);
 				if (this.os_curr.length > 0) {q.push(['oscurr',this.os_curr]);}
 				if (this.os_upgr.length > 0) {q.push(['osupgr',this.os_upgr]);}
 			}
+			
+			
 			if (q.length > 0) {
 				var query="http://192.168.1.2/pellego/php/results.php?";
 				for (var i = 0; i < q.length; i++) {
