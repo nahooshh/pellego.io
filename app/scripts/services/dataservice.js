@@ -224,6 +224,13 @@ angular.module('frontendApp')
 			if (this.secvid.hi != this.secvid.max) {q.push(['secvidhi',this.secvid.hi]);}
 			if (this.flash.length > 0) {q.push(['flash',this.flash]);}
 			if (this.camfea.length > 0) {q.push(['camfea',this.camfea]);}
+			if (this.data.length > 0) {q.push(['data',this.data]);}
+			if (this.wifi.length > 0) {q.push(['wifi',this.wifi]);}
+			if (this.bt.length > 0) {q.push(['bt',this.bt]);}
+			if (this.usb.length > 0) {q.push(['usb',this.usb]);}
+			if (this.nfc) {q.push(['nfc',true]);}
+			if (this.ir) {q.push(['ir',true]);}
+			if (this.fm) {q.push(['fm',true]);}
 			
 			
 			if (q.length > 0) {

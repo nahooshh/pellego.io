@@ -660,24 +660,28 @@ angular.module('frontendApp')
 	$('#sData').selectpicker('val', Dataservice.data);
 	$("#sData").change(function(){
 		Dataservice.data=$("#sData").val();
+		if (Dataservice.data==null) {Dataservice.data=[];}
 		$scope.test();
 	});
 
 	$('#sWifi').selectpicker('val', Dataservice.wifi);
 	$("#sWifi").change(function(){
 		Dataservice.wifi=$("#sWifi").val();
+		if (Dataservice.wifi==null) {Dataservice.wifi=[];}
 		$scope.test();
 	});
 
 	$('#sBT').selectpicker('val', Dataservice.bt);
 	$("#sBT").change(function(){
 		Dataservice.bt=$("#sBT").val();
+		if (Dataservice.bt==null) {Dataservice.bt=[];}
 		$scope.test();
 	});
 
 	$('#sUSB').selectpicker('val', Dataservice.usb);
 	$("#sUSB").change(function(){
 		Dataservice.usb=$("#sUSB").val();
+		if (Dataservice.usb==null) {Dataservice.usb=[];}
 		$scope.test();
 	});
 
@@ -830,6 +834,21 @@ angular.module('frontendApp')
 		$('#sFlash').selectpicker('val', Dataservice.flash);
 		Dataservice.camfea=[];
 		$('#sCamFea').selectpicker('val', Dataservice.camfea);
+		Dataservice.data=[];
+		$('#sData').selectpicker('val', Dataservice.data);
+		Dataservice.wifi=[];
+		$('#sWifi').selectpicker('val', Dataservice.wifi);
+		Dataservice.bt=[];
+		$('#sBT').selectpicker('val', Dataservice.bt);
+		Dataservice.usb=[];
+		$('#sUSB').selectpicker('val', Dataservice.usb);
+		Dataservice.nfc=false;
+		Dataservice.ir=false;
+		Dataservice.fm=false;
+		$('#sNFC').attr('checked', Dataservice.nfc);
+		$('#sIR').attr('checked', Dataservice.ir);
+		$('#sFM').attr('checked', Dataservice.fm);
+		
 		q.push(1);
 	}
 
