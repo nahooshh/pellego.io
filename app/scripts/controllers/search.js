@@ -504,12 +504,14 @@ angular.module('frontendApp')
 	$('#sDisTech').selectpicker('val', Dataservice.distech);
 	$("#sDisTech").change(function(){
 		Dataservice.distech=$("#sDisTech").val();
+		if (Dataservice.distech==null) {Dataservice.distech=[];}
 		$scope.test();
 	});
 
 	$('#sDisReso').selectpicker('val', Dataservice.disreso);
 	$("#sDisReso").change(function(){
 		Dataservice.disreso=$("#sDisReso").val();
+		if (Dataservice.disreso==null) {Dataservice.disreso=[];}
 		$scope.test();
 	});
 
@@ -523,8 +525,8 @@ angular.module('frontendApp')
 			decimals: 0
 		}),
 		range: {
-			'min': [ 50, 50 ],
-			'max': [ 500 ]
+			'min': [ 100, 50 ],
+			'max': [ 600 ]
 		}
 	});
 	$("#disdenSlider").on('slide', function () {
@@ -540,6 +542,7 @@ angular.module('frontendApp')
 	$('#sDisProt').selectpicker('val', Dataservice.disprot);
 	$("#sDisProt").change(function(){
 		Dataservice.disprot=$("#sDisProt").val();
+		if (Dataservice.disprot==null) {Dataservice.disprot=[];}
 		$scope.test();
 	});
 
@@ -797,6 +800,18 @@ angular.module('frontendApp')
 		$('#sSensors').selectpicker('val', Dataservice.snsr);
 		Dataservice.loc=[];
 		$('#sLocation').selectpicker('val', Dataservice.loc);
+		Dataservice.scr['lo'] = Dataservice.scr['min'];
+		Dataservice.scr['hi'] = Dataservice.scr['max'];
+		$("#scrSlider").val([Dataservice.scr['lo'], Dataservice.scr['hi']]);
+		Dataservice.distech=[];
+		$('#sDisTech').selectpicker('val', Dataservice.distech);
+		Dataservice.disreso=[];
+		$('#sDisReso').selectpicker('val', Dataservice.disreso);
+		Dataservice.disden['lo'] = Dataservice.disden['min'];
+		Dataservice.disden['hi'] = Dataservice.disden['max'];
+		$("#disdenSlider").val([Dataservice.disden['lo'], Dataservice.disden['hi']]);
+		Dataservice.disprot=[];
+		$('#sDisProt').selectpicker('val', Dataservice.disprot);
 		q.push(1);
 	}
 

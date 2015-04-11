@@ -145,7 +145,7 @@ angular.module('frontendApp')
 		this.scr={'min':2,'max':7,'lo':2,'hi':7};
 		this.distech=[];
 		this.disreso=[];
-		this.disden={'min':50,'max':500,'lo':50,'hi':500};
+		this.disden={'min':100,'max':600,'lo':100,'hi':600};
 		this.disprot=[];
 		
 		
@@ -207,6 +207,13 @@ angular.module('frontendApp')
 			if (this.batt.hi != this.batt.max) {q.push(['batthi',this.batt.hi]);}
 			if (this.snsr.length > 0) {q.push(['snsr',this.snsr]);}
 			if (this.loc.length > 0) {q.push(['loc',this.loc]);}
+			if (this.scr.lo != this.scr.min) {q.push(['scrlo',this.scr.lo]);}
+			if (this.scr.hi != this.scr.max) {q.push(['scrhi',this.scr.hi]);}
+			if (this.distech.length > 0) {q.push(['distech',this.distech]);}
+			if (this.disreso.length > 0) {q.push(['disreso',this.disreso]);}
+			if (this.disden.lo != this.disden.min) {q.push(['disdenlo',this.disden.lo]);}
+			if (this.disden.hi != this.disden.max) {q.push(['disdenhi',this.disden.hi]);}
+			if (this.disprot.length > 0) {q.push(['disprot',this.disprot]);}
 			
 			
 			if (q.length > 0) {
