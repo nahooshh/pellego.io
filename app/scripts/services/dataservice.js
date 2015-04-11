@@ -132,12 +132,12 @@ angular.module('frontendApp')
 		this.chipset=[];
 		this.cpufam=[];
 		this.gpu=[];
-		this.cpufre={'min':.5,'max':4,'lo':.5,'hi':4};
+		this.cpufre={'min':.5,'max':3,'lo':.5,'hi':3};
 		this.cpucor=[];
-		this.ram={'min':.128,'max':4,'lo':.128,'hi':4};
-		this.intr={'min':1,'max':64,'lo':1,'hi':64};
-		this.card={'min':1,'max':64,'lo':1,'hi':64};
-		this.batt={'min':100,'max':5000,'lo':100,'hi':5000};
+		this.ram={'min':.128,'max':3,'lo':.128,'hi':3};
+		this.intr={'min':1,'max':128,'lo':1,'hi':128};
+		this.card={'min':16,'max':128,'lo':16,'hi':128};
+		this.batt={'min':1000,'max':5500,'lo':1000,'hi':5500};
 		this.snsr=[];
 		this.loc=[];
 
@@ -191,6 +191,22 @@ angular.module('frontendApp')
 			}
 			if (this.simsize.length > 0) {q.push(['simsize',this.simsize]);}
 			if (this.simno.length > 0) {q.push(['simno',this.simno]);}
+			if (this.chipset.length > 0) {q.push(['chip',this.chipset]);}
+			if (this.cpufam.length > 0) {q.push(['cpufam',this.cpufam]);}
+			if (this.gpu.length > 0) {q.push(['gpu',this.gpu]);}
+			if (this.cpufre.lo != this.cpufre.min) {q.push(['cpufrelo',this.cpufre.lo]);}
+			if (this.cpufre.hi != this.cpufre.max) {q.push(['cpufrehi',this.cpufre.hi]);}
+			if (this.cpucor.length > 0) {q.push(['cpucor',this.cpucor]);}
+			if (this.ram.lo != this.ram.min) {q.push(['ramlo',this.ram.lo]);}
+			if (this.ram.hi != this.ram.max) {q.push(['ramhi',this.ram.hi]);}
+			if (this.intr.lo != this.intr.min) {q.push(['intrlo',this.intr.lo]);}
+			if (this.intr.hi != this.intr.max) {q.push(['intrhi',this.intr.hi]);}
+			if (this.card.lo != this.card.min) {q.push(['cardlo',this.card.lo]);}
+			if (this.card.hi != this.card.max) {q.push(['cardhi',this.card.hi]);}
+			if (this.batt.lo != this.batt.min) {q.push(['battlo',this.batt.lo]);}
+			if (this.batt.hi != this.batt.max) {q.push(['batthi',this.batt.hi]);}
+			if (this.snsr.length > 0) {q.push(['snsr',this.snsr]);}
+			if (this.loc.length > 0) {q.push(['loc',this.loc]);}
 			
 			
 			if (q.length > 0) {

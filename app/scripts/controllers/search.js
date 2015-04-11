@@ -322,12 +322,14 @@ angular.module('frontendApp')
 	$('#sChipset').selectpicker('val', Dataservice.chipset);
 	$('#sChipset').change(function(){
 		Dataservice.chipset=$('#sChipset').val();
+		if (Dataservice.chipset==null) {Dataservice.chipset=[];}
 		$scope.test();
 	});
 	
 	$('#sCpuFam').selectpicker('val', Dataservice.cpufam);
 	$('#sCpuFam').change(function(){
 		Dataservice.cpufam=$('#sCpuFam').val();
+		if (Dataservice.cpufam==null) {Dataservice.cpufam=[];}
 		$scope.test();
 	});
 
@@ -347,7 +349,7 @@ angular.module('frontendApp')
 		}),
 		range: {
 			 'min': [ .5, .1 ],
-			'max': [ 4 ]
+			'max': [ 3 ]
 		} 
 	});
 	$("#cpufreqSlider").on('slide', function() {
@@ -363,6 +365,7 @@ angular.module('frontendApp')
 	$('#sCpuCor').selectpicker('val', Dataservice.cpucor);
 	$('#sCpuCor').change(function(){
 		Dataservice.cpucor=$('#sCpuCor').val();
+		if (Dataservice.cpucor==null) {Dataservice.cpucor=[];}
 		$scope.test();
 	});
 
@@ -376,7 +379,7 @@ angular.module('frontendApp')
 		}),
 		range: {
 			'min': [ .128, .128 ],
-			'max': [ 4 ]
+			'max': [ 3 ]
 		}
 	});
 	$("#ramSlider").on('slide', function() {
@@ -399,7 +402,7 @@ angular.module('frontendApp')
 		}),
 		range: {
 			'min': [ 0, 1 ],
-			'max': [ 64 ]
+			'max': [ 128 ]
 		}
 	});
 	$("#intrSlider").on('slide', function() {
@@ -421,8 +424,8 @@ angular.module('frontendApp')
 			decimals: 0
 		}),
 		range: {
-			'min': [ 0, 1 ],
-			'max': [ 64 ]
+			'min': [ 16, 16 ],
+			'max': [ 128 ]
 		}
 	});
 	$("#cardSlider").on('slide', function() {
@@ -444,8 +447,8 @@ angular.module('frontendApp')
 			decimals: 0
 		}),
 		range: {
-			'min': [ 100, 100 ],
-			'max': [ 5000 ]
+			'min': [ 1000, 500 ],
+			'max': [ 5500 ]
 		}
 	});
 	$("#battSlider").on('slide', function() {
@@ -461,12 +464,14 @@ angular.module('frontendApp')
 	$('#sSensors').selectpicker('val', Dataservice.snsr);
 	$('#sSensors').change(function(){
 		Dataservice.snsr=$('#sSensors').val();
+		if (Dataservice.snsr==null) {Dataservice.snsr=[];}
 		$scope.test();
 	});
 
 	$('#sLocation').selectpicker('val', Dataservice.loc);
 	$('#sLocation').change(function(){
 		Dataservice.loc=$('#sLocation').val();
+		if (Dataservice.loc==null) {Dataservice.loc=[];}
 		$scope.test();
 	});
 	
@@ -765,6 +770,33 @@ angular.module('frontendApp')
 		Dataservice.simno=[];
 		$('#sSimsize').selectpicker('val', Dataservice.simsize);
 		$('#sSimno').selectpicker('val', Dataservice.simno);
+		Dataservice.chipset=[];
+		$('#sChipset').selectpicker('val', Dataservice.chipset);
+		Dataservice.cpufam=[];
+		$('#sCpuFam').selectpicker('val', Dataservice.cpufam);
+		Dataservice.gpu=[];
+		$('#sGpu').selectpicker('val', Dataservice.gpu);
+		Dataservice.cpufre['lo'] = Dataservice.cpufre['min'];
+		Dataservice.cpufre['hi'] = Dataservice.cpufre['max'];
+		$("#cpufreqSlider").val([Dataservice.cpufre['lo'], Dataservice.cpufre['hi']]);
+		Dataservice.cpucor=[];
+		$('#sCpuCor').selectpicker('val', Dataservice.cpucor);
+		Dataservice.ram['lo'] = Dataservice.ram['min'];
+		Dataservice.ram['hi'] = Dataservice.ram['max'];
+		$("#ramSlider").val([Dataservice.ram['lo'], Dataservice.ram['hi']]);
+		Dataservice.intr['lo'] = Dataservice.intr['min'];
+		Dataservice.intr['hi'] = Dataservice.intr['max'];
+		$("#intrSlider").val([Dataservice.intr['lo'], Dataservice.intr['hi']]);
+		Dataservice.card['lo'] = Dataservice.card['min'];
+		Dataservice.card['hi'] = Dataservice.card['max'];
+		$("#cardSlider").val([Dataservice.card['lo'], Dataservice.card['hi']]);
+		Dataservice.batt['lo'] = Dataservice.batt['min'];
+		Dataservice.batt['hi'] = Dataservice.batt['max'];
+		$("#battSlider").val([Dataservice.batt['lo'], Dataservice.batt['hi']]);
+		Dataservice.snsr=[];
+		$('#sSensors').selectpicker('val', Dataservice.snsr);
+		Dataservice.loc=[];
+		$('#sLocation').selectpicker('val', Dataservice.loc);
 		q.push(1);
 	}
 
