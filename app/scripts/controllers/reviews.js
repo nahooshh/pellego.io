@@ -17,6 +17,15 @@ angular.module('frontendApp')
 		$('body').on('hidden.bs.modal', '.modal', function () {
       $(this).removeData('bs.modal');
 		});
+		
+		$("#reviews .panel-heading").click(function(e) {
+    	$(this).parent().siblings().children(".panel-body").slideUp();
+    	$(this).parent().children(".panel-body").slideToggle();
+    	e.preventDefault();
+  	});
+
+		$('#revBattery, #revBody, #revCamera, #revDisplay, #revPerformance, #revSpecs').hide();
+		$('#revOverall').show();
 
 		reload();
 		$('.selectpicker').selectpicker();
@@ -44,6 +53,7 @@ angular.module('frontendApp')
 			$("#revSpecs").empty();
 			$("#revOverall").empty();
 			$("#revBattery").empty();
+			$("#batheading, #bodheading, #camheading, #disheading, #perheading, #spcheading, #ovrheading").css({"background-color": "#70AB8F","background-image":"none"});
 
 			var d = Dataservice.selected_data();
 			entry="";
@@ -68,10 +78,10 @@ angular.module('frontendApp')
 			if (this_rev==false) do_q=true;
 			else {
 				rev=this_rev;
-				console.log('got response from cache for: setid',Dataservice.rev_model);
+				console.log('got response from cache for: specid',Dataservice.rev_model);
 			}
 			if (do_q) {
-				var qs="http://192.168.1.2/pellego/php/rev.php?setid=".concat(Dataservice.rev_model,"&col=",Dataservice.rev_col);
+				var qs="http://192.168.1.2/pellego/php/rev.php?specid=".concat(Dataservice.rev_model,"&col=",Dataservice.rev_col);
 				console.log(qs);
 				$http.get(qs).success(function(response) {
 					console.log(response);
@@ -98,6 +108,7 @@ angular.module('frontendApp')
 					$("#revPerformance").append(line);
 					$("#revSpecs").append(line);
 					$("#revOverall").append(line);
+					$("#batheading, #bodheading, #camheading, #disheading, #perheading, #spcheading, #ovrheading").css({"background-color": "grey","background-image":"none"});
 					return;
 				}
 				if (response[0]==false) {
@@ -180,21 +191,30 @@ angular.module('frontendApp')
    				if (revData.hasOwnProperty(section) ) {
 		
 						var secData=revData[section];
+						
+				
+						var nums = secData[1];
+						if (nums.length==0) {
+							var line="<p>No Data Found</p>";
+							$(secData[5]).append(line);
+							$(secData[6]).css({"background-color": "grey","background-image":"none"});
+							continue;
+						}
+						nums.sort(function(a,b) {  return parseFloat(b) - parseFloat(a) } );
+						//li = get_font_list(num);
+						//console.log(nums);
+
+
 						//console.log(secData[2],secData[3],secData[4]);
 						var g=secData[2];
 						var m=secData[3];
 						var b=secData[4];
 						var t=g+m+b;
-						var g1=Math.round(g*100/t);
-						var m1=g1+Math.round(m*100/t);
+						var g1=Math.min(Math.round(g*100/t),100);
+						var m1=Math.min(g1+Math.round(m*100/t),100);
 						var b1=100;
 						//$(secData[6]).css({"background-color": "yellow", "font-size": "200%"});
 						$(secData[6]).css({"background-image": "linear-gradient(90deg, #70AB8F ".concat(g1,"%, #383127 ",g1 ,"%, #383127 ",m1 ,"%, #DC5B21 ",m1 ,"%, #DC5B21 100%)" )});
-
-						var nums = secData[1];
-						nums.sort(function(a,b) {  return parseFloat(b) - parseFloat(a) } );
-						//li = get_font_list(num);
-						//console.log(nums);
 
 						var rows = secData[0];
 						for (var i=0; i<rows.length;i++) {
