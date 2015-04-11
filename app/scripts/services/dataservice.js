@@ -149,10 +149,10 @@ angular.module('frontendApp')
 		this.disprot=[];
 		
 		
-		this.pricam={'min':1,'max':50,'lo':1,'hi':50};
-		this.privid={'min':.1,'max':20,'lo':.1,'hi':20};
-		this.seccam={'min':.1,'max':20,'lo':.1,'hi':20};
-		this.secvid={'min':.1,'max':20,'lo':.1,'hi':20};
+		this.pricam={'min':1,'max':41,'lo':1,'hi':41};
+		this.privid={'min':200,'max':2200,'lo':200,'hi':2200};
+		this.seccam={'min':.3,'max':15,'lo':.3,'hi':15};
+		this.secvid={'min':200,'max':1500,'lo':200,'hi':1500};
 		this.flash=[];
 		this.camfea=[];
 
@@ -214,6 +214,16 @@ angular.module('frontendApp')
 			if (this.disden.lo != this.disden.min) {q.push(['disdenlo',this.disden.lo]);}
 			if (this.disden.hi != this.disden.max) {q.push(['disdenhi',this.disden.hi]);}
 			if (this.disprot.length > 0) {q.push(['disprot',this.disprot]);}
+			if (this.pricam.lo != this.pricam.min) {q.push(['pricamlo',this.pricam.lo]);}
+			if (this.pricam.hi != this.pricam.max) {q.push(['pricamhi',this.pricam.hi]);}
+			if (this.privid.lo != this.privid.min) {q.push(['prividlo',this.privid.lo]);}
+			if (this.privid.hi != this.privid.max) {q.push(['prividhi',this.privid.hi]);}
+			if (this.seccam.lo != this.seccam.min) {q.push(['seccamlo',this.seccam.lo]);}
+			if (this.seccam.hi != this.seccam.max) {q.push(['seccamhi',this.seccam.hi]);}
+			if (this.secvid.lo != this.secvid.min) {q.push(['secvidlo',this.secvid.lo]);}
+			if (this.secvid.hi != this.secvid.max) {q.push(['secvidhi',this.secvid.hi]);}
+			if (this.flash.length > 0) {q.push(['flash',this.flash]);}
+			if (this.camfea.length > 0) {q.push(['camfea',this.camfea]);}
 			
 			
 			if (q.length > 0) {

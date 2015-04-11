@@ -558,7 +558,7 @@ angular.module('frontendApp')
 		}),
 		range: {
 			'min': [ 1, 1 ],
-			'max': [ 50 ]
+			'max': [ 41 ]
 		}
 	});
 	$("#pricamSlider").on('slide', function () {
@@ -580,8 +580,8 @@ angular.module('frontendApp')
 			decimals: 0
 		}),
 		range: {
-			'min': [ .1, .5 ],
-			'max': [ 20 ]
+			'min': [ 200, 100 ],
+			'max': [ 2200 ]
 		}
 	});
 	$("#prividSlider").on('slide', function() {
@@ -601,11 +601,11 @@ angular.module('frontendApp')
 		behaviour: 'tap-drag',
 		start: [ Dataservice.seccam['lo'],Dataservice.seccam['hi']],
 		format: wNumb({
-			decimals: 0
+			decimals: 1
 		}),
 		range: {
-			'min': [ .1, .5 ],
-			'max': [ 20 ]
+			'min': [ .3, .1 ],
+			'max': [ 15 ]
 		}
 	});
 	$("#seccamSlider").on('slide', function() {
@@ -627,8 +627,8 @@ angular.module('frontendApp')
 			decimals: 0
 		}),
 		range: {
-			'min': [ .1, .5],
-			'max': [ 20 ]
+			'min': [ 200, 100],
+			'max': [ 1500 ]
 		}
 	});
 	$("#secvidSlider").on('slide', function() {
@@ -644,12 +644,14 @@ angular.module('frontendApp')
 	$('#sFlash').selectpicker('val', Dataservice.flash);
 	$("#sFlash").change(function(){
 		Dataservice.flash=$("#sFlash").val();
+		if (Dataservice.flash==null) {Dataservice.flash=[];}
 		$scope.test();
 	});
 
 	$('#sCamFea').selectpicker('val', Dataservice.camfea);
 	$("#sCamFea").change(function(){
 		Dataservice.camfea=$("#sCamFea").val();
+		if (Dataservice.camfea==null) {Dataservice.camfea=[];}
 		$scope.test();
 	});
 
@@ -812,6 +814,22 @@ angular.module('frontendApp')
 		$("#disdenSlider").val([Dataservice.disden['lo'], Dataservice.disden['hi']]);
 		Dataservice.disprot=[];
 		$('#sDisProt').selectpicker('val', Dataservice.disprot);
+		Dataservice.pricam['lo'] = Dataservice.pricam['min'];
+		Dataservice.pricam['hi'] = Dataservice.pricam['max'];
+		$("#pricamSlider").val([Dataservice.pricam['lo'], Dataservice.pricam['hi']]);
+		Dataservice.privid['lo'] = Dataservice.privid['min'];
+		Dataservice.privid['hi'] = Dataservice.privid['max'];
+		$("#prividSlider").val([Dataservice.privid['lo'], Dataservice.privid['hi']]);
+		Dataservice.seccam['lo'] = Dataservice.seccam['min'];
+		Dataservice.seccam['hi'] = Dataservice.seccam['max'];
+		$("#seccamSlider").val([Dataservice.seccam['lo'], Dataservice.seccam['hi']]);
+		Dataservice.secvid['lo'] = Dataservice.secvid['min'];
+		Dataservice.secvid['hi'] = Dataservice.secvid['max'];
+		$("#secvidSlider").val([Dataservice.secvid['lo'], Dataservice.secvid['hi']]);
+		Dataservice.flash=[];
+		$('#sFlash').selectpicker('val', Dataservice.flash);
+		Dataservice.camfea=[];
+		$('#sCamFea').selectpicker('val', Dataservice.camfea);
 		q.push(1);
 	}
 
