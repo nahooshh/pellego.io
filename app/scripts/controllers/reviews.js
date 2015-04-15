@@ -12,8 +12,11 @@ angular.module('frontendApp')
 		$rootScope.nav=false;
 		$rootScope.navsearch=false;
 		$rootScope.navmodelsearch=false;
-		$rootScope.sbar=true;
+		$rootScope.sbar=false;
 	
+		var mvp = document.getElementById('myViewport');
+		mvp.setAttribute('content','width=device-width');
+
 		$('body').on('hidden.bs.modal', '.modal', function () {
       $(this).removeData('bs.modal');
 		});

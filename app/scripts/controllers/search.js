@@ -13,9 +13,12 @@ angular.module('frontendApp')
 	
 		if (Dataservice.selected.length > 0) {$rootScope.nav=false; $rootScope.sbar=false;}
     else {$rootScope.nav=true;$rootScope.sbar=true;}
+		
 		$rootScope.navsearch=true;
 		$rootScope.navmodelsearch=false;
 
+		var mvp = document.getElementById('myViewport');
+		mvp.setAttribute('content','width=device-width');
 
 		if (Dataservice.last_result) {$scope.disablesubmit=false;}
 		else {$scope.disablesubmit=true;}

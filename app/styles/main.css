@@ -61,7 +61,7 @@ body {
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background: url(loader2.gif) center no-repeat #fff;
+	background: url(476.gif) center no-repeat #fff;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -369,7 +369,7 @@ input{
 
 #SearchResultsPanel{
 	height: 85vh;
-	min-width:250px;
+	min-width:300px;
 	//width:300px;
 	background-color: #E4DBBF;
 	//border-left: 1px solid grey;
@@ -397,6 +397,7 @@ input{
    background: #333333;
 }*/
 #SearchResults{
+	width:300px;
 	margin-top: 60px;
 	height: 75vh;
 	background-color: #E4DBBF;

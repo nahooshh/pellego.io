@@ -16,6 +16,8 @@ angular.module('frontendApp')
 		$rootScope.navsearch=true;
 		$rootScope.navmodelsearch=false;
 
+		var mvp = document.getElementById('myViewport');
+		mvp.setAttribute('content','width=1000');
 		
 		$('.selectpicker').selectpicker();
 		var data=Dataservice.all_data();

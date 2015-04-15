@@ -9,10 +9,10 @@
 	<br-->
 	<div class="voffset9" style="height:25vh;width:300px;margin:0 auto;">
 	<div style="top:80%;" class="input-group">
-		<input type="search" class="form-control modelsearch">
+		<input type="search" class="form-control modelsearch" value="Search for a Specific Model" onfocus="if(this.value=='Search for a Specific Model') {this.value='', this.style.color='#000'};">
 		<!--span class="input-group-btn dropdown"-->
 		<span class="input-group-btn">
-			<a href="#/comparisongraph" class="btn btn-default btn-md" role="button" id="submit_button" ng-disabled="nav"
+			<a href="#/comparisongraph" class="btn btn-default btn-md" role="button" id="submit_button1" ng-disabled="nav"
 			style="background-color:#DC5B21;">
 			<span class="glyphicon glyphicon-arrow-right"></span></a>
 			<!--button class="btn btn-default" type="button" ng-disabled="nav" >
@@ -33,6 +33,7 @@
 		<!--div style="margin:0 auto;width:350px;font-size:200%;color:maroon;font-family:'Pacifico', Arial, serif;font-size: 300%;margin-bottom:50px"> Start Exploring!</div>
 		<a ng-href="#/search"><img src="/images/ic4.jpg" class="img-responsive img-rounded" style="margin:0 auto;margin-bottom:50px"></a-->
 		<div style="top:60%;position:absolute;">
+		<p style="font-family:'Pacifico', Arial, serif; font-weight: 400;font-size: 150%;text-align: center;color: #426655;">Or</p>
 		<a href="#/search" class="btn btn-lg btn-success" role="button">Start Exploring</a>
 		</div>
 	</div>

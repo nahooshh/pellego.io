@@ -16,6 +16,8 @@ angular.module('frontendApp')
 
 		$scope.list = Dataservice.getsel();
 
+		var mvp = document.getElementById('myViewport');
+		mvp.setAttribute('content','width=device-width');
 		/*
 		//localStorageService.clearAll();
 		var selectedInStore = localStorageService.get('selected');
