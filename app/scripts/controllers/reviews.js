@@ -9,13 +9,26 @@
  */
 angular.module('frontendApp')
   .controller('RevCtrl',['$rootScope','$scope','$http','localStorageService','Dataservice',function ($rootScope, $scope, $http, localStorageService,Dataservice) {
-		$rootScope.nav=false;
-		$rootScope.navsearch=false;
-		$rootScope.navmodelsearch=false;
-		$rootScope.sbar=false;
+		if (window.location.href.search("mobile") == -1) {
+			$rootScope.nav=false;
+			$rootScope.navsearch=false;
+			$rootScope.navmodelsearch=false;
+			$rootScope.sbar=false;
+		} else {
+			$rootScope.nav=true;
+			$rootScope.navsearch=true;
+			$rootScope.navmodelsearch=false;
+			$rootScope.sbar=false;
+		}
+
 	
 		var mvp = document.getElementById('myViewport');
-		mvp.setAttribute('content','width=device-width');
+		if (screen.width < 480) {
+			mvp.setAttribute('content','width=480');
+		} else {
+			mvp.setAttribute('content','width=device-width');
+		}
+		//mvp.setAttribute('content','width=device-width');
 
 		$('body').on('hidden.bs.modal', '.modal', function () {
       $(this).removeData('bs.modal');

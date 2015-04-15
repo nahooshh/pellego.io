@@ -17,8 +17,10 @@ angular.module('frontendApp')
 				this.selected.push(specid);
 				var sl=this.selected.length;
 				$("#sl-strip").text("SHORTLIST(".concat(sl,")"));
+				if (window.location.href.search("mobile") == -1) {
 				if (sl > 0) {$rootScope.nav=false; $(".nvbr").removeClass("ng-hide");$rootScope.sbar=false;$(".sl").removeClass("ng-hide");}
     		else {$rootScope.nav=true; $(".nvbr").addClass("ng-hide");$rootScope.sbar=true;$(".sl").addClass("ng-hide");}
+				}
 				return true;
 				//$rootScope.$emit('addEvent', specid);
 			} else {
@@ -31,8 +33,10 @@ angular.module('frontendApp')
 				this.selected.splice(index, 1);
 				var sl=this.selected.length;
 				$("#sl-strip").text("SHORTLIST(".concat(sl,")"));
+				if (window.location.href.search("mobile") == -1) {
 				if (sl > 0) {$rootScope.nav=false; $(".nvbr").removeClass("ng-hide");$rootScope.sbar=false;$(".sl").removeClass("ng-hide");}
     		else {$rootScope.nav=true; $(".nvbr").addClass("ng-hide");$rootScope.sbar=true;$(".sl").addClass("ng-hide");}
+				}
 			}
 		}
 		this.add_label = function(label,d) {

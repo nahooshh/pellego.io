@@ -39,7 +39,11 @@ angular
         templateUrl: 'views/reviews.html',
         controller: 'RevCtrl'
       })
-      .when('/revBattery', {
+      .when('/mobile', {
+        templateUrl: 'views/reviews.html',
+        controller: 'RevCtrl'
+      })
+      /*.when('/revBattery', {
         templateUrl: 'views/reviews.html',
         controller: 'RevCtrl'
       })
@@ -62,7 +66,7 @@ angular
       .when('/revOverall', {
         templateUrl: 'views/reviews.html',
         controller: 'RevCtrl'
-      })
+      })*/
       .otherwise({
         redirectTo: '/'
       });

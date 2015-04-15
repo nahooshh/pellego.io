@@ -18,7 +18,12 @@ angular.module('frontendApp')
 		$rootScope.navmodelsearch=false;
 
 		var mvp = document.getElementById('myViewport');
-		mvp.setAttribute('content','width=device-width');
+		if (screen.width < 480) {
+			mvp.setAttribute('content','width=480');
+		} else {
+			mvp.setAttribute('content','width=device-width');
+		}
+		//mvp.setAttribute('content','width=device-width');
 
 		if (Dataservice.last_result) {$scope.disablesubmit=false;}
 		else {$scope.disablesubmit=true;}
