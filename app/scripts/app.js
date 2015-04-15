@@ -39,6 +39,10 @@ angular
         templateUrl: 'views/reviews.html',
         controller: 'RevCtrl'
       })
+      .when('/price', {
+        templateUrl: 'views/price.html',
+        controller: 'PriceCtrl'
+      })
       .when('/mobile', {
         templateUrl: 'views/reviews.html',
         controller: 'RevCtrl'

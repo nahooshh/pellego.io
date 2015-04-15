@@ -22,6 +22,7 @@ angular.module('frontendApp')
 		}
 
 	
+		var fsizes=[13,16,18,20,22];
 		var mvp = document.getElementById('myViewport');
 		if (screen.width < 480) {
 			mvp.setAttribute('content','width=480');
@@ -273,7 +274,6 @@ angular.module('frontendApp')
 			return round(sum % num.length);
 		}
 		
-		var fsizes=[13,16,18,20,22];
 
   }]);
 

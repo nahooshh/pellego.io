@@ -95,7 +95,7 @@ angular.module('frontendApp')
 		$scope.test();
 	});
 
-	$('#weight').attr('checked', Dataservice.weight[0]);
+	$('#weight0').attr('checked', Dataservice.weight[0]);
 	$('#weight1').attr('checked', Dataservice.weight[1]);
 	$('#weight2').attr('checked', Dataservice.weight[2]);
 	$('.weight').change(function() {
@@ -728,8 +728,17 @@ angular.module('frontendApp')
 	}
 
 	$scope.query = function (redir) {
+		console.log('scopequery',redir);
 		var query=Dataservice.form_query();
-		if (query) {
+		//if (query) {
+		if ((query=="http://192.168.1.2/pellego/php/results.php?all=1") && !redir) {
+			$scope.disablesubmit=true;
+			$("#submit_button").text("Search");
+			Dataservice.last_result=0;
+			Dataservice.query_alt=0;
+			Dataservice.prune_label();
+		}
+		if ((query!="http://192.168.1.2/pellego/php/results.php?all=1") || (redir)) {
 			console.log('querying',query);
 			//if (redir) {$(".se-pre-con").show();}
 			$http.get(query).success(function(response) {
@@ -773,7 +782,7 @@ angular.module('frontendApp')
 		$('#thickness1').attr('checked', Dataservice.thickness[1]);
 		$('#thickness2').attr('checked', Dataservice.thickness[2]);
 		Dataservice.weight=[false,false,false];
-		$('#weight').attr('checked', Dataservice.weight[0]);
+		$('#weight0').attr('checked', Dataservice.weight[0]);
 		$('#weight1').attr('checked', Dataservice.weight[1]);
 		$('#weight2').attr('checked', Dataservice.weight[2]);
 		Dataservice.os=0;
@@ -858,6 +867,12 @@ angular.module('frontendApp')
 		$('#sFM').attr('checked', Dataservice.fm);
 		
 		q.push(1);
+
+		$scope.disablesubmit=true;
+		$("#submit_button").text("Search");
+		Dataservice.last_result=0;
+		Dataservice.query_alt=0;
+		Dataservice.prune_label();
 	}
 
 	$scope.test = function () {
@@ -866,10 +881,13 @@ angular.module('frontendApp')
 	}
 
 	$scope.search_redirect = function () {
-		console.log('search_redirect');
+		console.log('search_redirect','q.length',q.length,'Dataservice.query_alt',Dataservice.query_alt,'Dataservice.last_result',Dataservice.last_result);
 		if ((q.length == 0) && (Dataservice.query_alt==0)) {
 			if (Dataservice.last_result) {
 				$(location).attr('href',"#/comparisongraph");
+			} else {
+				q=[];
+				$scope.query(true);
 			}
 		} else {
 			q=[];

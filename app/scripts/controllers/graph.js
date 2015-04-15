@@ -109,6 +109,7 @@ angular.module('frontendApp')
 					$rootScope.$emit('SLRemEvent', specid);
 				}
 				highlight();
+				console.log('Dataservice.selected',Dataservice.selected);
 			});
 			}
 
@@ -118,12 +119,14 @@ angular.module('frontendApp')
 			$(id).attr('src',val);
 		}*/
 		$scope.remove=function(specid) {
+			specid=String(specid);
+			//console.log('remove',specid,'idx',Dataservice.selected.indexOf(String(specid)));
 			if (Dataservice.selected.indexOf(specid) != -1) {
 				Dataservice.rem_sel(specid);
 				check(specid);
 				$rootScope.$emit('SLRemEvent', specid);			
 			}
-			Dataservice.rem_label(String(specid));
+			Dataservice.rem_label(specid);
 			Dataservice.query_alt=1;
 			$("#sel2_".concat(specid)).remove();
 			reload();
@@ -134,10 +137,10 @@ angular.module('frontendApp')
 			var id2="#".concat("sel2_",specid);
 			if (Dataservice.selected.indexOf(specid) != -1) {
 				$(id2).css("background-color", "rgb(245, 247, 222)");
-				$(id).attr('checked', true);
+				$(id).prop("checked", true);
 			} else {
 				$(id2).css("background-color", "white");
-				$(id).attr('checked', false);
+				$(id).prop("checked", false);
 			}
 		}
 
@@ -177,6 +180,9 @@ angular.module('frontendApp')
 			}
 		}
 		function reload() {
+			//$('#A12plot').empty();
+			//$.plot(placeholder, data, options);
+			//Dataservice.plot = $.plot("#A12plot", []);
 			var options = {points: {show: true},
 				highlightColor:"#FADA5E",
 				label: "label",
@@ -193,6 +199,12 @@ angular.module('frontendApp')
 			Dataservice.price1=[];
 			Dataservice.nam=[];
 			Dataservice.sid=[];
+			if (! $("#A12plot").is(':visible')) {return;}
+			Dataservice.plot = $.plot("#A12plot", [{ data: Dataservice.plotdata}], options);
+			$("#A12plot").unbind("plothover");
+			$("#A12plot").unbind("plotclick");
+			$("#A12plot").unbind("plotzoom");
+			$("#A12plot").unbind("plotpan");
 
 			var id = 0;
 			var opt=Dataservice.graph_sel;
@@ -267,8 +279,8 @@ angular.module('frontendApp')
 			$("#A12plot").bind("plotclick", function (event, pos, item) {
 				if (item) {
 					var specid=Dataservice.sid[item.dataIndex];
-					console.log("specid",specid);
 					var index=Dataservice.selected.indexOf(specid);
+					console.log("plotclick: specid:",specid,'index:',index);
 					if (index != -1) {
 						Dataservice.rem_sel(specid);
 						check(specid);

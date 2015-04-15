@@ -71,7 +71,7 @@ angular.module('frontendApp')
 				console.log("newset:",newset);
 				if (newset) {
 					$rootScope.$emit('ReloadGraphEvent',"");
-					console.log('sending ReloadGraphEvent from top.js');
+					console.log('sending ReloadGraphEvent from main.js');
 				}
 				var specid = response[0][0];
 				var selset = Dataservice.add_sel(specid);

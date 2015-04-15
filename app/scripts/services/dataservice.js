@@ -28,6 +28,7 @@ angular.module('frontendApp')
 			}
 		}
 		this.rem_sel = function(specid) {
+			console.log('rem_sel');
 			var index=this.selected.indexOf(specid);
 			if (index != -1) {
 				this.selected.splice(index, 1);
