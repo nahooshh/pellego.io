@@ -9,11 +9,16 @@ body {
 	background-color: #E4DBBF;
 	font-family: 'Lato', sans-serif;
 }
-
-::-webkit-scrollbar { 
+#sidebar ::-webkit-scrollbar { 
     display: none; 
 }
-/*
+/*#SearchResultsPanel ::-webkit-scrollbar {
+    display: none;
+}*/
+::-webkit-scrollbar:horizontal {
+    display: none; 
+}
+/**/
 ::-webkit-scrollbar {
 	width: 8px;
 }
@@ -34,7 +39,7 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
 	background:#7d7d7d;
-}*/		
+}/**/		
 
 
 .navbar-brand {
@@ -369,14 +374,14 @@ input{
 
 #SearchResultsPanel{
 	height: 85vh;
-	min-width:300px;
+	min-width:307px;
 	//width:300px;
 	background-color: #E4DBBF;
 	//border-left: 1px solid grey;
 }
 #SearchResultsBar{
 	height: 50px;
-	width:300px;
+	width:307px;
 	padding: 5px 5px 5px 5px;
 	position:absolute;
 	//border: 1px dashed black;
@@ -397,7 +402,7 @@ input{
    background: #333333;
 }*/
 #SearchResults{
-	width:300px;
+	width:307px;
 	margin-top: 60px;
 	height: 75vh;
 	background-color: #E4DBBF;
